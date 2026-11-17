@@ -1,59 +1,512 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AmeSuyHician ❤️</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #ffe5ef, #ffd1e3);
-      font-family: Arial, sans-serif;
-      color: #a83d69;
-      text-align: center;
-    }
-    .card {
-      background: rgba(255,255,255,0.8);
-      padding: 40px 30px;
-      margin: 20px;
-      border-radius: 24px;
-      box-shadow: 0 12px 40px rgba(180,70,110,0.15);
-      max-width: 500px;
-    }
-    h1 { font-size: 36px; }
-    p { font-size: 18px; line-height: 1.6; }
-    .heart { font-size: 60px; }
-    button {
-      background: #ff6b9d;
-      color: white;
-      padding: 14px 24px;
-      border: none;
-      border-radius: 25px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    button:hover { background: #e94e86; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gửi người thương | 19/11 💌</title>
+<style>
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #933b63;
+  background: linear-gradient(135deg,#fff0f6,#ffd9e9,#fff6e9);
+  overflow-x: hidden;
+}
+button {
+  cursor: pointer;
+  border: 0;
+  font: inherit;
+}
+button:focus-visible {
+  outline: 3px solid #8d3158;
+  outline-offset: 3px;
+}
+#hearts {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 30;
+}
+.heart {
+  position: absolute;
+  bottom: -40px;
+  animation: floatHeart 5s linear forwards;
+}
+@keyframes floatHeart {
+  0% { transform: translateY(0) rotate(0); opacity: 0; }
+  15% { opacity: 1; }
+  100% {
+    transform: translateY(-110vh) rotate(35deg);
+    opacity: 0;
+  }
+}
+.intro {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 35px 18px;
+}
+.intro-inner { width: min(600px,100%); }
+.eyebrow {
+  letter-spacing: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #bc6c90;
+}
+h1, h2, h3 { font-family: Georgia, serif; }
+h1 {
+  font-size: clamp(34px,7vw,58px);
+  line-height: 1.2;
+  margin: 16px 0;
+}
+.description {
+  line-height: 1.8;
+  color: #a56f89;
+}
+.stage {
+  height: 270px;
+  display: grid;
+  place-items: center;
+  perspective: 800px;
+}
+.envelope {
+  position: relative;
+  width: 260px;
+  height: 170px;
+  background: #eaa0bc;
+  border-radius: 8px;
+  filter: drop-shadow(0 20px 20px #a64f7940);
+  transform: translateY(-100vh) rotate(-15deg);
+  animation: flyIn 1.6s ease-out forwards;
+}
+@keyframes flyIn {
+  70% { transform: translateY(15px) rotate(5deg); }
+  100% { transform: translateY(0) rotate(-3deg); }
+}
+.paper {
+  position: absolute;
+  left: 25px;
+  top: 20px;
+  width: 210px;
+  height: 135px;
+  background: #fffdf8;
+  border-radius: 6px;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  font: italic 22px Georgia,serif;
+  transition: transform 1s;
+}
+.front {
+  position: absolute;
+  inset: 0;
+  background: #f4b8ce;
+  clip-path: polygon(0 0,50% 54%,100% 0,100% 100%,0 100%);
+  z-index: 2;
+}
+.bottom {
+  position: absolute;
+  inset: 0;
+  background: #f8c6d9;
+  clip-path: polygon(0 100%,50% 43%,100% 100%);
+  z-index: 3;
+}
+.flap {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 107px;
+  background: #f9d8e3;
+  clip-path: polygon(0 0,100% 0,50% 100%);
+  transform-origin: top;
+  transition: transform .8s;
+  z-index: 4;
+}
+.seal {
+  position: absolute;
+  left: calc(50% - 22px);
+  top: 75px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #db638d;
+  display: grid;
+  place-items: center;
+  color: white;
+  z-index: 5;
+  transition: opacity .2s;
+}
+.stage.open .flap {
+  transform: rotateX(180deg);
+  z-index: 0;
+}
+.stage.open .seal { opacity: 0; }
+.stage.open .paper { transform: translateY(-105px); }
+.stage.open .envelope {
+  animation: none;
+  transform: rotate(0);
+}
+.question { font-size: 19px; font-weight: bold; }
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn {
+  padding: 14px 26px;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: transform .2s;
+}
+.btn:hover { transform: translateY(-3px); }
+.yes {
+  background: #eb6e9c;
+  color: white;
+  box-shadow: 0 8px 20px #cd588b50;
+}
+.no {
+  background: #fff;
+  color: #a95b80;
+}
+#reply { min-height: 24px; color: #ae7190; }
+.story {
+  display: none;
+  max-width: 1050px;
+  margin: auto;
+  padding: 60px 22px 100px;
+}
+.story-title {
+  text-align: center;
+  font-size: clamp(30px,5vw,48px);
+  margin-bottom: 65px;
+}
+.timeline {
+  display: grid;
+  gap: 60px;
+}
+.memory {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 45px;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(80px) scale(.95);
+  transition: opacity 1s, transform 1s;
+}
+.memory.visible {
+  opacity: 1;
+  transform: none;
+}
+.memory:nth-child(even) .polaroid {
+  grid-column: 2;
+  grid-row: 1;
+}
+.memory:nth-child(even) .words {
+  grid-column: 1;
+  grid-row: 1;
+}
+.polaroid {
+  padding: 12px 12px 44px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 15px 40px #aa577b35;
+  transform: rotate(-3deg);
+  text-align: center;
+}
+.memory:nth-child(even) .polaroid {
+  transform: rotate(3deg);
+}
+.photo {
+  height: 280px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg,#ffe0ec,#fff1c8);
+  position: relative;
+  overflow: hidden;
+}
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.fallback {
+  font-size: 75px;
+  position: absolute;
+}
+.caption {
+  font: italic 17px Georgia,serif;
+  margin-top: 13px;
+}
+.date {
+  display: inline-block;
+  background: #fff9fc;
+  padding: 8px 15px;
+  border-radius: 25px;
+  border: 1px solid #f3bdd0;
+  font-size: 13px;
+}
+.words h3 { font-size: 30px; }
+.words p {
+  line-height: 1.9;
+  color: #905c76;
+  font-size: 17px;
+}
+.ending {
+  margin: 75px auto 0;
+  max-width: 630px;
+  text-align: center;
+  padding: 40px 25px;
+  background: #fffaf4cf;
+  border-radius: 28px;
+  box-shadow: 0 15px 40px #aa577b25;
+}
+.ending p { line-height: 1.9; }
+@media(max-width:650px) {
+  .memory { grid-template-columns: 1fr; gap: 15px; }
+  .memory:nth-child(even) .polaroid,
+  .memory:nth-child(even) .words {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .photo { height: 250px; }
+  .words h3 { font-size: 25px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+  .envelope { transform: none; }
+}
+</style>
 </head>
 <body>
-  <div class="card">
-    <div class="heart">❤️</div>
-    <h1>Welcome to AmeSuyHician</h1>
-    <p>Chào mừng bạn đến với website của mình!</p>
-    <p>Một góc nhỏ xinh trên Internet.</p>
-    <button onclick="sayHello()">Nhấn vào đây ❤️</button>
-  </div>
 
-  <script>
-    function sayHello() {
-      alert("Cảm ơn bạn đã ghé thăm ❤️");
+<div id="hearts" aria-hidden="true"></div>
+
+<section class="intro" id="intro">
+  <div class="intro-inner">
+    <div class="eyebrow">A LITTLE LOVE LETTER</div>
+    <h1>Có một lá thư<br>dành riêng cho cậu... 💗</h1>
+    <p class="description">
+      Mình đã cất vài điều dễ thương vào trong lá thư này.
+      Không biết cậu có muốn đọc không nhỉ?
+    </p>
+
+    <div class="stage" id="stage">
+      <div class="envelope">
+        <div class="paper">Gửi cậu ♡</div>
+        <div class="front"></div>
+        <div class="bottom"></div>
+        <div class="flap"></div>
+        <div class="seal">♥</div>
+      </div>
+    </div>
+
+    <p class="question">Cậu có muốn mở lá thư này không? 🥺</p>
+    <div class="actions">
+      <button class="btn yes" id="yes">Có chứ! 💌</button>
+      <button class="btn no" id="no">Chưa đâu 🙈</button>
+    </div>
+    <p id="reply" role="status"></p>
+  </div>
+</section>
+
+<section class="story" id="story">
+  <div class="eyebrow" style="text-align:center">
+    OUR LITTLE MEMORIES
+  </div>
+  <h2 class="story-title">Những điều mình muốn gửi cậu ♡</h2>
+  <div class="timeline" id="timeline"></div>
+
+  <div class="ending">
+    <div style="font-size:45px">💝</div>
+    <h2>Chúc cậu một ngày 19/11 thật đặc biệt!</h2>
+    <p>
+      Mong cậu luôn vui vẻ, bình an và có thật nhiều
+      lý do để mỉm cười. Cảm ơn cậu vì đã xuất hiện
+      và làm thế giới của mình trở nên dịu dàng hơn.
+    </p>
+    <h3>Thương cậu nhiều lắm! ❤️</h3>
+    <button class="btn yes" id="replay">Xem lại từ đầu 💌</button>
+  </div>
+</section>
+
+<script>
+// ===== CHỈNH ẢNH, NGÀY VÀ LỜI NHẮN Ở ĐÂY =====
+// Ảnh cần được tải lên thư mục images trên GitHub.
+const memories = [
+  {
+    date: "Ngày đầu tiên",
+    title: "Khi chúng mình gặp nhau 🌷",
+    message: "Có những khoảnh khắc rất bình thường, nhưng lại trở thành một điều thật đặc biệt trong lòng mình.",
+    image: "images/anh1.jpg",
+    emoji: "🌸",
+    caption: "Một khởi đầu đáng yêu"
+  },
+  {
+    date: "Một ngày đáng nhớ",
+    title: "Nụ cười của cậu 💗",
+    message: "Mình luôn mong cậu có thật nhiều ngày vui và những nụ cười thật rạng rỡ như thế.",
+    image: "images/anh2.jpg",
+    emoji: "🧸",
+    caption: "Một khoảnh khắc thật xinh"
+  },
+  {
+    date: "Một kỷ niệm nhỏ",
+    title: "Những điều giản dị ☁️",
+    message: "Đôi khi chỉ cần cùng nhau chia sẻ những câu chuyện nhỏ cũng đủ làm một ngày trở nên đặc biệt.",
+    image: "images/anh3.jpg",
+    emoji: "🌷",
+    caption: "Điều giản dị mình trân trọng"
+  },
+  {
+    date: "19/11",
+    title: "Một lời chúc dành riêng cho cậu 💌",
+    message: "Chúc cậu luôn hạnh phúc, mạnh mẽ, gặp nhiều may mắn và được yêu thương thật nhiều.",
+    image: "images/anh4.jpg",
+    emoji: "💝",
+    caption: "Gửi cậu tất cả yêu thương"
+  }
+];
+// ===== KẾT THÚC PHẦN CHỈNH NỘI DUNG =====
+
+const hearts = document.getElementById("hearts");
+const timeline = document.getElementById("timeline");
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+let heartTimer = null;
+let opening = false;
+
+function makeHeart() {
+  if (reduceMotion) return;
+  const heart = document.createElement("span");
+  heart.className = "heart";
+  heart.textContent = ["❤️","💗","💕","♡"][Math.floor(Math.random()*4)];
+  heart.style.left = Math.random()*100 + "%";
+  heart.style.fontSize = 15+Math.random()*20+"px";
+  heart.style.animationDuration = 4+Math.random()*3+"s";
+  hearts.appendChild(heart);
+  setTimeout(() => heart.remove(), 7500);
+}
+
+function burst(count) {
+  for (let i=0; i<count; i++) {
+    setTimeout(makeHeart, i*110);
+  }
+}
+
+function createMemories() {
+  memories.forEach(m => {
+    const item = document.createElement("article");
+    item.className = "memory";
+
+    // Dùng textContent để nội dung dễ sửa và an toàn.
+    const polaroid = document.createElement("div");
+    polaroid.className = "polaroid";
+
+    const photo = document.createElement("div");
+    photo.className = "photo";
+
+    const fallback = document.createElement("span");
+    fallback.className = "fallback";
+    fallback.textContent = m.emoji;
+
+    const img = document.createElement("img");
+    img.alt = m.title;
+    img.loading = "lazy";
+    img.hidden = true;
+    img.onload = () => {
+      img.hidden = false;
+      fallback.hidden = true;
+    };
+    img.onerror = () => img.remove();
+    img.src = m.image;
+
+    photo.append(img, fallback);
+
+    const caption = document.createElement("div");
+    caption.className = "caption";
+    caption.textContent = m.caption;
+    polaroid.append(photo, caption);
+
+    const words = document.createElement("div");
+    words.className = "words";
+
+    const date = document.createElement("span");
+    date.className = "date";
+    date.textContent = m.date;
+
+    const title = document.createElement("h3");
+    title.textContent = m.title;
+
+    const text = document.createElement("p");
+    text.textContent = m.message;
+
+    words.append(date, title, text);
+    item.append(polaroid, words);
+    timeline.appendChild(item);
+  });
+}
+
+createMemories();
+
+document.getElementById("no").onclick = () => {
+  document.getElementById("reply").textContent =
+    "Không sao, lá thư sẽ đợi khi cậu sẵn sàng nha 🌷";
+};
+
+document.getElementById("yes").onclick = () => {
+  if (opening) return;
+  opening = true;
+
+  document.getElementById("yes").disabled = true;
+  document.getElementById("no").disabled = true;
+  document.getElementById("stage").classList.add("open");
+  burst(20);
+
+  setTimeout(() => {
+    document.getElementById("intro").style.display = "none";
+    document.getElementById("story").style.display = "block";
+    window.scrollTo(0, 0);
+
+    document.querySelectorAll(".memory").forEach((item,i) => {
+      setTimeout(() => {
+        item.classList.add("visible");
+        burst(5);
+      }, 400+i*1100);
+    });
+
+    if (!reduceMotion) {
+      heartTimer = setInterval(makeHeart, 1000);
     }
-  </script>
+  }, 1400);
+};
+
+document.getElementById("replay").onclick = () => {
+  clearInterval(heartTimer);
+  heartTimer = null;
+  opening = false;
+
+  document.getElementById("story").style.display = "none";
+  document.getElementById("intro").style.display = "grid";
+  document.getElementById("stage").classList.remove("open");
+
+  document.getElementById("yes").disabled = false;
+  document.getElementById("no").disabled = false;
+  document.getElementById("reply").textContent = "";
+
+  document.querySelectorAll(".memory").forEach(item =>
+    item.classList.remove("visible")
+  );
+
+  window.scrollTo(0, 0);
+};
+</script>
 </body>
 </html>
