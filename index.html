@@ -101,6 +101,37 @@
 }
 @media(prefers-reduced-motion:reduce){.envelope::before,.memory-person{animation:none!important}}
 
+
+/* Cảnh hỏi mở thư: dùng chính ảnh trao thư của Ame và Hician;
+   không chồng thêm chibi, phong thư hay cánh tay giả. */
+.decision-card{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);align-items:center;gap:clamp(16px,2.6vw,34px)}
+.decision-art{aspect-ratio:16/11;min-height:0;height:auto;max-height:none;background:#f8e8f0;isolation:isolate;overflow:hidden;box-shadow:inset 0 0 0 1px #ffffff8f}
+.decision-art .question-scene{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;object-position:50% 48%;display:block}
+.decision-art .scene-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 49% 45%,#fff5 0%,transparent 27%);opacity:.5}
+.decision-art.opening .scene-glow{animation:questionBloom 1.05s ease-in forwards}
+.decision-art.opening .question-scene{animation:questionZoom 1.05s ease-in forwards}
+@keyframes questionBloom{0%{opacity:.3}55%{opacity:1;background:radial-gradient(circle at 49% 45%,#fff9 0%,#ffc6dd88 25%,transparent 75%)}100%{opacity:1;background:#fffc}}
+@keyframes questionZoom{to{transform:scale(1.065)}}
+.decision-copy{position:relative;z-index:2}
+.decision-copy h2{font-size:clamp(27px,3.15vw,42px);overflow-wrap:normal;word-break:normal;hyphens:none;text-wrap:balance}
+#handoffScene .handoff-caption,#travel .travel-note{display:none!important}
+@media(max-width:740px){
+ #decision{padding:10px}
+ .decision-card{grid-template-columns:1fr;gap:12px;max-height:calc(100svh - 20px);overflow:auto;padding:12px;border-radius:25px}
+ .decision-art{width:100%;min-height:0;height:auto;max-height:none;aspect-ratio:16/10;border-radius:18px}
+ .decision-art .question-scene{object-position:center}
+ .decision-copy{padding:0 7px 10px}
+ .decision-copy h2{font-size:clamp(25px,6.8vw,34px);line-height:1.15;margin:9px 0}
+ .decision-copy p{font-size:13px;line-height:1.5;margin:9px 0}
+ .decision-copy .actions{gap:9px}
+}
+@media(prefers-reduced-motion:reduce){.decision-art.opening .question-scene,.decision-art.opening .scene-glow{animation:none!important}}
+
+/* Cảnh chibi động thật: 9 khung hình thay đổi tay và tư thế, không rung cả ảnh bằng CSS. */
+#handoffScene img{object-fit:contain;background:linear-gradient(125deg,#ffe9ef,#f9edec)}
+.decision-art .question-scene{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%;position:absolute;inset:0}
+.decision-art .scene-glow{pointer-events:none}
+@media (max-width:650px){.decision-art .question-scene{object-fit:contain;background:#f7e7e9}#handoffScene img{object-fit:contain}}
 </style>
 </head>
 <body>
@@ -126,17 +157,15 @@
       <div class="path"></div>
       <div id="travelAme" class="travel-actor"><img src="images/chibinu-running.gif" data-fallback="images/chibinu.png" alt="Ame chạy cầm thư"></div>
       <div id="travelHician" class="travel-actor"><img src="images/hician-pose-bench.webp" alt="Hician đợi Ame"></div>
-      <div class="travel-note" id="travelText">Ame đang mang thư tới cho Hician... ♡</div>
+      
     </div>
   </div>
-  <div id="handoffScene" aria-hidden="true"><img src="images/park-handoff.webp" alt="Ame trao thư cho Hician đang ngồi trên ghế công viên"><div class="handoff-caption">Hician đưa tay nhận thư từ Ame ♡</div></div>
+  <div id="handoffScene" aria-hidden="true"><img src="images/ame-hician-trao-thu.gif" alt="Hoạt hình Ame tiến đến đưa thư, Hician ngồi đưa hai tay ra nhận" loading="eager"></div>
   <div id="decision">
     <div class="decision-card">
-      <div class="decision-art">
-        <div class="talk" id="boyTalk">Ơ, Ame gửi thư cho mình này! Mở nhé? ♡</div>
-        <img class="boy" src="images/chibinam-letter.gif" data-fallback="images/chibinam.png" alt="Hician nhận thư">
-        <img class="girl" src="images/chibinu.png" alt="Ame đứng bên Hician">
-        <div class="envelope" id="decisionLetter"><div class="base"></div><div class="paper">19/11 ♡</div><div class="front"></div><div class="bottom"></div><div class="flap"></div><div class="seal">♥</div></div>
+      <div class="decision-art" id="decisionArt">
+        <img class="question-scene" src="images/ame-hician-cho-mo-thu.gif" alt="Hoạt hình chibi Ame và Hician bên ghế công viên sau khi trao thư" fetchpriority="high">
+        <div class="scene-glow" aria-hidden="true"></div>
       </div>
       <div class="decision-copy"><span class="eyebrow">Gửi riêng Hician</span><h2>Có muốn mở lá thư này không? 💌</h2><p>Ame đã mang tới một món quà có 19 kỷ niệm nhỏ xinh của chúng mình.</p><div class="actions"><button id="yes" class="btn primary">Có, mở ngay ♡</button><button id="no" class="btn light">Chưa đâu 🙈</button></div><p id="reply" role="status"></p></div>
     </div>
@@ -205,14 +234,14 @@ async function opening(){if(started)return;started=true;startParticles('scatter'
   $('oneLetter').style.opacity='0';$('arrival').style.opacity='0';await delay(reduced?100:270);$('arrival').hidden=true;$('oneLetter').hidden=true;
   $('travel').classList.add('active');const distance=Math.max(0,innerWidth*.95);const travelTime=reduced?20:3300;
   await Promise.all([play($('track'),[{transform:'translateX(0)'},{transform:`translateX(-${distance}px)`}],travelTime,'linear'),play($('travelAme'),[{left:'12vw'},{left:'128vw'}],travelTime,'ease-in-out')]);
-  $('travelText').textContent='Ame dừng lại trước Hician ♡';await delay(reduced?100:400);
+  await delay(reduced?100:400);
   // Cảnh minh họa trao thư có đúng tay hai nhân vật, không vẽ tay giả bằng CSS.
-  $('travel').classList.remove('active');$('handoffScene').classList.add('active');await delay(reduced?180:1500);
+  $('travel').classList.remove('active');$('handoffScene').classList.add('active');await delay(reduced?350:4300);
   $('handoffScene').classList.remove('active');$('decision').classList.add('active');
 }
 addEventListener('load',opening);
-$('no').onclick=()=>{$('reply').textContent='Ame và lá thư đợi Hician thêm chút nữa nha ♡';$('boyTalk').textContent='Hơi tò mò rồi đó… 🥺'};
-let unlocked=false;$('yes').onclick=async()=>{if(unlocked)return;unlocked=true;$('yes').disabled=true;$('no').disabled=true;$('decisionLetter').classList.add('shake');$('boyTalk').textContent='Mình mở thư nha! ♡';await delay(reduced?100:800);$('decisionLetter').classList.remove('shake');$('decisionLetter').classList.add('is-open');burst();await delay(reduced?100:1100);$('cinema').hidden=true;$('album').style.display='block';window.scrollTo(0,0);createTimeline()};
+$('no').onclick=()=>{$('reply').textContent='Ame và lá thư đợi Hician thêm chút nữa nha ♡'};
+let unlocked=false;$('yes').onclick=async()=>{if(unlocked)return;unlocked=true;$('yes').disabled=true;$('no').disabled=true;$('decisionArt').classList.add('opening');await delay(reduced?100:850);burst();await delay(reduced?100:1050);$('cinema').hidden=true;$('album').style.display='block';window.scrollTo(0,0);createTimeline()};
 function node(tag,cls,text){const el=document.createElement(tag);if(cls)el.className=cls;if(text!==undefined)el.textContent=text;return el}
 function asset(src,alt,backup){const img=node('img');img.src=src;img.alt=alt;if(backup){img.onerror=()=>{img.onerror=null;img.src=backup}}return img}
 const amePoses=['ame-pose-peek.webp','ame-pose-giggle.webp','ame-pose-present.webp','ame-pose-hi.webp','ame-pose-laugh.webp','ame-pose-wave.webp','ame-pose-point.webp','ame-pose-run.webp'];
