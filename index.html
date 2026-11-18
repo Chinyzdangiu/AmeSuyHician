@@ -3,262 +3,152 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#fff0f7">
-<meta name="description" content="Một lá thư và 19 kỷ niệm của Ame gửi Hician nhân ngày 19/11.">
-<title>Ame ♡ Hician | Lá thư 19/11</title>
+<meta name="theme-color" content="#ffecf6">
+<meta name="description" content="Lá thư 19/11 của Ame dành cho Hician — 19 tấm ảnh, 18 kỷ niệm.">
+<title>Ame ♡ Hician | Lá thư và những kỷ niệm</title>
 <link rel="preload" href="images/park-garden.webp" as="image">
 <style>
-:root{--ink:#91486d;--pink:#ed75a3;--pink2:#ffd5e6;--paper:#fffaf7;--shadow:0 14px 34px rgba(145,72,109,.17)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;overflow-x:hidden;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:linear-gradient(125deg,#fff3f9,#ffe1ee,#fff7ec);color:var(--ink)}button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid #bb457e;outline-offset:4px}img{display:block;max-width:100%}h1,h2,h3{font-family:Georgia,"Times New Roman",serif}a{color:inherit}[hidden]{display:none!important}
-#particles{position:fixed;inset:0;z-index:45;width:100%;height:100%;pointer-events:none} .btn{border:0;border-radius:999px;padding:13px 22px;font-weight:750;box-shadow:0 8px 22px #d46a9838;transition:transform .2s}.btn:hover{transform:translateY(-2px)}.btn.primary{background:linear-gradient(135deg,#ffa1c3,#eb659b);color:white}.btn.light{background:#fff;color:var(--ink);border:1px solid #f5c5d9}.eyebrow{letter-spacing:.23em;font-size:11px;font-weight:800;color:#be6b90;text-transform:uppercase}
-/* Cảnh mở đầu: một sân khấu tỷ lệ theo viewport, không ép kích thước desktop lên mobile */
-#cinema{height:100svh;min-height:540px;position:relative;overflow:hidden;isolation:isolate;background:radial-gradient(circle at 30% 12%,#fff 0%,transparent 32%),linear-gradient(#e8e4ff,#ffe4f0 67%,#fff4eb)}
-#openingText{position:absolute;z-index:8;top:5%;left:5%;width:90%;text-align:center;transition:opacity .6s;pointer-events:none}#openingText h1{font-size:clamp(29px,4.2vw,54px);line-height:1.15;margin:10px 0}#openingText p{font-size:clamp(13px,1.4vw,17px);margin:0;color:#a96c8a}
-/* Phong thư CHÍNH: chỉ một vật thể được dùng trong cảnh tụ tim, đón thư */
-.envelope{width:min(380px,65vw);aspect-ratio:1.48;position:relative;filter:drop-shadow(0 18px 25px #bc6e933d);perspective:700px}.envelope .base{position:absolute;inset:0;border-radius:15px;background:#f2a4c3}.envelope .paper{position:absolute;left:9%;top:10%;width:82%;height:80%;border-radius:9px;background:#fffdf7;display:grid;place-items:center;text-align:center;font:italic clamp(14px,2vw,23px) Georgia,serif;transition:transform .7s}.envelope .front{position:absolute;inset:0;background:#f8b9d1;clip-path:polygon(0 0,50% 55%,100% 0,100% 100%,0 100%);border-radius:15px}.envelope .bottom{position:absolute;inset:0;background:#ffd3e3;clip-path:polygon(0 100%,50% 45%,100% 100%)}.envelope .flap{position:absolute;top:0;left:0;width:100%;height:57%;background:#ffe4ed;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .75s}.envelope .seal{position:absolute;top:47%;left:50%;transform:translate(-50%,-50%);background:#ee6a9f;color:white;border-radius:50%;width:13%;aspect-ratio:1;display:grid;place-items:center;font-size:clamp(15px,2.4vw,26px);transition:opacity .3s}.envelope.is-open .flap{transform:rotateX(180deg)}.envelope.is-open .seal{opacity:0}.envelope.is-open .paper{transform:translateY(-47%)}
-#oneLetter{position:absolute;left:50%;top:53%;z-index:7;opacity:0;transform:translate(-50%,-50%) scale(.28);transition:opacity .5s,transform .85s,left .7s,top .7s;will-change:transform}#oneLetter.visible{opacity:1;transform:translate(-50%,-50%) scale(1.23)}#oneLetter.small{transform:translate(-50%,-50%) scale(.43);top:48%}#oneLetter.caught{transition:transform .65s,left .65s,top .65s,opacity .4s;transform:translate(-50%,-50%) scale(.23) rotate(-12deg);left:54%;top:55%}
-/* Khinh khí cầu, chào và quay lưng: tư thế động mô phỏng bằng CSS và PNG */
-#arrival{position:absolute;left:50%;top:-460px;width:clamp(125px,22vw,210px);height:clamp(250px,39vw,345px);transform:translateX(-50%);z-index:10;opacity:0;pointer-events:none}#arrival.descend{animation:descend 2.6s ease-in-out forwards}@keyframes descend{0%{top:-460px;opacity:1}70%{top:20%;opacity:1}100%{top:29%;opacity:1}}
-.balloon{position:absolute;top:-20%;left:50%;transform:translateX(-50%);width:clamp(135px,21vw,210px);height:clamp(142px,22vw,220px);animation:sway 2s ease-in-out infinite;transform-origin:50% 95%}.balloon .canopy{position:absolute;inset:0 7% 31%;border-radius:55% 55% 48% 48%;background:radial-gradient(circle at 30% 22%,#fffdfd 0 5%,#ffe4f0 23%,#f18eb8 65%,#de6eaa 95%);box-shadow:inset -16px -11px 20px #cc63984d,0 12px 25px #ad6a9850;border:3px solid #fff9}.balloon .canopy::before{content:"♡";position:absolute;left:43%;top:18%;font-size:25px;color:#fff}.balloon .rope{position:absolute;top:61%;height:29%;width:2px;background:#b9838d}.balloon .r1{left:30%;transform:rotate(-15deg)}.balloon .r2{right:30%;transform:rotate(15deg)}.balloon .basket{position:absolute;bottom:0;left:34%;width:32%;height:16%;border-radius:4px 4px 12px 12px;background:repeating-linear-gradient(0deg,#ba7b4f 0 6px,#d9a16d 6px 12px);box-shadow:0 5px 10px #9b5e5730}@keyframes sway{50%{transform:translateX(-50%) rotate(6deg)}}
-#arrivalFigure{position:absolute;bottom:0;left:50%;width:87%;height:68%;transform:translateX(-50%);transition:transform .65s}#arrivalFigure img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 9px 16px #91547850)}#arrival.hello #arrivalFigure{animation:hello .8s ease-in-out 2}@keyframes hello{0%,100%{transform:translateX(-50%) rotate(0)}30%{transform:translateX(-50%) rotate(-13deg) translateY(-9px)}60%{transform:translateX(-50%) rotate(9deg)}}#arrival.turn #arrivalFigure{transform:translateX(-50%) rotateY(155deg) rotate(-8deg)}#arrival.grab #arrivalFigure{transform:translateX(-50%) rotateY(160deg) translateY(-24px)}#arrival .speech{position:absolute;right:-35%;top:29%;background:white;border:1px solid #f6c4d8;border-radius:24px;padding:8px 12px;font-weight:800;font-size:clamp(12px,1.2vw,16px);opacity:0;transition:opacity .3s;box-shadow:var(--shadow)}#arrival.hello .speech{opacity:1}#arrival.turn .balloon{animation:flyAway 1s forwards}@keyframes flyAway{to{opacity:0;transform:translate(-50%,-170px) scale(.75)}}
-/* Công viên nhiều cây, đèn dây, vườn hoa: vẽ bằng SVG / CSS, không dùng emoji ghế */
-#travel{display:none;position:absolute;inset:0;z-index:9;overflow:hidden}#travel.active{display:block}#track{position:absolute;top:0;left:0;height:100%;width:220vw;background:linear-gradient(#cfd7ff,#ffe7f1 63%,#eef8de);will-change:transform}#track:after{content:"";position:absolute;bottom:0;inset-inline:0;height:18%;background:linear-gradient(#b3dda5,#8ec48b)}.park-trees{position:absolute;inset:0 0 13%;width:100%;height:87%;pointer-events:none}.park-trees svg{width:100%;height:100%}.path{position:absolute;bottom:9%;width:100%;height:10%;background:linear-gradient(#f8e5cd,#e9c6a2);transform:skewY(-1deg);z-index:2}.lights{position:absolute;left:0;right:0;top:10%;height:70px;z-index:3;background:radial-gradient(circle,#ffeeb8 0 5px,transparent 7px) 0 30px/76px 36px repeat-x;filter:drop-shadow(0 0 7px #f7e49e)}.travel-actor{position:absolute;bottom:13%;height:clamp(185px,35vh,355px);z-index:5}.travel-actor img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 12px 14px #6a554350)}#travelAme{left:12vw;width:clamp(125px,18vw,235px)}#travelHician{left:159vw;width:clamp(140px,19vw,245px)}.travel-note{position:absolute;bottom:5%;left:5%;z-index:6;background:#fff9;border:1px solid #fff;border-radius:99px;padding:8px 15px;font-weight:750;font-size:clamp(12px,1.3vw,16px)}
-/* Khung lựa chọn: trên mobile xếp dọc, hình vẫn hiển thị */
-#decision{display:none;position:absolute;inset:0;z-index:12;background:linear-gradient(125deg,#fff1f8,#ffe1ed);align-items:center;justify-content:center;padding:clamp(10px,2vw,25px)}#decision.active{display:flex}.decision-card{width:min(1040px,100%);display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,2vw,24px);padding:clamp(10px,2vw,20px);border-radius:30px;background:#fffefaed;box-shadow:var(--shadow);max-height:97%;overflow:auto}.decision-art{min-height:clamp(260px,44vh,420px);position:relative;border-radius:22px;overflow:hidden;background:linear-gradient(#fbeefb,#ffdce9 72%,#d1edbc)}.decision-art .boy{position:absolute;width:53%;height:83%;right:0;bottom:0;object-fit:contain}.decision-art .girl{position:absolute;width:29%;height:46%;left:3%;bottom:5%;object-fit:contain;animation:bob 1.8s ease-in-out infinite}.decision-art .talk{position:absolute;right:2%;top:3%;background:#fff;border-radius:20px;padding:12px;font-size:clamp(11px,1.3vw,15px);max-width:47%;z-index:6;box-shadow:var(--shadow)}.decision-art .envelope{position:absolute;width:35%;left:36%;top:55%;z-index:7;transform:translate(-50%,-50%)}.decision-art .envelope.shake{animation:shake .12s infinite alternate}@keyframes shake{from{transform:translate(-50%,-50%) rotate(-7deg)}to{transform:translate(-50%,-50%) rotate(7deg)}}.decision-copy{display:flex;flex-direction:column;justify-content:center;padding:10px}.decision-copy h2{font-size:clamp(28px,3.4vw,45px);line-height:1.18;margin:12px 0}.decision-copy p{font-size:clamp(13px,1.4vw,16px);line-height:1.75}.actions{display:flex;gap:10px;flex-wrap:wrap}#reply{min-height:24px;font-size:14px}@keyframes bob{50%{transform:translateY(-9px)}}
-/* Album: panel sân vườn nằm bên trái laptop, phía trên mobile; luôn giữ nhân vật */
-#album{display:none;max-width:1270px;margin:auto;padding:45px clamp(12px,2vw,25px) 95px}.album-title{text-align:center;margin:0 auto 34px;max-width:760px}.album-title h2{font-size:clamp(28px,4.6vw,52px);margin:10px 0}.album-title p{line-height:1.7;color:#9f6e86}.album-layout{display:grid;grid-template-columns:minmax(260px,310px) minmax(0,1fr);gap:clamp(15px,2vw,28px);align-items:start}
-.guide{position:sticky;top:12px;min-height:540px;border-radius:28px;overflow:hidden;background:linear-gradient(#f7eaff 0%,#ffe7ef 58%,#c6e6b8 58%,#9acb93 100%);box-shadow:var(--shadow);isolation:isolate}.guide .grove{position:absolute;inset:12% 0 16%;z-index:-1}.guide .grove svg{width:100%;height:100%}.guide-text{position:relative;z-index:7;margin:13px;padding:12px 15px;border-radius:19px;background:#fffffff5;box-shadow:0 9px 18px #a65e8330;line-height:1.55;font-size:14px;min-height:85px}.guide-text strong{display:block;color:#aa517a}.guide-photo{position:absolute;top:38%;left:30%;width:39%;aspect-ratio:4/5;padding:7px 7px 22px;background:#fff;box-shadow:0 8px 18px #92527440;transform:rotate(-7deg);z-index:4;animation:floatFrame 3.5s ease-in-out infinite}.guide-photo img{width:100%;height:100%;object-fit:cover}.guide-person{position:absolute;bottom:5%;padding:0;border:0;background:none;z-index:6}.guide-person img{width:100%;height:auto;max-height:210px;object-fit:contain;filter:drop-shadow(0 8px 10px #6d514a38)}#ameGuide{left:0;width:48%}#hicianGuide{right:-1%;width:59%}#ameGuide img{animation:bob 2.4s ease-in-out infinite}#hicianGuide img{max-height:190px}@keyframes floatFrame{50%{transform:translateY(-9px) rotate(-4deg)}}
-#memoryList{display:grid;gap:24px}.memory{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border-radius:25px;overflow:hidden;background:#fffdfbe9;box-shadow:var(--shadow);opacity:0;transform:translateY(35px);transition:opacity .7s,transform .7s}.memory.visible{opacity:1;transform:none}.memory:nth-child(even) .memory-visual{order:2}.memory:nth-child(even) .memory-content{order:1}.memory-visual{position:relative;min-height:330px;padding:25px;display:grid;place-items:center;background:linear-gradient(145deg,#ffe5ef,#fff5e8)}.polaroid{width:min(100%,320px);background:#fff;padding:11px 11px 38px;box-shadow:0 14px 29px #ab608241;transform:rotate(var(--tilt,-3deg));animation:drift 4s ease-in-out infinite}.memory:nth-child(even) .polaroid{--tilt:3deg}@keyframes drift{50%{transform:translateY(-8px) rotate(var(--tilt,-3deg))}}.memory-photo{position:relative;aspect-ratio:4/5;overflow:hidden;background:#ffdaeb;display:grid;place-items:center}.memory-photo img{width:100%;height:100%;object-fit:cover}.memory-caption{text-align:center;padding-top:11px;font:italic 16px Georgia,serif}.ame-corner{position:absolute;width:clamp(76px,11vw,120px);z-index:5;filter:drop-shadow(0 6px 8px #aa7b784a)}.ame-corner img{width:100%;height:auto}.ame-corner.bottom-right{right:1%;bottom:0}.ame-corner.bottom-left{left:1%;bottom:0;transform:scaleX(-1)}.ame-corner.top-right{right:1%;top:0}.ame-corner.top-left{left:1%;top:0;transform:scaleX(-1)}.ame-corner.peek{width:clamp(85px,12vw,135px)}.memory-content{padding:clamp(22px,3vw,34px);display:flex;flex-direction:column;justify-content:center;gap:12px}.memory-number{font-size:12px;font-weight:800;letter-spacing:.2em;color:#df7ba4}.memory-date{border:1px solid #f4c4d8;background:#fff5f9;padding:7px 14px;border-radius:99px;width:fit-content;font-size:13px}.memory-content h3{margin:0;font-size:clamp(23px,2.7vw,34px);line-height:1.25}.memory-content p{margin:0;line-height:1.8;color:#986c84}
-.ending{max-width:800px;margin:60px auto 0;padding:clamp(20px,4vw,40px);text-align:center;border-radius:30px;background:#fffaf8e8;box-shadow:var(--shadow)}.ending img{width:min(285px,80%);margin:auto auto 20px;border-radius:20px}.ending p{line-height:1.8;color:#986c84}
-@media(max-width:920px){.album-layout{grid-template-columns:1fr}.guide{position:relative;top:auto;min-height:330px;height:330px}.guide-text{max-width:58%;font-size:13px}.guide-photo{top:30%;left:46%;width:15%;min-width:80px}.guide-person{bottom:0}#ameGuide{left:62%;width:18%}#hicianGuide{right:1%;width:22%}}
-@media(max-width:650px){#cinema{min-height:530px}#openingText{top:4%}#openingText h1{font-size:29px}#oneLetter.visible{transform:translate(-50%,-50%) scale(1.14)}.decision-card{grid-template-columns:1fr;gap:8px}.decision-art{min-height:250px;height:36svh;max-height:330px}.decision-copy{padding:4px 9px}.decision-copy h2{font-size:26px;margin:8px 0}.decision-copy p{font-size:13px;margin:7px 0}.decision-art .talk{font-size:11px;max-width:49%}.btn{padding:12px 17px;font-size:13px}.guide{height:350px;min-height:0}.guide-text{max-width:none;margin:10px;min-height:80px;font-size:12px}.guide-photo{top:39%;left:41%;width:25%;min-width:74px;max-width:118px}#ameGuide{left:3%;width:32%;bottom:4%}#hicianGuide{right:1%;width:35%;bottom:4%}.memory{grid-template-columns:1fr}.memory:nth-child(even) .memory-visual,.memory:nth-child(even) .memory-content{order:initial}.memory-visual{min-height:0;padding:25px 20px}.polaroid{width:min(84%,350px)}.ame-corner{width:90px}.memory-content{padding:20px 23px 28px}.travel-note{bottom:2%}}
-@media(max-width:400px){.guide-photo{left:40%;width:23%}#ameGuide{width:34%}#hicianGuide{width:38%}.speech{font-size:11px}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
-
-/* CUSTOM GARDEN SCENES: real illustrated assets, mobile-first */
-#cinema{background:radial-gradient(circle at 50% 5%,#fff8 0%,transparent 38%),linear-gradient(#e7e2ff,#ffe6f1 65%,#f4e5d3)}
-#track{background-image:linear-gradient(#ffffff13,#ffffff05),url("images/park-garden.webp");background-size:auto 100%,auto 100%;background-repeat:repeat-x;background-position:left center}
-#track::after{background:linear-gradient(#d7b89422,#8abe8a35);height:14%}
-.park-trees,.path,.lights{opacity:0;visibility:hidden}
-#travelHician{bottom:15%;height:clamp(180px,34vh,310px)}
-#travelAme{bottom:15%}
-#travel .travel-note{background:#fffdf2ee;border:1px solid #fff9}
-#handoffScene{display:none;position:absolute;inset:0;z-index:11;background:linear-gradient(#fff4f8,#f2d7df);overflow:hidden;align-items:center;justify-content:center}
-#handoffScene.active{display:flex}
-#handoffScene img{width:100%;height:100%;object-fit:cover;object-position:center}
-#handoffScene .handoff-caption{position:absolute;left:50%;bottom:max(25px,5svh);transform:translateX(-50%);width:max-content;max-width:90vw;border:1px solid #fff;background:#fffdf3e5;backdrop-filter:blur(5px);border-radius:999px;padding:10px 18px;box-shadow:var(--shadow);font-weight:800;text-align:center}
-#arrivalFigure img{object-fit:contain}
-#arrival.hello #arrivalFigure img{filter:drop-shadow(0 9px 16px #91547850)}
-
-#arrival.turn #arrivalFigure,#arrival.grab #arrivalFigure{transform:translateX(-50%) rotateY(0)}
-#arrival.grab #arrivalFigure{transform:translateX(-50%) translateY(4px)}
-
-#arrival .speech{right:-20%;top:20%;white-space:nowrap}
-#arrival.hello .speech{opacity:1}
-.guide{background-image:linear-gradient(180deg,#fff4f6a8 0%,#fff5f199 42%,#ffffff12 100%),url("images/park-garden.webp");background-size:cover;background-position:55% center}
-.guide .grove{opacity:.04}
-.guide-photo{top:38%}
-#ameGuide{left:0;width:44%}
-#hicianGuide{right:-1%;width:59%}
-.memory-visual{background-image:linear-gradient(145deg,#fff2f5b9,#fff8eed1),url("images/park-garden.webp");background-size:cover;background-position:center}
-.ame-corner{max-width:125px}
-@media(max-width:920px){.guide{height:350px;min-height:350px;background-position:center 54%}#ameGuide{left:58%;width:21%}#hicianGuide{right:0;width:26%}.guide-photo{left:42%;width:19%}}
-@media(max-width:650px){#track{background-size:auto 100%}#arrival.hello .speech{top:22%;right:-10%}.guide{height:390px;min-height:390px;background-position:58% center}.guide-text{max-width:none;width:calc(100% - 20px);min-height:75px}.guide-photo{top:40%;left:37%;width:26%;max-width:115px}#ameGuide{left:0;width:35%;bottom:6%}#hicianGuide{right:0;width:39%;bottom:6%}#handoffScene img{object-position:52% center}.memory-visual{background-position:50% 50%}}
-@media(max-width:400px){.guide-photo{left:36%;width:27%}#ameGuide{width:36%}#hicianGuide{width:40%}}
-
-
-/* V3: ánh sáng từ phong thư; giảm công việc vẽ trên điện thoại */
-.envelope{isolation:isolate}
-.envelope::before{content:"";position:absolute;inset:-12%;z-index:-1;border-radius:28px;background:radial-gradient(ellipse,#fff9 12%,#ffc2e6a8 48%,transparent 73%);filter:blur(18px);animation:letterAura 1.65s ease-in-out infinite alternate;pointer-events:none}
-#oneLetter.visible{filter:drop-shadow(0 0 25px #ffb2da) drop-shadow(0 0 15px #fff)}
-@keyframes letterAura{from{opacity:.52;transform:scale(.95)}to{opacity:1;transform:scale(1.17)}}
-/* 19 ảnh: 2 nhân vật ở 2 góc, pose thay đổi nhưng không chồng phần chính của ảnh */
-.memory-visual{isolation:isolate;overflow:visible}
-.polaroid{position:relative;z-index:1}
-.memory-person{position:absolute;z-index:3;width:clamp(70px,10vw,130px);height:clamp(78px,12vw,150px);display:flex;align-items:end;justify-content:center;filter:drop-shadow(0 7px 10px #904b7450);transform-origin:50% 90%;animation:peekBounce 3.2s ease-in-out infinite;pointer-events:none}
-.memory-person img{height:100%;width:100%;object-fit:contain}
-.memory-person.ame{animation-delay:-.4s}
-.memory-person.hician{animation-delay:-1.5s}
-.memory-person.top-left{top:-8%;left:-2%}
-.memory-person.top-right{top:-8%;right:-2%}
-.memory-person.bottom-left{bottom:-2%;left:-1%}
-.memory-person.bottom-right{bottom:-2%;right:-1%}
-.memory-person.top-left,.memory-person.bottom-left{--rot:-7deg}
-.memory-person.top-right,.memory-person.bottom-right{--rot:7deg}
-@keyframes peekBounce{0%,100%{transform:translateY(0) rotate(var(--rot,0deg))}50%{transform:translateY(-10px) rotate(var(--rot,0deg))}}
-#travel{background:#fde6ef}
-#travel #track{background-image:url('images/park-garden.webp');background-repeat:repeat-x;background-size:auto 100%;background-position:center center}
-#travel .park-trees{opacity:.4;mix-blend-mode:multiply}#travel .path{opacity:.13}#travel .lights{opacity:.6}
-.guide{background-image:linear-gradient(#fff8f3a8,#fff5e1aa),url('images/park-garden.webp');background-position:center;background-size:cover}
-.guide .grove{opacity:.19}
-@media(max-width:700px){
- .memory-person{width:clamp(64px,23vw,98px);height:clamp(75px,26vw,112px)}
- .memory-person.top-left,.memory-person.top-right{top:-5%}
- .memory-person.bottom-left,.memory-person.bottom-right{bottom:-3%}
- .memory-visual{padding:28px 18px 38px;overflow:hidden}
- #travel #track{background-size:auto 100%}
- .guide{background-position:53% center}
-}
-@media(prefers-reduced-motion:reduce){.envelope::before,.memory-person{animation:none!important}}
-
-
-/* Cảnh hỏi mở thư: dùng chính ảnh trao thư của Ame và Hician;
-   không chồng thêm chibi, phong thư hay cánh tay giả. */
-.decision-card{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);align-items:center;gap:clamp(16px,2.6vw,34px)}
-.decision-art{aspect-ratio:16/11;min-height:0;height:auto;max-height:none;background:#f8e8f0;isolation:isolate;overflow:hidden;box-shadow:inset 0 0 0 1px #ffffff8f}
-.decision-art .question-scene{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;object-position:50% 48%;display:block}
-.decision-art .scene-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 49% 45%,#fff5 0%,transparent 27%);opacity:.5}
-.decision-art.opening .scene-glow{animation:questionBloom 1.05s ease-in forwards}
-.decision-art.opening .question-scene{animation:questionZoom 1.05s ease-in forwards}
-@keyframes questionBloom{0%{opacity:.3}55%{opacity:1;background:radial-gradient(circle at 49% 45%,#fff9 0%,#ffc6dd88 25%,transparent 75%)}100%{opacity:1;background:#fffc}}
-@keyframes questionZoom{to{transform:scale(1.065)}}
-.decision-copy{position:relative;z-index:2}
-.decision-copy h2{font-size:clamp(27px,3.15vw,42px);overflow-wrap:normal;word-break:normal;hyphens:none;text-wrap:balance}
-#handoffScene .handoff-caption,#travel .travel-note{display:none!important}
-@media(max-width:740px){
- #decision{padding:10px}
- .decision-card{grid-template-columns:1fr;gap:12px;max-height:calc(100svh - 20px);overflow:auto;padding:12px;border-radius:25px}
- .decision-art{width:100%;min-height:0;height:auto;max-height:none;aspect-ratio:16/10;border-radius:18px}
- .decision-art .question-scene{object-position:center}
- .decision-copy{padding:0 7px 10px}
- .decision-copy h2{font-size:clamp(25px,6.8vw,34px);line-height:1.15;margin:9px 0}
- .decision-copy p{font-size:13px;line-height:1.5;margin:9px 0}
- .decision-copy .actions{gap:9px}
-}
-@media(prefers-reduced-motion:reduce){.decision-art.opening .question-scene,.decision-art.opening .scene-glow{animation:none!important}}
-
-/* Cảnh chibi động thật: 9 khung hình thay đổi tay và tư thế, không rung cả ảnh bằng CSS. */
-#handoffScene img{object-fit:contain;background:linear-gradient(125deg,#ffe9ef,#f9edec)}
-.decision-art .question-scene{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%;position:absolute;inset:0}
-.decision-art .scene-glow{pointer-events:none}
-@media (max-width:650px){.decision-art .question-scene{object-fit:contain;background:#f7e7e9}#handoffScene img{object-fit:contain}}
+:root{--rose:#ed71a3;--ink:#94476e;--paper:#fffafc;--shade:0 18px 45px #a75c8230}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;overflow-x:hidden;font-family:system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:var(--ink);background:linear-gradient(125deg,#fff4fa,#ffe3ef,#fff7ed)}img{display:block;max-width:100%}button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid #b63876;outline-offset:3px}h1,h2,h3{font-family:Georgia,'Times New Roman',serif} [hidden]{display:none!important}
+#hearts{position:fixed;inset:0;z-index:30;width:100%;height:100%;pointer-events:none}
+.btn{border:0;border-radius:100px;padding:13px 22px;font-weight:800;transition:filter .2s,transform .2s}.btn:focus-visible{outline-offset:4px}.btn:hover{filter:brightness(1.05);transform:translateY(-2px)}.btn-main{color:white;background:linear-gradient(130deg,#fb9ec2,#ec6098);box-shadow:0 8px 25px #e777a244}.btn-light{background:white;border:1px solid #ffd0e0;color:var(--ink)}.smallcaps{font-size:11px;letter-spacing:.21em;font-weight:900;color:#bf658c}
+/* CINEMATIC OPENING: ONLY ONE VISIBLE SCENE AT A TIME */
+#cinema{height:100svh;min-height:540px;position:relative;overflow:hidden;isolation:isolate;background:linear-gradient(#e7e1ff,#ffe5ef 65%,#fff2e4)}
+.scene{position:absolute;inset:0;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .7s ease,visibility .7s}.scene.active{opacity:1;visibility:visible;pointer-events:auto}.scene.exiting{opacity:0;pointer-events:none}
+#opening{background:radial-gradient(ellipse at 40% 24%,#fff9,transparent 47%),linear-gradient(#cfc5f9,#f7ddf1 72%,#fff6eb)}
+#introMessage{position:absolute;left:5%;top:5%;width:90%;z-index:4;text-align:center;transition:opacity .6s}#introMessage h1{font-size:clamp(29px,4.2vw,55px);margin:10px 0;line-height:1.16}#introMessage p{font-size:clamp(13px,1.4vw,17px)}
+/* ONE envelope: glow > shrink to Ame > disappear BEFORE held-letter art */
+#mainLetter{width:min(400px,65vw);aspect-ratio:1.47;position:absolute;top:53%;left:50%;z-index:5;opacity:0;transform:translate(-50%,-50%) scale(.2);transition:top 1s,left 1s,transform 1s,opacity .38s;filter:drop-shadow(0 0 22px #ffadd9);will-change:transform}
+#mainLetter.appear{opacity:1;transform:translate(-50%,-50%) scale(1.23)}#mainLetter.shrink{transform:translate(-50%,-50%) scale(.33)}#mainLetter.pickup{transform:translate(-50%,-50%) scale(.13) rotate(-12deg);top:73%;left:57%}#mainLetter.gone{opacity:0;visibility:hidden}
+#mainLetter:before{content:'';position:absolute;inset:-15%;z-index:-1;border-radius:40px;background:radial-gradient(ellipse,#fff8,#ffc0df91 50%,transparent 72%);filter:blur(16px);animation:envelopeGlow 2s ease-in-out infinite alternate}
+@keyframes envelopeGlow{to{opacity:.65;transform:scale(1.13)}}
+.env-back{position:absolute;inset:0;border-radius:18px;background:#ef9fbe;box-shadow:0 15px 34px #ba699c55}
+.env-paper{position:absolute;left:10%;top:10%;width:80%;height:78%;border-radius:9px;background:#fffcf9;display:grid;place-items:center;font:italic clamp(14px,2vw,23px) Georgia,serif;color:#aa6488}
+.env-front{position:absolute;inset:0;background:#f8c2d8;clip-path:polygon(0 0,50% 53%,100% 0,100% 100%,0 100%);border-radius:18px}
+.env-bottom{position:absolute;inset:0;background:#ffd6e6;clip-path:polygon(0 100%,50% 43%,100% 100%)}
+.env-flap{position:absolute;top:0;left:0;width:100%;height:56%;background:#ffe5ef;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .8s}
+.env-seal{position:absolute;top:47%;left:50%;transform:translate(-50%,-50%);width:14%;aspect-ratio:1;border-radius:100%;background:#ed6497;color:white;display:grid;place-items:center;font-size:clamp(16px,2vw,26px)}
+#arrival{position:absolute;left:50%;top:-500px;width:clamp(138px,24vw,240px);height:clamp(255px,39vw,380px);transform:translateX(-50%);opacity:0;z-index:7;pointer-events:none}#arrival.falling{animation:comeDown 2.7s ease-out forwards}@keyframes comeDown{0%{top:-500px;opacity:0}12%{opacity:1}80%{top:30%;opacity:1}100%{top:33%;opacity:1}}
+.hotair{position:absolute;top:-15%;left:50%;width:94%;height:51%;transform:translateX(-50%);transform-origin:50% 100%;animation:hotairMove 2.6s ease-in-out infinite alternate}.hotair .top{position:absolute;inset:0 8% 21%;border-radius:54% 54% 42% 42%;background:radial-gradient(circle at 28% 18%,#fff 0 5%,#ffdcf0 23%,#f18fb9 72%,#dd77a8);border:3px solid #fff9;box-shadow:inset -10px -8px 20px #c35e963d,0 8px 20px #c5699f50}.hotair .top:after{content:'♡';position:absolute;left:42%;top:23%;font-size:35px;color:#fff}.hotair .cord{position:absolute;top:63%;width:2px;height:25%;background:#bd8b9d}.hotair .cord.a{left:34%;transform:rotate(-11deg)}.hotair .cord.b{right:34%;transform:rotate(11deg)}.hotair .basket{position:absolute;bottom:0;left:32%;width:36%;height:17%;border-radius:4px 4px 12px 12px;background:repeating-linear-gradient(0deg,#bd845e 0 6px,#e0ad79 6px 12px)}@keyframes hotairMove{to{transform:translateX(-50%) rotate(5deg)}}
+#arrivalPerson{position:absolute;bottom:0;left:50%;width:84%;height:67%;transform:translateX(-50%);transition:transform .8s}#arrivalPerson img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 9px 12px #884b7350)}#arrival.say-hi #arrivalPerson{animation:waveHello .85s ease-in-out 2}@keyframes waveHello{0%,100%{transform:translateX(-50%) rotate(0)}35%{transform:translateX(-50%) rotate(-12deg) translateY(-8px)}70%{transform:translateX(-50%) rotate(7deg)}}#arrival.turn #arrivalPerson{transform:translateX(-50%) rotate(-5deg)}#arrival.pick #arrivalPerson{transform:translateX(-50%) translateY(10px)}#arrival.balloon-away .hotair{animation:balloonLeave 1.2s forwards}@keyframes balloonLeave{to{opacity:0;transform:translate(-50%,-160px) scale(.7)}}
+#openingGarden{position:absolute;inset:0;background:url('images/park-garden.webp') center/cover no-repeat;opacity:0;transition:opacity 1.2s;pointer-events:none}#openingGarden.visible{opacity:.7}
+/* TRAVEL panoramic garden, no dialogue bubbles */
+#running{background:#ffe6ed}#panorama{position:absolute;inset:0 auto 0 0;width:225vw;height:100%;background-image:url('images/park-garden.webp');background-repeat:repeat-x;background-size:auto 100%;background-position:left center;will-change:transform}
+#runningGirl{position:absolute;left:9%;bottom:12%;width:clamp(135px,19vw,230px);height:clamp(220px,38vh,360px);z-index:3}#runningGirl img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 10px 13px #5c493e67)}#runningBoy{position:absolute;left:79%;bottom:12%;width:clamp(150px,22vw,245px);height:clamp(215px,38vh,365px);z-index:2}#runningBoy img{width:100%;height:100%;object-fit:contain}
+#handoff{background:#f6e5ec;display:grid;place-items:center}#handoff img{width:100%;height:100%;object-fit:contain;background:#f6e7e9;object-position:center}#handoff .shine{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 49%,#fff0,transparent 40%);opacity:0}#handoff.shining .shine{animation:shineOut .95s ease-in forwards}@keyframes shineOut{0%{opacity:0}45%{opacity:1;background:radial-gradient(circle at 50% 49%,#fff9 0%,#ffdef04d 40%,transparent 77%)}100%{opacity:.7;background:#fff9}}
+/* Question GIF has its own seated pose: NOT the handoff GIF */
+#question{display:flex;align-items:center;justify-content:center;padding:clamp(12px,2vw,26px);background:linear-gradient(125deg,#fff0f7,#ffdeea)}
+.question-card{width:min(1180px,100%);display:grid;grid-template-columns:minmax(0,1.14fr) minmax(300px,.86fr);gap:clamp(15px,2.4vw,32px);border-radius:32px;padding:clamp(12px,1.5vw,19px);background:#fffefaee;box-shadow:var(--shade);align-items:center}
+.question-picture{position:relative;aspect-ratio:16/11;min-width:0;overflow:hidden;border-radius:25px;background:url('images/park-question.webp') center/cover}.question-picture img{width:100%;height:100%;object-fit:cover;object-position:center}.question-picture:after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 49% 45%,#ffe6fc50,transparent 28%);pointer-events:none;animation:slowLight 4s ease-in-out infinite alternate}@keyframes slowLight{to{opacity:.22}}
+.question-copy{padding:clamp(7px,2vw,25px)}.question-copy h2{font-size:clamp(28px,3.7vw,48px);line-height:1.17;margin:15px 0;color:var(--ink);text-wrap:balance}.question-copy p{line-height:1.75;font-size:clamp(13px,1.3vw,17px)}.question-actions{display:flex;gap:11px;flex-wrap:wrap;margin-top:22px}#response{min-height:20px;color:#ad6285;font-size:13px;margin-top:14px}
+#skip{position:absolute;bottom:max(16px,env(safe-area-inset-bottom));right:15px;z-index:20;padding:9px 15px;border:1px solid #ffffff9c;border-radius:100px;background:#ffffffd9;color:#8c5070;font-weight:800;box-shadow:0 5px 15px #b8708540;font-size:12px}#skip[hidden]{display:none}
+/* 18 MEMORY CARDS, 19 FILES: 15 & 16 ON ONE CARD */
+#album{display:none;max-width:1250px;margin:0 auto;padding:47px clamp(12px,2.5vw,25px) 85px}#album.open{display:block}.album-heading{text-align:center;max-width:720px;margin:0 auto 35px}.album-heading h2{font-size:clamp(29px,4.3vw,50px);line-height:1.15;margin:12px 0}.album-heading p{line-height:1.8;color:#a66e8d}
+.album-body{display:grid;grid-template-columns:minmax(270px,315px) minmax(0,1fr);align-items:start;gap:clamp(16px,2.2vw,28px)}
+/* Sticky side panel constrained by album-body, not by the entire page */
+.guide{position:sticky;top:12px;height:clamp(490px,72svh,640px);border-radius:28px;overflow:hidden;isolation:isolate;background:linear-gradient(#fff5fa69,#fff7ee9e),url('images/park-garden.webp') center/cover;box-shadow:var(--shade);z-index:5}.guide-text{position:absolute;top:13px;left:12px;right:12px;z-index:8;background:#fffffff0;border-radius:20px;padding:13px 15px;box-shadow:0 6px 20px #98547235;line-height:1.55;font-size:clamp(12px,1.2vw,14px)}.guide-text strong{display:block;color:#a34d77}
+.guide-frame{position:absolute;top:36%;left:31%;width:39%;aspect-ratio:4/5;padding:7px 7px 21px;background:#fff;transform:rotate(-6deg);box-shadow:0 8px 21px #8d52793a;z-index:3;display:flex;flex-direction:column}.guide-frame .guide-images{flex:1;min-height:0;display:grid;grid-template-columns:1fr;gap:2px}.guide-frame .guide-images.double{grid-template-columns:1fr 1fr}.guide-frame img{width:100%;height:100%;object-fit:cover;min-width:0}.guide-frame span{font:italic 10px Georgia,serif;text-align:center;padding-top:4px}
+.guide-person{position:absolute;bottom:3%;width:45%;padding:0;border:0;background:transparent;z-index:4}.guide-person img{width:100%;max-height:235px;object-fit:contain;filter:drop-shadow(0 8px 10px #7f584444)}#ameGuide{left:0;width:46%}#hicianGuide{right:-2%;width:54%}
+#memoryList{display:grid;gap:30px}.memory{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border-radius:28px;overflow:hidden;background:#fffcfbeb;box-shadow:var(--shade);opacity:0;transform:translateY(36px);transition:opacity .8s ease,transform .8s ease}.memory.visible{opacity:1;transform:translateY(0)}.memory:nth-child(even) .memory-art{order:2}.memory:nth-child(even) .memory-copy{order:1}
+.memory-art{min-height:390px;position:relative;display:grid;place-items:center;padding:30px;background:linear-gradient(130deg,#fff1f3b0,#fff7ede0),url('images/park-garden.webp') center/cover;isolation:isolate;overflow:hidden}
+.polaroid{position:relative;width:min(78%,310px);padding:10px 10px 35px;background:#fff;box-shadow:0 12px 30px #925e7c43;transform:rotate(var(--tilt,-3deg));z-index:2}.memory:nth-child(even) .polaroid{--tilt:3deg}
+.memory-media{display:grid;grid-template-columns:1fr;gap:5px;aspect-ratio:4/5;overflow:hidden;background:#ffdae9}.memory-media.duo{grid-template-columns:1fr 1fr;aspect-ratio:1/1}.memory-media .tile{position:relative;overflow:hidden;display:grid;place-items:center;background:#ffdce9}.memory-media img{width:100%;height:100%;object-fit:cover;min-width:0}.memory-fallback{font-size:48px}
+.memory-label{text-align:center;font:italic 15px Georgia,serif;padding-top:10px;color:#a55d80}.memory-copy{padding:clamp(23px,3.5vw,37px);display:flex;flex-direction:column;justify-content:center;gap:14px}.memory-index{color:#e17ca4;font-size:12px;letter-spacing:.19em;font-weight:850}.memory-date{width:fit-content;border:1px solid #efc2d6;background:#fff4f9;border-radius:80px;padding:7px 13px;font-size:13px}.memory-copy h3{font-size:clamp(24px,2.7vw,36px);line-height:1.23;margin:0}.memory-copy p{line-height:1.85;margin:0;color:#976d84}
+/* Actors decorate outside the photo focal area, not on top of it. No constant shaking. */
+.memory-chibi{position:absolute;z-index:3;width:clamp(66px,9vw,110px);height:clamp(80px,11vw,132px);pointer-events:none;filter:drop-shadow(0 5px 6px #72584c45)}.memory-chibi img{width:100%;height:100%;object-fit:contain}.memory-chibi.top-left{left:0;top:0}.memory-chibi.top-right{right:0;top:0}.memory-chibi.bottom-left{left:0;bottom:0}.memory-chibi.bottom-right{right:0;bottom:0}
+.ending{max-width:760px;margin:67px auto 0;padding:clamp(25px,4vw,43px);border-radius:30px;text-align:center;background:#fffdf9e8;box-shadow:var(--shade)}.ending img{width:min(270px,100%);margin:0 auto 20px;border-radius:18px}.ending p{line-height:1.8}
+@media(max-width:940px){.album-body{grid-template-columns:1fr;display:block}.guide{top:0;height:230px;margin-bottom:22px;border-radius:20px;z-index:10}.guide-text{width:56%;right:auto;font-size:12px;padding:10px;top:10px;left:10px;max-height:185px;overflow:auto}.guide-frame{top:27%;left:58%;width:17%;height:140px;aspect-ratio:auto;transform:rotate(-5deg)}#ameGuide{left:69%;width:14%;bottom:0}#hicianGuide{right:0;width:18%;bottom:0}#memoryList{gap:24px}}
+@media(max-width:700px){#cinema{min-height:530px}.question-card{grid-template-columns:1fr;width:100%;max-height:calc(100svh - 18px);overflow:auto;gap:10px;padding:11px}.question-picture{aspect-ratio:16/10}.question-copy{padding:5px 10px 10px}.question-copy h2{font-size:clamp(24px,6.5vw,34px);margin:7px 0}.question-copy p{font-size:13px;line-height:1.5}.question-actions{margin-top:9px}.question-actions .btn{padding:10px 13px;font-size:13px}#runningGirl{bottom:10%}#runningBoy{bottom:10%}.memory{grid-template-columns:1fr}.memory:nth-child(even) .memory-art,.memory:nth-child(even) .memory-copy{order:initial}.memory-art{min-height:0;padding:25px 17px}.polaroid{width:min(81%,370px)}.memory-copy{padding:24px}.memory-chibi{width:clamp(64px,21vw,96px);height:clamp(77px,24vw,116px)}.guide{height:210px;min-height:0}.guide-text{width:55%;font-size:11px;line-height:1.4}.guide-frame{left:55%;top:32%;width:20%;height:120px}#ameGuide{left:70%;width:15%}#hicianGuide{right:-2%;width:20%}}
+@media(max-width:400px){.guide-text{width:54%;font-size:10px}.guide-frame{left:56%;width:18%}#ameGuide{left:69%;width:16%}#hicianGuide{width:20%}#mainLetter.appear{transform:translate(-50%,-50%) scale(1.03)}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
-<canvas id="particles" aria-hidden="true"></canvas>
-<section id="cinema" aria-label="Câu chuyện mở thư">
-  <div id="openingText"><div class="eyebrow">19/11 · A little love story</div><h1>Một lá thư giữa ngàn trái tim ♡</h1><p>Ame có một điều đặc biệt muốn gửi Hician...</p></div>
-  <div id="oneLetter" class="envelope" aria-label="Phong thư hồng">
-    <div class="base"></div><div class="paper">Gửi Hician ♡</div><div class="front"></div><div class="bottom"></div><div class="flap"></div><div class="seal">♥</div>
+<canvas id="hearts" aria-hidden="true"></canvas>
+<section id="cinema" aria-label="Câu chuyện lá thư của Ame và Hician">
+  <div id="opening" class="scene active">
+    <div id="openingGarden"></div>
+    <div id="introMessage"><div class="smallcaps">19 / 11 · Ame × Hician</div><h1>Một lá thư giữa ngàn trái tim ♡</h1><p>Điều bất ngờ dành riêng cho Hician...</p></div>
+    <div id="mainLetter" role="img" aria-label="Phong thư màu hồng phát sáng"><div class="env-back"></div><div class="env-paper">Gửi Hician ♡</div><div class="env-front"></div><div class="env-bottom"></div><div class="env-flap"></div><div class="env-seal">♥</div></div>
+    <div id="arrival"><div class="hotair"><div class="top"></div><div class="cord a"></div><div class="cord b"></div><div class="basket"></div></div><div id="arrivalPerson"><img id="arrivalImg" src="images/ame-hi.webp" alt="Ame hạ xuống bằng khinh khí cầu, vẫy tay chào"></div></div>
   </div>
-  <div id="arrival" aria-hidden="true">
-    <div class="balloon"><div class="canopy"></div><i class="rope r1"></i><i class="rope r2"></i><div class="basket"></div></div>
-    <div id="arrivalFigure"><img src="images/chibinu.png" alt="Ame đáp xuống" data-fallback="images/chibinu-running.gif"></div>
-    <div class="speech">Hi Hician! ✌ ♡</div>
-  </div>
-  <div id="travel" aria-hidden="true">
-    <div id="track">
-      <div class="lights"></div>
-      <div class="park-trees"><svg viewBox="0 0 2200 690" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <defs><g id="tree"><path d="M-10 280 L-12 480 L16 480 L12 275" fill="#9a714f"/><circle cx="0" cy="206" r="112" fill="#a8d6a0"/><circle cx="-65" cy="252" r="73" fill="#94c98d"/><circle cx="72" cy="254" r="75" fill="#b9dfab"/><circle cx="-23" cy="163" r="62" fill="#cde8bf"/></g><g id="bush"><ellipse rx="78" ry="34" fill="#7ab87a"/><circle cx="-30" cy="-12" r="34" fill="#91c98c"/><circle cx="32" cy="-9" r="38" fill="#a5d69c"/></g><g id="lamp"><path d="M0 0 L0 200" stroke="#b38c6a" stroke-width="11"/><circle cy="8" r="20" fill="#fff4b0" stroke="#f1ca89" stroke-width="5"/></g></defs>
-        <use href="#tree" x="140" y="10"/><use href="#tree" x="425" y="-10"/><use href="#tree" x="695" y="15"/><use href="#tree" x="960" y="-20"/><use href="#tree" x="1215" y="12"/><use href="#tree" x="1490" y="-8"/><use href="#tree" x="1750" y="10"/><use href="#tree" x="2030" y="-12"/>
-        <use href="#bush" x="130" y="595"/><use href="#bush" x="390" y="608"/><use href="#bush" x="690" y="594"/><use href="#bush" x="1030" y="600"/><use href="#bush" x="1330" y="599"/><use href="#bush" x="1640" y="610"/><use href="#bush" x="2000" y="600"/><use href="#lamp" x="1060" y="385"/><use href="#lamp" x="1860" y="382"/>
-      </svg></div>
-      <div class="path"></div>
-      <div id="travelAme" class="travel-actor"><img src="images/chibinu-running.gif" data-fallback="images/chibinu.png" alt="Ame chạy cầm thư"></div>
-      <div id="travelHician" class="travel-actor"><img src="images/hician-pose-bench.webp" alt="Hician đợi Ame"></div>
-      
-    </div>
-  </div>
-  <div id="handoffScene" aria-hidden="true"><img src="images/ame-hician-trao-thu.gif" alt="Hoạt hình Ame tiến đến đưa thư, Hician ngồi đưa hai tay ra nhận" loading="eager"></div>
-  <div id="decision">
-    <div class="decision-card">
-      <div class="decision-art" id="decisionArt">
-        <img class="question-scene" src="images/ame-hician-cho-mo-thu.gif" alt="Hoạt hình chibi Ame và Hician bên ghế công viên sau khi trao thư" fetchpriority="high">
-        <div class="scene-glow" aria-hidden="true"></div>
-      </div>
-      <div class="decision-copy"><span class="eyebrow">Gửi riêng Hician</span><h2>Có muốn mở lá thư này không? 💌</h2><p>Ame đã mang tới một món quà có 19 kỷ niệm nhỏ xinh của chúng mình.</p><div class="actions"><button id="yes" class="btn primary">Có, mở ngay ♡</button><button id="no" class="btn light">Chưa đâu 🙈</button></div><p id="reply" role="status"></p></div>
-    </div>
-  </div>
+  <div id="running" class="scene" aria-label="Ame chạy qua vườn đến chỗ Hician"><div id="panorama"><div id="runningGirl"><img src="images/chibinu-running.gif" data-backup="images/ame-pose-run.webp" alt="Ame chạy cầm thư"></div><div id="runningBoy"><img src="images/hician-pose-bench.webp" alt="Hician ngồi chờ Ame trong công viên"></div></div></div>
+  <div id="handoff" class="scene" aria-label="Ame đưa thư và Hician đưa tay ra nhận"><img src="images/ame-hician-trao-thu.gif" alt="Hai chibi cử động, trao nhau phong thư" fetchpriority="high"><div class="shine"></div></div>
+  <div id="question" class="scene" aria-label="Hician lựa chọn có mở thư không"><div class="question-card"><div class="question-picture"><img src="images/ame-hician-cho-mo-thu.gif" data-backup="images/park-question.webp" alt="Hician ngồi cầm thư, Ame vui vẻ ở cạnh"></div><div class="question-copy"><div class="smallcaps">Gửi riêng Hician</div><h2>Có muốn mở lá thư này không? 💌</h2><p>Ame đã dành tặng Hician 19 tấm ảnh trong 18 kỷ niệm của chúng mình.</p><div class="question-actions"><button id="accept" class="btn btn-main">Có, mở ngay ♡</button><button id="decline" class="btn btn-light">Chưa đâu 🙈</button></div><div id="response" role="status"></div></div></div></div>
+  <button id="skip" type="button">Bỏ qua mở đầu</button>
 </section>
 <section id="album">
-  <header class="album-title"><div class="eyebrow">Ame × Hician</div><h2>19 mảnh ghép của chúng mình ♡</h2><p>Cuộn xuống để mở từng kỷ niệm. Ame sẽ kể chuyện, còn Hician ngồi nghe dưới tán cây.</p></header>
-  <div class="album-layout">
-    <aside class="guide" aria-label="Ame kể chuyện cho Hician">
-      <div class="grove"><svg viewBox="0 0 360 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><path d="M0 400 L0 210 Q70 150 120 220 Q190 130 245 210 Q300 160 360 210 L360 400Z" fill="#b4dc9f"/><path d="M0 400 L0 255 Q70 230 125 270 Q230 200 360 265 L360 400Z" fill="#8fc88e"/><g fill="#83b67c"><circle cx="22" cy="150" r="80"/><circle cx="330" cy="125" r="88"/></g><g fill="#afd89d"><circle cx="15" cy="100" r="63"/><circle cx="342" cy="78" r="66"/></g><path d="M27 200v115M333 205v105" stroke="#9d744f" stroke-width="14"/><g fill="#ffb9cf"><circle cx="34" cy="345" r="5"/><circle cx="85" cy="322" r="7"/><circle cx="270" cy="346" r="6"/><circle cx="315" cy="322" r="5"/></g></svg></div>
-      <div id="guideText" class="guide-text"><strong>Ame:</strong> Hician ơi, nhìn bức ảnh đầu tiên nè! ♡</div>
-      <div class="guide-photo"><img id="guideImage" src="images/Anh1.jpg" alt="Ảnh Ame đang giới thiệu"></div>
-      <button class="guide-person" id="ameGuide" aria-label="Chạm Ame để nghe kể"><img src="images/ame-pose-point.webp" data-fallback="images/chibinu.png" alt="Ame chỉ lên ảnh"></button>
-      <button class="guide-person" id="hicianGuide" aria-label="Chạm Hician để nghe trả lời"><img src="images/hician-pose-bench.webp" data-fallback="images/chibinam.png" alt="Hician ngồi trên ghế lắng nghe"></button>
-    </aside>
-    <div id="memoryList"></div>
-  </div>
-  <footer class="ending"><img src="images/chibi-main.jpg" alt="Ame và Hician bên nhau"><h2>Chúc Hician ngày 19/11 thật đặc biệt! 💝</h2><p>Cảm ơn vì những ngày bình thường đã trở thành kỷ niệm đáng yêu. Mong chúng mình luôn có thêm thật nhiều bức ảnh và câu chuyện để kể.</p><button class="btn primary" id="replay">Xem lại từ đầu ♡</button></footer>
+  <header class="album-heading"><div class="smallcaps">Our little memories</div><h2>19 tấm ảnh, 18 kỷ niệm ♡</h2><p>Cuộn xuống để Ame kể chuyện cho Hician. Riêng ảnh 15 và 16 cùng tạo nên một kỷ niệm đặc biệt.</p></header>
+  <div class="album-body"><aside class="guide" aria-label="Ame giới thiệu từng ảnh cho Hician"><div id="guideText" class="guide-text"><strong>Ame ♡</strong>Hician ơi, nhìn bức ảnh đầu tiên nè!</div><div class="guide-frame"><div id="guideImages" class="guide-images"><img src="images/Anh1.jpg" alt="Ảnh kỷ niệm đang giới thiệu"></div><span id="guideNumber">Ảnh 01 ♡</span></div><button id="ameGuide" class="guide-person" aria-label="Ame kể về ảnh"><img src="images/ame-pose-point.webp" data-backup="images/chibinu.png" alt="Ame chỉ về phía tấm ảnh"></button><button id="hicianGuide" class="guide-person" aria-label="Hician trả lời"><img src="images/hician-pose-bench.webp" data-backup="images/chibinam.png" alt="Hician ngồi lắng nghe bên ghế"></button></aside><div id="memoryList"></div></div>
+  <footer class="ending"><img src="images/chibi-main.jpg" alt="Ame và Hician"><h2>Chúc Hician ngày 19/11 thật đặc biệt! 💝</h2><p>Cảm ơn cậu vì từng khoảnh khắc bên nhau. Mong chúng mình sẽ còn thêm thật nhiều bức ảnh, niềm vui và câu chuyện để kể.</p><button id="replay" class="btn btn-main">Xem lại từ đầu ♡</button></footer>
 </section>
 <script>
-"use strict";
-/* CHỈ SỬA 19 DÒNG NÀY KHI MUỐN ĐỔI NGÀY / TIÊU ĐỀ / LỜI NHẮN */
-const notes=[
-["Ngày đầu tiên","Khởi đầu của tụi mình 🌷","Có những điều bắt đầu nhẹ nhàng nhưng lại ở mãi trong tim."],
-["Một buổi gặp gỡ","Lần đầu đi cùng nhau 💗","Buổi gặp gỡ ấy bình thường thôi, nhưng với Ame lại đặc biệt."],
-["Một lần cùng cười","Nụ cười của Hician ☁️","Mỗi lần thấy cậu cười, cả ngày của Ame cũng tươi hơn."],
-["Một khoảnh khắc nhỏ","Điều giản dị mà mình thương 🧸","Chỉ cần cạnh nhau là mọi chuyện đã thật dễ chịu."],
-["Một ngày đẹp trời","Ánh nắng và tụi mình ✨","Ngày hôm ấy đẹp hơn vì có Hician ở đó."],
-["Một tấm ảnh xinh","Kỷ niệm được giữ lại 📷","Một bức hình bé xíu nhưng chứa rất nhiều điều đáng nhớ."],
-["Một lần đi xa","Đi cùng nhau thật vui 🌤️","Có người đồng hành, nơi nào cũng trở nên đáng nhớ."],
-["Một phút đáng yêu","Khoảnh khắc làm tim rung lên 🫶","Những điều nhỏ bé bên nhau luôn có ý nghĩa thật lớn."],
-["Một ngày vui","Chỉ mong cậu luôn cười 💕","Mong chúng mình có thật nhiều ngày vui như thế."],
-["Một nỗi nhớ","Có lúc chỉ muốn gặp cậu 🌸","Nhớ cậu là một cảm giác nhẹ nhàng mà rất thật."],
-["Một góc nhỏ","Bình yên là đây 🤍","Ame thích những khoảng lặng có Hician ở bên."],
-["Một ngày đặc biệt","Ký ức không muốn quên 🎀","Thời gian trôi đi nhưng cảm xúc ấy vẫn ở lại."],
-["Một lần đồng hành","Đi cùng nhau nhé 🥰","Đoạn đường nào có cậu cũng khiến Ame mỉm cười."],
-["Một bức hình nữa","Thêm một kỷ niệm 🌈","Thêm một khoảnh khắc để sau này cùng nhìn lại."],
-["Một chút ngại ngùng","Ngượng nhưng vẫn thương 🙈","Những lúc vụng về lại là những lúc dễ thương nhất."],
-["Một ngày nhiều cảm xúc","Mình đã rất vui 💓","Nhìn lại ảnh vẫn thấy tim ấm lên một chút."],
-["Một điều chưa nói","Những lời giữ trong tim 💌","Có những điều Ame muốn gửi qua lá thư này."],
-["Một khoảng thời gian đẹp","Những ngày tháng thật xinh 🌼","Cảm ơn Hician vì đã làm những ngày ấy đặc biệt."],
-["19/11","Gửi cậu tất cả yêu thương 💝","Chúc cậu luôn vui vẻ, hạnh phúc và được thương thật nhiều."]
+'use strict';
+// 19 ảnh riêng, ghép ảnh số 15 và 16 thành MỘT kỷ niệm chung.
+const captions=[
+['Ngày đầu tiên','Khởi đầu của tụi mình 🌷','Có những điều bắt đầu nhẹ nhàng nhưng lại ở mãi trong tim.'],
+['Một buổi gặp gỡ','Lần đầu đi cùng nhau 💗','Buổi gặp gỡ ấy bình thường thôi, nhưng với Ame lại rất đặc biệt.'],
+['Một lần cùng cười','Nụ cười của Hician ☁️','Mỗi lần thấy cậu cười, cả ngày của Ame cũng tươi hơn.'],
+['Một khoảnh khắc nhỏ','Điều giản dị mà mình thương 🧸','Chỉ cần cạnh nhau là mọi chuyện đã thật dễ chịu.'],
+['Một ngày đẹp trời','Ánh nắng và tụi mình ✨','Ngày hôm ấy đẹp hơn vì có Hician ở đó.'],
+['Một tấm ảnh xinh','Kỷ niệm được giữ lại 📷','Một bức hình bé xíu nhưng chứa rất nhiều điều đáng nhớ.'],
+['Một lần đi xa','Đi cùng nhau thật vui 🌤️','Có người đồng hành, nơi nào cũng trở nên đáng nhớ.'],
+['Một phút đáng yêu','Khoảnh khắc làm tim rung lên 🫶','Những điều nhỏ bé bên nhau luôn có ý nghĩa thật lớn.'],
+['Một ngày vui','Chỉ mong cậu luôn cười 💕','Mong chúng mình có thật nhiều ngày vui như thế.'],
+['Một nỗi nhớ','Có lúc chỉ muốn gặp cậu 🌸','Nhớ cậu là một cảm giác nhẹ nhàng mà rất thật.'],
+['Một góc nhỏ','Bình yên là đây 🤍','Ame thích những khoảng lặng có Hician ở bên.'],
+['Một ngày đặc biệt','Ký ức không muốn quên 🎀','Thời gian trôi đi nhưng cảm xúc ấy vẫn ở lại.'],
+['Một lần đồng hành','Đi cùng nhau nhé 🥰','Đoạn đường nào có cậu cũng khiến Ame mỉm cười.'],
+['Một bức hình nữa','Thêm một kỷ niệm 🌈','Thêm một khoảnh khắc để sau này cùng nhìn lại.'],
+['Một chút ngại ngùng','Hai tấm hình, một kỷ niệm 💕','Có những khoảnh khắc cần đến hai bức ảnh để giữ trọn cảm xúc.'],
+['Một ngày nhiều cảm xúc','Mình đã rất vui 💓','Nhìn lại ảnh vẫn thấy tim ấm lên một chút.'],
+['Một điều chưa nói','Những lời giữ trong tim 💌','Có những điều Ame muốn gửi qua lá thư này.'],
+['Một khoảng thời gian đẹp','Những ngày tháng thật xinh 🌼','Cảm ơn Hician vì đã làm những ngày ấy đặc biệt.'],
+['19/11','Gửi cậu tất cả yêu thương 💝','Chúc cậu luôn vui vẻ, hạnh phúc và được thương thật nhiều.']
 ];
-const emojis=["🌷","💗","☁️","🧸","✨","📷","🌤️","🫶","💕","🌸","🤍","🎀","🥰","🌈","🙈","💓","💌","🌼","💝"];
-const memories=notes.map((n,i)=>({date:n[0],title:n[1],text:n[2],image:`images/Anh${i+1}.jpg`,emoji:emojis[i]}));
+const memories=captions.map((c,i)=>({number:i===14?'15–16':String(i+1),date:c[0],title:c[1],note:c[2],images:i===14?['images/Anh15.jpg','images/Anh16.jpg']:[`images/Anh${i+1}.jpg`]})).filter((m,i)=>i!==15);
 const $=id=>document.getElementById(id);
-const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
-const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-/* Tự động lùi về PNG nếu file ảnh chibi mới chưa được upload. */
-document.querySelectorAll('img[data-fallback]').forEach(img=>{img.addEventListener('error',()=>{if(img.dataset.tried)return;img.dataset.tried='yes';img.src=img.dataset.fallback;});});
-/* HẠT TRÁI TIM: tán loạn -> tụ kín một khối chữ nhật -> nổ -> thư xuất hiện */
-const canvas=$('particles'),ctx=canvas.getContext('2d');let particles=[],mode='off',frame=0,painting=false;
-function resizeCanvas(){const d=Math.min(devicePixelRatio||1,1.5);canvas.width=Math.round(innerWidth*d);canvas.height=Math.round(innerHeight*d);ctx.setTransform(d,0,0,d,0,0)}resizeCanvas();addEventListener('resize',resizeCanvas);
+const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const MOTION=reduceMotion?.12:1;
+const pause=ms=>sleep(ms*MOTION);
 const rand=(a,b)=>a+Math.random()*(b-a);
-function pathHeart(s){ctx.beginPath();ctx.moveTo(0,s*.45);ctx.bezierCurveTo(-s*.98,-s*.2,-s*.56,-s*.9,0,-s*.40);ctx.bezierCurveTo(s*.56,-s*.9,s*.98,-s*.2,0,s*.45);ctx.closePath()}
-function drawHeart(p){ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.spin);ctx.globalAlpha=p.alpha;const s=p.size;pathHeart(s);const gradient=ctx.createRadialGradient(-s*.2,-s*.25,1,0,0,s);gradient.addColorStop(0,'#fff');gradient.addColorStop(.3,p.type===1?'#ffeff9':'#ffe1ee');gradient.addColorStop(.7,p.type===2?'#ffc4e5':'#ffb4d0');gradient.addColorStop(1,p.type===1?'#ec7db4':'#e98db4');ctx.fillStyle=gradient;ctx.fill();ctx.lineWidth=Math.max(1,s*.075);ctx.strokeStyle='#fff9';ctx.stroke();ctx.beginPath();ctx.ellipse(-s*.19,-s*.2,s*.14,s*.055,-.5,0,6.283);ctx.fillStyle='#fff9';ctx.fill();ctx.restore()}
-function newParticle(i){const wide=Math.min(innerWidth*.65,390),high=wide*.63;return{x:rand(0,innerWidth),y:rand(0,innerHeight),tx:innerWidth/2-wide/2+rand(0,wide),ty:innerHeight*.53-high/2+rand(0,high),size:rand(7,innerWidth<650?23:35),alpha:rand(.65,.95),spin:rand(-.5,.5),type:i%3,vx:0,vy:0}}
-function renderParticles(){if(!painting)return;ctx.clearRect(0,0,innerWidth,innerHeight);frame++;let keep=false;for(const p of particles){if(mode==='scatter'){p.x+=Math.sin(frame*.04+p.type)*.7;p.y+=Math.cos(frame*.03+p.type)*.7}else if(mode==='gather'){p.x+=(p.tx-p.x)*.06;p.y+=(p.ty-p.y)*.06}else if(mode==='burst'){p.x+=p.vx;p.y+=p.vy;p.alpha*=.973}else if(mode==='ambient'){p.y-=.35;p.x+=Math.sin(frame*.03+p.type)*.25;if(p.y< -35){p.y=innerHeight+30;p.x=rand(0,innerWidth)}}if(p.alpha>.03){drawHeart(p);keep=true}}if(mode==='burst'&&!keep){mode='off';particles=[]}if(mode!=='off'){requestAnimationFrame(renderParticles)}else{painting=false;ctx.clearRect(0,0,innerWidth,innerHeight)}}
-function startParticles(type,count){mode=type;frame=0;particles=Array.from({length:count},(_,i)=>newParticle(i));if(!painting){painting=true;requestAnimationFrame(renderParticles)}}
-function burst(){const cx=innerWidth/2,cy=innerHeight/2;mode='burst';particles=Array.from({length:innerWidth<650?100:175},(_,i)=>{const p=newParticle(i),a=rand(0,6.283),v=rand(2,9);p.x=cx;p.y=cy;p.vx=Math.cos(a)*v;p.vy=Math.sin(a)*v;p.alpha=1;return p});if(!painting){painting=true;requestAnimationFrame(renderParticles)}}
-function stopParticles(){mode='off';particles=[]}
-function play(el,keyframes,duration,easing='ease-in-out'){if(reduced)return Promise.resolve();const anim=el.animate(keyframes,{duration,easing,fill:'forwards'});return anim.finished.catch(()=>{})}
-let started=false;
-async function opening(){if(started)return;started=true;startParticles('scatter',reduced?45:(innerWidth<650?145:260));await delay(reduced?100:700);mode='gather';await delay(reduced?100:1450);burst();await delay(reduced?90:470);stopParticles();$('oneLetter').classList.add('visible');await delay(reduced?100:750);$('oneLetter').classList.add('small');$('openingText').style.opacity='0';await delay(reduced?100:650);
-  $('arrival').classList.add('descend');await delay(reduced?100:2100);const actorImg=$('arrivalFigure').querySelector('img');actorImg.onerror=()=>{actorImg.onerror=null;actorImg.src='images/chibinu.png'};actorImg.src='images/ame-hi.webp';$('arrival').classList.add('hello');await delay(reduced?100:1000);$('arrival').classList.remove('hello');$('arrival').classList.add('turn');actorImg.src='images/ame-pick.webp';await delay(reduced?100:500);$('arrival').classList.add('grab');$('oneLetter').classList.add('caught');await delay(reduced?100:550);$('arrival').classList.add('caught');actorImg.src='images/ame-pose-run.webp';
-  $('oneLetter').style.opacity='0';$('arrival').style.opacity='0';await delay(reduced?100:270);$('arrival').hidden=true;$('oneLetter').hidden=true;
-  $('travel').classList.add('active');const distance=Math.max(0,innerWidth*.95);const travelTime=reduced?20:3300;
-  await Promise.all([play($('track'),[{transform:'translateX(0)'},{transform:`translateX(-${distance}px)`}],travelTime,'linear'),play($('travelAme'),[{left:'12vw'},{left:'128vw'}],travelTime,'ease-in-out')]);
-  await delay(reduced?100:400);
-  // Cảnh minh họa trao thư có đúng tay hai nhân vật, không vẽ tay giả bằng CSS.
-  $('travel').classList.remove('active');$('handoffScene').classList.add('active');await delay(reduced?350:4300);
-  $('handoffScene').classList.remove('active');$('decision').classList.add('active');
-}
-addEventListener('load',opening);
-$('no').onclick=()=>{$('reply').textContent='Ame và lá thư đợi Hician thêm chút nữa nha ♡'};
-let unlocked=false;$('yes').onclick=async()=>{if(unlocked)return;unlocked=true;$('yes').disabled=true;$('no').disabled=true;$('decisionArt').classList.add('opening');await delay(reduced?100:850);burst();await delay(reduced?100:1050);$('cinema').hidden=true;$('album').style.display='block';window.scrollTo(0,0);createTimeline()};
-function node(tag,cls,text){const el=document.createElement(tag);if(cls)el.className=cls;if(text!==undefined)el.textContent=text;return el}
-function asset(src,alt,backup){const img=node('img');img.src=src;img.alt=alt;if(backup){img.onerror=()=>{img.onerror=null;img.src=backup}}return img}
-const amePoses=['ame-pose-peek.webp','ame-pose-giggle.webp','ame-pose-present.webp','ame-pose-hi.webp','ame-pose-laugh.webp','ame-pose-wave.webp','ame-pose-point.webp','ame-pose-run.webp'];
-const hicianPoses=['hician-pose-bench.webp','hician-pose-relax.webp','hician-pose-listen.webp','hician-pose-letter.webp','hician-pose-stand.webp','hician-pose-open.webp'];
-const pairs=[['bottom-right','top-left'],['top-right','bottom-left'],['bottom-left','top-right'],['top-left','bottom-right'],['bottom-right','top-left'],['bottom-left','top-right']];
-const random01=(seed)=>{let t=(seed+0x6D2B79F5)|0;t=Math.imul(t^(t>>>15),t|1);t^=t+Math.imul(t^(t>>>7),t|61);return((t^(t>>>14))>>>0)/4294967296};
-let current=0;
-function createTimeline(){if($('memoryList').children.length)return;memories.forEach((m,i)=>{const card=node('article','memory');card.dataset.index=i;const visual=node('div','memory-visual'),polaroid=node('div','polaroid'),photo=node('div','memory-photo'),fallback=node('span',null,m.emoji),img=asset(m.image,`Ảnh kỷ niệm ${i+1}`);fallback.style.fontSize='60px';img.loading='lazy';img.hidden=true;img.onload=()=>{img.hidden=false;fallback.hidden=true};img.onerror=()=>img.remove();photo.append(img,fallback);polaroid.append(photo,node('div','memory-caption',`Kỷ niệm ${i+1} ♡`));const pair=pairs[(i*7+3)%pairs.length];
-const amePose=amePoses[Math.floor(random01(i*17+19)*amePoses.length)];
-const hicianPose=hicianPoses[Math.floor(random01(i*29+31)*hicianPoses.length)];
-const miniA=node('div',`memory-person ame ${pair[0]}`);miniA.append(asset('images/'+amePose,'Ame với biểu cảm và tư thế trong kỷ niệm','images/chibinu.png'));
-const miniH=node('div',`memory-person hician ${pair[1]}`);miniH.append(asset('images/'+hicianPose,'Hician xuất hiện ở góc đối diện','images/chibinam.png'));
-visual.append(polaroid,miniA,miniH);
-const content=node('div','memory-content');content.append(node('span','memory-number',`MEMORY · ${String(i+1).padStart(2,'0')}`),node('span','memory-date',m.date),node('h3',null,m.title),node('p',null,m.text));card.append(visual,content);$('memoryList').append(card)});
-const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});const live=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio);if(live.length)updateGuide(Number(live[0].target.dataset.index))},{threshold:[.1,.3,.55]});document.querySelectorAll('.memory').forEach(x=>observer.observe(x))}
-function updateGuide(i){current=i;const m=memories[i];$('guideText').replaceChildren(node('strong',null,`Ame: ${m.title}`),document.createTextNode(`Hician ơi, nhìn ảnh này nè! ${m.text}`));$('guideImage').src=m.image}
-$('ameGuide').onclick=()=>updateGuide(current);$('hicianGuide').onclick=()=>{$('guideText').replaceChildren(node('strong',null,'Hician:'),document.createTextNode('Ame kể tiếp đi, mình ngồi nghe và xem từng tấm hình nè ♡'))};$('replay').onclick=()=>location.reload();
+function fallbackImages(){document.querySelectorAll('img[data-backup]').forEach(img=>{img.addEventListener('error',()=>{if(img.dataset.once)return;img.dataset.once='1';img.src=img.dataset.backup})})}fallbackImages();
+// Heart particles: different shapes/sizes, scattered -> solid rectangle -> burst.
+const canvas=$('hearts'),ctx=canvas.getContext('2d');let particleMode='off',heartItems=[],raf=0,paintTick=0;
+function sizeCanvas(){const ratio=Math.min(devicePixelRatio||1,1.5);canvas.width=Math.round(innerWidth*ratio);canvas.height=Math.round(innerHeight*ratio);ctx.setTransform(ratio,0,0,ratio,0,0)}sizeCanvas();addEventListener('resize',sizeCanvas);
+function heartPath(s){ctx.beginPath();ctx.moveTo(0,s*.47);ctx.bezierCurveTo(-s*.97,-s*.13,-s*.64,-s*.88,0,-s*.37);ctx.bezierCurveTo(s*.64,-s*.88,s*.97,-s*.13,0,s*.47);ctx.closePath()}
+function paintHeart(p){ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rotate);ctx.globalAlpha=p.alpha;const s=p.size;heartPath(s);const g=ctx.createRadialGradient(-s*.18,-s*.26,1,0,0,s);g.addColorStop(0,'#fff');g.addColorStop(.30,p.type===1?'#ffe9f6':'#ffe3ef');g.addColorStop(.72,p.type===2?'#ffb6df':'#ffbbd5');g.addColorStop(1,p.type===1?'#f586bd':'#e87eaa');ctx.fillStyle=g;ctx.fill();ctx.lineWidth=Math.max(1,s*.06);ctx.strokeStyle='#fffc';ctx.stroke();ctx.beginPath();ctx.ellipse(-s*.19,-s*.2,s*.13,s*.055,-.5,0,Math.PI*2);ctx.fillStyle='#fffd';ctx.fill();ctx.restore()}
+function makeHeart(i){const w=Math.min(innerWidth*.62,380),h=w*.62;return{x:rand(0,innerWidth),y:rand(0,innerHeight),tx:innerWidth/2-w/2+rand(0,w),ty:innerHeight*.54-h/2+rand(0,h),size:rand(8,innerWidth<600?21:34),alpha:rand(.67,.98),rotate:rand(-.4,.4),type:i%3,vx:0,vy:0}}
+function particleLoop(){ctx.clearRect(0,0,innerWidth,innerHeight);paintTick++;for(const p of heartItems){if(particleMode==='scatter'){p.x+=Math.sin(paintTick*.03+p.type)*1.0;p.y+=Math.cos(paintTick*.035+p.type)*.8}else if(particleMode==='rectangle'){p.x+=(p.tx-p.x)*.052;p.y+=(p.ty-p.y)*.052}else if(particleMode==='burst'){p.x+=p.vx;p.y+=p.vy;p.vy+=.009;p.alpha*=.969}if(p.alpha>.04)paintHeart(p)}if(particleMode==='burst'&&heartItems.every(p=>p.alpha<.05))particleMode='off';if(particleMode!=='off'){raf=requestAnimationFrame(particleLoop)}else{raf=0;ctx.clearRect(0,0,innerWidth,innerHeight)}}
+function particles(mode,count){particleMode=mode;heartItems=Array.from({length:count},(_,i)=>makeHeart(i));if(!raf)raf=requestAnimationFrame(particleLoop)}
+function heartBurst(){const cx=innerWidth/2,cy=innerHeight/2;particleMode='burst';heartItems=Array.from({length:innerWidth<600?85:150},(_,i)=>{const p=makeHeart(i),a=rand(0,Math.PI*2),v=rand(2,9);p.x=cx;p.y=cy;p.alpha=1;p.vx=Math.cos(a)*v;p.vy=Math.sin(a)*v;return p});if(!raf)raf=requestAnimationFrame(particleLoop)}
+function endHearts(){particleMode='off';heartItems=[]}
+function tween(el,frames,ms,easing='ease-in-out'){if(reduceMotion)return Promise.resolve();const a=el.animate(frames,{duration:ms,easing,fill:'forwards'});return a.finished.catch(()=>{})}
+async function swapScene(previous,next){if(previous){previous.classList.add('exiting');previous.classList.remove('active');await pause(720);previous.classList.remove('exiting')}next.classList.add('active');await pause(120)}
+let sequenceDone=false,openingStarted=false;
+function setStageAsset(src,backup){const img=$('arrivalImg');img.onerror=()=>{img.onerror=null;img.src=backup};img.src=src}
+async function beginning(){if(openingStarted)return;openingStarted=true;particles('scatter',reduceMotion?50:(innerWidth<650?125:260));await pause(1800);particleMode='rectangle';await pause(2600);heartBurst();await pause(790);endHearts();$('mainLetter').classList.add('appear');await pause(1700);$('mainLetter').classList.add('shrink');$('openingGarden').classList.add('visible');$('introMessage').style.opacity='0';await pause(1250);
+$('arrival').classList.add('falling');await pause(2700);$('arrival').classList.add('say-hi');setStageAsset('images/ame-hi.webp','images/chibinu.png');await pause(1600);$('arrival').classList.remove('say-hi');$('arrival').classList.add('turn','balloon-away');setStageAsset('images/ame-pick.webp','images/chibinu.png');await pause(1050);
+// Unique mainLetter shrinks into hand; then disappears BEFORE the pose holding the letter appears.
+$('mainLetter').classList.add('pickup');await pause(1030);$('mainLetter').classList.add('gone');await pause(430);$('mainLetter').hidden=true;$('arrival').classList.add('pick');setStageAsset('images/ame-running-new.webp','images/chibinu-running.gif');await pause(580);
+$('arrival').hidden=true;await swapScene($('opening'),$('running'));
+const travelTime=reduceMotion?120:5700;await Promise.all([tween($('panorama'),[{transform:'translateX(0)'},{transform:`translateX(-${innerWidth*1.2}px)`}],travelTime,'ease-in-out'),tween($('runningGirl'),[{left:'9%'},{left:'69%'}],travelTime,'ease-in-out')]);await pause(400);
+await swapScene($('running'),$('handoff'));await pause(4400);$('handoff').classList.add('shining');await pause(900);await swapScene($('handoff'),$('question'));$('skip').hidden=true}
+function showAlbum(){if(sequenceDone)return;sequenceDone=true;endHearts();$('cinema').hidden=true;$('album').classList.add('open');$('skip').hidden=true;buildAlbum();scrollTo({top:0,behavior:'instant'})}
+addEventListener('DOMContentLoaded',()=>{beginning();$('skip').onclick=showAlbum;$('decline').onclick=()=>{$('response').textContent='Ame vẫn giữ điều bất ngờ này cho Hician nha ♡'};$('accept').onclick=async()=>{$('accept').disabled=true;$('decline').disabled=true;heartBurst();await pause(1100);showAlbum()};$('replay').onclick=()=>location.reload()});
+function el(tag,cls,text){const x=document.createElement(tag);if(cls)x.className=cls;if(text!==undefined)x.textContent=text;return x}
+function photo(src,alt,back){const image=el('img');image.alt=alt;image.src=src;if(back){image.onerror=()=>{image.onerror=null;image.src=back}}return image}
+const amePoses=['ame-pose-peek.webp','ame-pose-giggle.webp','ame-pose-present.webp','ame-pose-hi.webp','ame-pose-point.webp','ame-pose-wave.webp'];
+const hicianPoses=['hician-pose-bench.webp','hician-pose-relax.webp','hician-pose-listen.webp','hician-pose-stand.webp','hician-pose-letter.webp'];
+const positions=[['bottom-left','top-right'],['top-left','bottom-right'],['bottom-right','top-left'],['top-right','bottom-left']];
+let selected=0;
+function buildAlbum(){const list=$('memoryList');if(list.children.length)return;memories.forEach((m,i)=>{const card=el('article','memory');card.dataset.index=i;const art=el('div','memory-art');const frame=el('div','polaroid');const media=el('div',m.images.length===2?'memory-media duo':'memory-media');for(const [j,src] of m.images.entries()){const tile=el('div','tile'),fallback=el('span','memory-fallback','♡'),img=photo(src,`Ảnh số ${src.match(/Anh(\d+)/)?.[1]||i+1}`);img.loading='lazy';img.hidden=true;img.onload=()=>{img.hidden=false;fallback.hidden=true};img.onerror=()=>{img.remove();fallback.textContent='Ảnh chưa tải được'};tile.append(img,fallback);media.append(tile)}frame.append(media,el('div','memory-label',`Ảnh ${m.number} ♡`));art.append(frame);
+const [amePos,boyPos]=positions[(i*3+1)%4];const a=el('div',`memory-chibi ${amePos}`);a.append(photo('images/'+amePoses[(i*7+3)%amePoses.length],'Ame đổi biểu cảm','images/chibinu.png'));const b=el('div',`memory-chibi ${boyPos}`);b.append(photo('images/'+hicianPoses[(i*5+2)%hicianPoses.length],'Hician theo dõi ảnh','images/chibinam.png'));art.append(a,b);
+const copy=el('div','memory-copy');copy.append(el('div','memory-index',`MEMORY · ${String(i+1).padStart(2,'0')}`),el('div','memory-date',m.date),el('h3',null,m.title),el('p',null,m.note));card.append(art,copy);list.append(card)});
+let lastUpdate=0;const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});const live=[...document.querySelectorAll('.memory')].filter(x=>{const r=x.getBoundingClientRect();return r.bottom>innerHeight*.24&&r.top<innerHeight*.77}).sort((a,b)=>Math.abs(a.getBoundingClientRect().top-innerHeight*.3)-Math.abs(b.getBoundingClientRect().top-innerHeight*.3));if(live.length){const k=Number(live[0].dataset.index);if(k!==lastUpdate){lastUpdate=k;updateGuide(k)}}},{threshold:[0,.12,.33,.5]});list.querySelectorAll('.memory').forEach(x=>observer.observe(x));updateGuide(0)}
+function updateGuide(i){selected=i;const m=memories[i],text=$('guideText');text.replaceChildren(el('strong',null,`Ame: ${m.title}`),document.createTextNode(`Hician ơi, xem ảnh này nè! ${m.note}`));const gallery=$('guideImages');gallery.replaceChildren();gallery.classList.toggle('double',m.images.length===2);m.images.forEach((src,j)=>gallery.append(photo(src,`Ảnh ${m.number} phần ${j+1}`)));$('guideNumber').textContent=`Ảnh ${m.number} ♡`}
+$('ameGuide').onclick=()=>updateGuide(selected);$('hicianGuide').onclick=()=>{$('guideText').replaceChildren(el('strong',null,'Hician ♡'),document.createTextNode('Ame kể tiếp đi, mình đang ngồi nghe và xem ảnh nè!'))};
 </script>
 </body>
 </html>
