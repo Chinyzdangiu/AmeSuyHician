@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ffecf4">
-<meta name="description" content="Ame và Hician — Lá thư ngày 19/11 cùng 19 tấm ảnh trong 18 kỷ niệm.">
+<meta name="description" content="Ame và Hician — Lá thư ngày 19/11 cùng 20 tấm ảnh trong 19 kỷ niệm.">
 <title>Ame ♡ Hician — Lá thư 19/11</title>
 <link rel="preload" href="images/ame-hi.webp" as="image" type="image/webp">
 <style>
@@ -47,11 +47,11 @@ h1,h2,h3{font-family:Georgia,"Times New Roman",serif}[hidden]{display:none!impor
 .balloon .rope{position:absolute;top:69%;height:21%;width:2px;background:#b78b8c}.balloon .rope.a{left:30%}.balloon .rope.b{right:30%}
 .balloon .basket{position:absolute;left:34%;bottom:0;width:32%;height:17%;border-radius:4px 4px 9px 9px;background:repeating-linear-gradient(0deg,#bd865c 0 5px,#e0b181 5px 10px)}
 @keyframes balloonSway{to{transform:rotate(4deg)}}
-#landingGlow{position:absolute;inset:0;background:url('images/park-garden.webp') center 57% /cover no-repeat;opacity:0;transition:opacity 1.25s}
+#landingGlow{position:absolute;inset:0;background:url('images/park-path-clear.webp') center 57% /cover no-repeat;opacity:0;transition:opacity 1.25s}
 /* 2. clear walking path: foreground characters do not intersect the fence */
 #runScene{background:#fbe4ed}
 .run-world{position:absolute;inset:0;width:100%;height:100%;overflow:hidden}
-.run-background{position:absolute;inset:-3% -95%;background:url('images/park-garden.webp') center 56%/auto 108% repeat-x;filter:saturate(.92);will-change:transform}
+.run-background{position:absolute;inset:-3% -95%;background:url('images/park-path-clear.webp') center 58%/cover no-repeat;filter:saturate(.92);will-change:transform}
 .run-background::after{content:"";position:absolute;inset:60% 0 0;background:linear-gradient(transparent,#fae9ee44)}
 #runAme{position:absolute;left:8%;bottom:6%;width:clamp(130px,21vw,220px);height:clamp(175px,34vh,320px);z-index:4;transform:translateZ(0)}
 #runAme img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 10px 11px #604c5370)}
@@ -125,6 +125,32 @@ h1,h2,h3{font-family:Georgia,"Times New Roman",serif}[hidden]{display:none!impor
   .question-actions .btn{flex:1;padding:13px 12px;font-size:14px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.memory{transition:none;opacity:1;transform:none}.balloon{animation:none}#letter.glow{animation:none}}
+
+/* V7 IMPROVED: still original cinematic V7 layout, never nine storyboard tiles */
+#opening #landingGlow{background-image:url('images/park-path-clear.webp');background-size:cover;background-position:center 58%}
+#runBg{background-image:url('images/park-path-clear.webp');background-position:center 58%;background-size:cover;background-repeat:no-repeat;inset:-3% -3%;}
+#runScene .run-world{background:#f8e6ec}
+.question-art{isolation:isolate}
+.tease-pop{position:absolute;left:2%;bottom:2%;width:min(94%,390px);z-index:3;background:#fffdfdeb;border:2px solid #fff;border-radius:22px;box-shadow:0 10px 28px #9c587f55;padding:8px 11px;align-items:center;gap:10px;font-size:clamp(12px,1.5vw,16px);line-height:1.5;color:#a24f7a;font-weight:750}
+.tease-pop:not([hidden]){display:flex}
+.tease-pop img{width:clamp(62px,8vw,104px);height:clamp(72px,10vw,128px);object-fit:contain}
+.memory.landscape .memory-media{height:auto;min-height:150px;display:grid;place-items:center}
+.memory.landscape .memory-media .tile{width:100%;background:#ffedf6;display:grid;place-items:center}
+.memory.landscape .memory-media img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain}
+.memory.landscape .polaroid{width:min(100%,490px)}
+.guide-preview.landscape img{object-fit:contain;background:#ffe6f0}
+/* speech bubbles: Ame asks, Hician reacts only with ellipsis */
+.chat-row{display:flex;align-items:flex-end;gap:8px;margin:7px 0}
+.chat-row.hician{justify-content:flex-end}
+.chat-avatar{width:clamp(48px,5.5vw,70px);height:clamp(56px,6.5vw,84px);object-fit:contain;flex-shrink:0}
+.chat-bubble{padding:10px 13px;background:#fff0f8;border:1px solid #ffcee2;border-radius:18px;max-width:calc(100% - 58px);font-size:clamp(12px,1.5vw,15px);line-height:1.6}
+.chat-bubble strong{display:block;color:#ab507e;margin-bottom:3px}.chat-row.hician .chat-bubble{min-width:75px;text-align:center;background:white;font-size:20px}
+.auto-controls{position:fixed;z-index:60;left:50%;bottom:max(10px,env(safe-area-inset-bottom));transform:translateX(-50%);background:#fffafce9;border:1px solid #fff;border-radius:999px;padding:7px 9px;display:flex;align-items:center;gap:8px;box-shadow:0 10px 24px #9c587f4d;backdrop-filter:blur(8px)}
+.auto-controls[hidden]{display:none}
+.auto-controls button{padding:10px 14px;font-size:13px}.auto-controls label{font-size:12px;font-weight:700}.auto-controls select{border:1px solid #f5c3d8;border-radius:999px;padding:10px;background:white;color:#995276}
+@media(max-width:850px){.memory-layout{display:flex;flex-direction:column;align-items:stretch}.guide-sticky{position:sticky;top:0;z-index:15;width:100%;margin-bottom:12px}.guide{height:clamp(175px,27svh,235px)}.memory-list{width:100%}}
+@media(max-width:600px){.auto-controls{gap:5px;padding:5px;max-width:95vw}.auto-controls button{font-size:11px;padding:8px}.auto-controls label{display:none}.auto-controls select{font-size:11px;padding:8px}.memory.landscape .memory-media img{max-height:60svh}.tease-pop img{height:82px}}
+@media(prefers-reduced-motion:reduce){.memory{opacity:1;transform:none}}
 </style>
 </head>
 <body>
@@ -154,8 +180,8 @@ h1,h2,h3{font-family:Georgia,"Times New Roman",serif}[hidden]{display:none!impor
   </div></div>
   <div id="questionScene" class="scene" aria-label="Mở lá thư hay chưa">
     <div class="question-shell">
-      <div class="question-art"><img src="images/ame-hician-cho-mo-thu.gif" data-backup="images/park-question.webp" alt="Hician đang ngồi cầm lá thư, Ame đứng cạnh"></div>
-      <div class="question-text"><div class="eyebrow">Gửi riêng Hician</div><h2>Có muốn mở lá thư này không? 💌</h2><p>Ame đã mang tới món quà có 19 tấm ảnh trong 18 kỷ niệm nhỏ xinh của chúng mình.</p>
+      <div class="question-art"><img id="questionPicture" src="images/ame-hician-cho-mo-thu.gif" data-backup="images/park-question.webp" alt="Hician ngồi cầm thư và Ame đứng bên cạnh"><div id="teasePop" class="tease-pop" role="status" aria-live="polite" hidden><img src="images/ame-tease-tongue.webp" alt="Ame lè lưỡi nháy mắt"><span>Hì hì! Anh tò mò rồi phải không? Mở đi nha ♡</span></div></div>
+      <div class="question-text"><div class="eyebrow">Gửi riêng Hician</div><h2>Có muốn mở lá thư này không? 💌</h2><p>Ame đã mang tới món quà có 20 tấm ảnh trong 19 kỷ niệm nhỏ xinh của chúng mình.</p>
         <div class="question-actions"><button id="yes" type="button" class="btn primary">Có, mở ngay ♡</button><button id="no" type="button" class="btn secondary">Chưa đâu 🙈</button></div>
         <p id="reply" aria-live="polite"></p>
       </div>
@@ -163,8 +189,12 @@ h1,h2,h3{font-family:Georgia,"Times New Roman",serif}[hidden]{display:none!impor
   </div>
 </section>
 <section id="album" aria-label="Album kỷ niệm của Ame và Hician">
-  <header class="album-header"><div class="eyebrow">Our little memories</div><h2>18 kỷ niệm, 19 tấm ảnh ♡</h2><p>Cuộn xuống từng bức ảnh để nghe Ame kể chuyện. Hician ngồi lắng nghe dưới tán cây.</p></header>
-  <div id="memoryLayout" class="memory-layout">
+  <header class="album-header"><div class="eyebrow">Our little memories</div><h2>19 kỷ niệm, 20 tấm ảnh ♡</h2><p>Cuộn xuống từng bức ảnh để nghe Ame kể chuyện. Hician ngồi lắng nghe dưới tán cây.</p></header>
+  <div class="auto-controls" id="autoControls" role="group" aria-label="Tự động xem từng kỷ niệm" hidden>
+  <button type="button" id="autoToggle" class="btn primary">❚❚ Tạm dừng</button>
+  <label for="autoSpeed">Tốc độ</label><select id="autoSpeed" aria-label="Tốc độ tự cuộn"><option value="35">Chậm</option><option value="54" selected>Vừa</option><option value="78">Nhanh</option></select>
+</div>
+<div id="memoryLayout" class="memory-layout">
     <aside class="guide-sticky" aria-label="Ame giới thiệu và Hician lắng nghe">
       <div class="guide">
         <div id="guideNote" class="guide-note"><strong>Ame ♡</strong>Hician ơi, xem kỷ niệm đầu tiên nè!</div>
@@ -175,7 +205,7 @@ h1,h2,h3{font-family:Georgia,"Times New Roman",serif}[hidden]{display:none!impor
     </aside>
     <div id="memoryList" class="memory-list"></div>
   </div>
-  <footer class="ending"><img src="images/chibi-main.jpg" alt="Ame và Hician"><h2>Chúc Hician ngày 19/11 thật đặc biệt ♡</h2><p>Cảm ơn cậu vì đã xuất hiện và khiến những điều bình thường trở nên đáng nhớ. Mong cậu luôn vui vẻ, bình an và có thật nhiều lý do để mỉm cười.</p><button id="replay" type="button" class="btn primary">Xem lại từ đầu 💌</button></footer>
+  <footer class="ending"><img src="images/chibi-main.jpg" alt="Ame và Hician"><h2>Chúc Hician ngày 19/11 thật đặc biệt ♡</h2><p>Cảm ơn anh vì đã xuất hiện và khiến những điều bình thường trở nên đáng nhớ. Mong cậu luôn vui vẻ, bình an và có thật nhiều lý do để mỉm cười.</p><button id="replay" type="button" class="btn primary">Xem lại từ đầu 💌</button></footer>
 </section>
 </main>
 <script>
@@ -213,11 +243,12 @@ function stopHearts(){heartMode='off';particles=[];if(heartRAF){cancelAnimationF
 async function begin(){if(started)return;started=true;
   hearts('scatter',motionReduced?55:MOBILE()?120:250);await wait(1800);if(sceneCanceled)return;
   heartMode='gather';await wait(2600);if(sceneCanceled)return;
-  burst();await wait(900);stopHearts();
-  $('letter').style.opacity='1';$('letter').classList.add('glow');
-  await animate($('letter'),[{opacity:0,transform:'translate(-50%,-50%) scale(.17)'},{opacity:1,transform:'translate(-50%,-50%) scale(1.25)'}],950,'cubic-bezier(.2,.8,.2,1)');
-  await wait(1250);$('openingTitle').style.opacity='0';$('landingGlow').style.opacity='.65';
-  await animate($('letter'),[{transform:'translate(-50%,-50%) scale(1.25)'},{transform:'translate(-50%,-50%) scale(.30)'}],1250);
+  burst();$('letter').style.opacity='1';$('letter').classList.add('glow');
+  await animate($('letter'),[{opacity:0,transform:'translate(-50%,-50%) scale(.17)'},{opacity:1,transform:'translate(-50%,-50%) scale(1.25)'}],650,'cubic-bezier(.2,.8,.2,1)');
+  await wait(320);stopHearts();await wait(550);$('openingTitle').style.opacity='0';
+  await animate($('letter'),[{transform:'translate(-50%,-50%) scale(1.25) rotate(0deg)'},{transform:'translate(-15%,-75%) scale(.95) rotate(10deg)'},{transform:'translate(-95%,-60%) scale(.98) rotate(-7deg)'},{transform:'translate(-50%,-50%) scale(1.25) rotate(0deg)'}],1700);
+  $('landingGlow').style.opacity='1';
+  await animate($('letter'),[{transform:'translate(-50%,-50%) scale(1.25)'},{transform:'translate(-50%,-50%) scale(.30)'}],1050);
   if(sceneCanceled)return;
   await animate($('arrival'),[{top:'-440px',opacity:0},{top:MOBILE()?'31%':'28%',opacity:1}],2750,'cubic-bezier(.18,.65,.28,1)');
   await wait(250);$('balloon').style.transition='opacity .9s,transform .9s';$('balloon').style.opacity='0';$('balloon').style.transform='translateY(-90px) scale(.7)';
@@ -228,8 +259,8 @@ async function begin(){if(started)return;started=true;
   $('letter').classList.remove('glow');
   await animate($('letter'),[
     {opacity:1,left:'50%',top:'52%',transform:'translate(-50%,-50%) scale(.30)'},
-    {opacity:1,left:'57%',top:'70%',transform:'translate(-50%,-50%) scale(.11) rotate(-12deg)'},
-    {opacity:0,left:'57%',top:'70%',transform:'translate(-50%,-50%) scale(.07) rotate(-12deg)'}
+    {opacity:1,left:'51%',top:MOBILE()?'65%':'65%',transform:'translate(-50%,-50%) scale(.11) rotate(-12deg)'},
+    {opacity:0,left:'51%',top:MOBILE()?'65%':'65%',transform:'translate(-50%,-50%) scale(.07) rotate(-12deg)'}
   ],1150);
   $('letter').hidden=true; // hard-hide BEFORE the pose containing a smaller envelope appears
   await wait(180);
@@ -239,10 +270,10 @@ async function begin(){if(started)return;started=true;
   await goScene($('opening'),$('runScene'));
   // Foreground moves along clear paved path; stop BEFORE Hician, not overlapping him.
   await Promise.all([
-    animate($('runBg'),[{transform:'translateX(0)'},{transform:'translateX(-18%)'}],5000,'linear'),
-    animate($('runAme'),[{left:'8%'},{left:MOBILE()?'49%':'54%'}],5000,'ease-in-out')
+    animate($('runBg'),[{transform:'scale(1.045) translateX(0)'},{transform:'scale(1.045) translateX(-3%)'}],5200,'ease-in-out'),
+    animate($('runAme'),[{left:'8%'},{left:MOBILE()?'46%':'53%'}],5200,'ease-in-out')
   ]);
-  await wait(480);if(sceneCanceled)return;
+  await wait(380);if(sceneCanceled)return;
   // Freeze static run scene and start independent 9-frame handoff animation.
   await goScene($('runScene'),$('handoffScene'));
   // Give the 9 GIF frames time to finish once (duration 4.25 sec).
@@ -251,59 +282,60 @@ async function begin(){if(started)return;started=true;
   $('skipIntro').hidden=true;
 }
 /* 19 photos, 18 memories: two pictures together at memory 15 */
-const notes=[
-  ['Ngày đầu tiên','Khởi đầu của tụi mình 🌷','Có những điều bắt đầu nhẹ nhàng nhưng lại ở mãi trong tim.'],
-  ['Một buổi gặp gỡ','Lần đầu đi cùng nhau 💗','Buổi gặp gỡ ấy bình thường thôi, nhưng với Ame lại đặc biệt.'],
-  ['Một lần cùng cười','Nụ cười của cậu ☁️','Mỗi lần thấy Hician cười, mình cũng vui theo.'],
-  ['Một khoảnh khắc nhỏ','Điều giản dị mà mình thương 🧸','Đôi khi chỉ cần bên nhau đã là đủ rồi.'],
-  ['Một ngày đẹp trời','Ánh nắng và tụi mình ✨','Cậu có mặt nên mọi thứ đều đáng nhớ hơn.'],
-  ['Một tấm ảnh xinh','Kỷ niệm được giữ lại 📷','Mỗi tấm ảnh là một câu chuyện mình không muốn quên.'],
-  ['Một lần đi xa','Đi cùng nhau thật vui 🌤️','Có người đồng hành, nơi nào cũng đáng nhớ.'],
-  ['Một phút đáng yêu','Khoảnh khắc làm tim rung lên 🫶','Những điều nhỏ bé bên nhau luôn có ý nghĩa thật lớn.'],
-  ['Một ngày vui','Mong cậu luôn mỉm cười 💕','Mong Hician sẽ luôn có nhiều ngày hạnh phúc.'],
-  ['Một nỗi nhớ','Có lúc chỉ muốn gặp cậu 🌸','Nhớ cậu là cảm giác vừa dịu dàng vừa chân thật.'],
-  ['Một góc nhỏ','Điều bình yên mình thích 🤍','Mình thích những khoảnh khắc có cậu bên cạnh.'],
-  ['Một ngày đặc biệt','Ký ức không muốn quên 🎀','Thời gian trôi nhưng cảm giác ấy vẫn nguyên vẹn.'],
-  ['Một lần đồng hành','Đi cùng nhau nhé 🥰','Chỉ cần cùng cậu, mọi hành trình đều vui hơn.'],
-  ['Một bức ảnh nữa','Thêm một kỷ niệm 🌈','Nhìn lại tấm ảnh này thôi là đã muốn cười.'],
-  ['Hai khoảnh khắc chung','Ngượng nhưng vẫn thương 🙈','Hai bức ảnh, chung một câu chuyện đáng yêu của tụi mình.'],
-  ['Một điều chưa nói','Những lời trong tim 💌','Có những điều khó nói trực tiếp nên Ame gửi vào đây.'],
-  ['Một khoảng thời gian đẹp','Những ngày tháng thật xinh 🌼','Cảm ơn Hician vì những ngày đã cùng đồng hành.'],
-  ['19/11','Gửi cậu tất cả yêu thương 💝','Mong cậu luôn bình an, vui vẻ và được yêu thương thật nhiều.']
+const memories=[
+ {images:[1],title:'Món quà đến sớm',caption:'Món quà sinh nhật đầu tiên anh tặng Ame lại đến trước cả ngày sinh nhật. Bất ngờ đến sớm như thế, nhưng niềm vui thì còn ở lại rất lâu.',ame:'Anh còn nhớ món quà sinh nhật tặng em sớm hơn cả ngày sinh nhật không?',hician:'Nhớ chứ! Anh chỉ muốn em vui sớm một chút thôi mà.'},
+ {images:[2],title:'Một tối trút hết muộn phiền',caption:'Một buổi cùng nhau uống chút rượu, kể những chuyện mệt mỏi và xả hết áp lực. Hóa ra chỉ cần có người chịu ngồi nghe, lòng mình đã nhẹ hơn nhiều.',ame:'Anh còn nhớ hôm mình ngồi tâm sự, xả stress với nhau không?',hician:'Nhớ. Chuyện dài đến đâu anh cũng muốn nghe em kể.'},
+ {images:[3],title:'Sinh nhật có anh',caption:'Một bữa ăn mừng sinh nhật với người đặc biệt. Món ăn có thể quên, nhưng cảm giác có anh ngồi đối diện thì Ame muốn giữ thật lâu.',ame:'Anh nhớ bữa ăn sinh nhật của em hôm đó chứ?',hician:'Tất nhiên! Với anh, em vui là điều quan trọng nhất.'},
+ {images:[4],title:'Gom từng chút yêu thương',caption:'Những món quà anh tặng, mỗi món đều cất giữ một chút dịu dàng. Điều Ame quý nhất không phải giá trị món quà, mà là sự quan tâm đằng sau đó.',ame:'Anh còn nhớ mình đã tặng em những món gì không?',hician:'Có chứ, mỗi món đều là một cách anh nói rằng anh thương em.'},
+ {images:[5],title:'Đi dạo chẳng cần đích đến',caption:'Những bước chân thong thả và những câu chuyện không đầu không cuối. Đi bên cạnh anh, những con đường bình thường cũng trở nên rất đỗi đáng yêu.',ame:'Anh nhớ những lần hai đứa mình đi dạo không?',hician:'Nhớ, vì nơi nào có em thì đường về cũng thấy ngắn.'},
+ {images:[6],title:'Hẹn nhau một bữa ngon',caption:'Lại thêm một bữa ăn và thêm một dịp được ngồi cạnh nhau. Chẳng cần dịp gì lớn lao, chỉ cần hôm ấy chúng mình có mặt.',ame:'Mình đã ăn với nhau bao nhiêu bữa rồi anh nhỉ?',hician:'Không đếm nổi, nhưng anh muốn có thêm nhiều bữa nữa.'},
+ {images:[7],title:'Cà phê và những câu chuyện',caption:'Một buổi cà phê, đôi ba câu chuyện linh tinh và thật nhiều tiếng cười. Những khoảnh khắc chậm lại thế này luôn rất đáng giữ.',ame:'Anh còn nhớ mấy buổi cà phê hai đứa ngồi kể chuyện không?',hician:'Nhớ. Anh thích những buổi chỉ có mình và em như vậy.'},
+ {images:[8],title:'Rạp phim và hai chiếc ghế cạnh nhau',caption:'Ánh đèn rạp tắt, bộ phim bắt đầu và có anh ở ngay bên cạnh. Đó là một trong những điều giản dị khiến Ame thấy vui.',ame:'Anh còn nhớ buổi đi xem phim này không?',hician:'Anh nhớ cả người ngồi cạnh anh nữa.'},
+ {images:[9],title:'Lại một tối hẹn cùng màn ảnh',caption:'Một buổi xem phim nữa, một kỷ niệm nữa. Những thói quen nho nhỏ lặp đi lặp lại lại là điều khiến chuyện của chúng mình đặc biệt.',ame:'Đi xem phim nữa nhé, anh có nhớ lần này không?',hician:'Nhớ chứ. Anh luôn thích được cùng em chọn phim.'},
+ {images:[10],title:'Cụng ly cùng người thương',caption:'Một buổi nhậu với đủ thứ câu chuyện trên đời. Có anh ngồi bên, cả một tối bình thường cũng trở thành ký ức đáng yêu.',ame:'Anh còn nhớ lần hai đứa cụng ly với nhau không?',hician:'Nhớ. Cụng ly cho những ngày vui tiếp theo nữa nhé!'},
+ {images:[11],title:'Một dấu mốc ngọt ngào',caption:'Món quà nhỏ nhưng mang ý nghĩa rất lớn: khoảnh khắc mối quan hệ của chúng mình có thêm một lời xác nhận thật rõ ràng.',ame:'Anh có nhớ món quà đánh dấu chuyện hai đứa mình không?',hician:'Sao quên được, đó là ngày anh thấy mình thật may mắn.'},
+ {images:[12],title:'Khi chúng mình là của nhau',caption:'Không chỉ là quà tặng, đó còn là lời nhắn rằng chúng mình đã chọn ở bên nhau. Đến giờ nghĩ lại, Ame vẫn thấy tim rung lên.',ame:'Anh nhớ lúc mình chính thức gọi nhau là người thương không?',hician:'Nhớ chứ. Anh vẫn vui như hôm ấy.'},
+ {images:[13],title:'Đi ăn để được “bồi bổ”',caption:'Một buổi hẹn đi ăn với lý do cực dễ thương: bồi bổ cho nhau. Có người để cùng ăn ngon và cùng chăm sóc, đúng là ấm lòng.',ame:'Anh còn nhớ bữa đi ăn “bồi bổ” này không?',hician:'Nhớ, phải chăm Ame thật tốt chứ!'},
+ {images:[14],title:'Chiếc vòng của lời hứa',caption:'Cùng nhau làm vòng tay vĩnh cửu, giữ một dấu ấn nhỏ cho chặng đường chung. Mong từng ngày sau này vẫn có anh và em đồng hành.',ame:'Anh còn nhớ ngày mình cùng làm vòng tay vĩnh cửu không?',hician:'Nhớ. Nhìn chiếc vòng là anh nhớ đến em ngay.'},
+ {images:[15,16],title:'Hai đứa mình trong đồ đôi',caption:'Hai tấm ảnh, một câu chuyện: những lần cùng mặc đồ đôi. Chỉ một chút giống nhau thôi mà cảm giác được thuộc về nhau bỗng rõ ràng đến lạ.',ame:'Anh thấy hai đứa mình mặc đồ đôi có đáng yêu không?',hician:'Đáng yêu chứ! Nhưng anh thấy Ame là đáng yêu nhất.'},
+ {images:[17],title:'Đà Lạt — Ngày đầu háo hức',caption:'Ngày đầu đặt chân tới Đà Lạt cùng nhau. Trời, cảnh vật và những con đường đều mới mẻ, nhưng vui nhất là được khám phá cùng anh.',ame:'Anh còn nhớ ngày đầu tiên tụi mình đến Đà Lạt không?',hician:'Nhớ! Chuyến đi có em làm mọi thứ đẹp hơn.'},
+ {images:[18],title:'Đà Lạt — Ngày thứ hai dịu dàng',caption:'Ngày thứ hai trôi qua giữa không khí Đà Lạt và những khoảnh khắc thật bình yên. Càng đi cùng nhau, Ame càng muốn có thêm nhiều chuyến nữa.',ame:'Ngày thứ hai ở Đà Lạt anh thích nhất điều gì?',hician:'Anh thích được đi cùng em cả ngày.'},
+ {images:[19],title:'Đà Lạt — Ngày thứ ba đáng nhớ',caption:'Ngày thứ ba mang theo chút lưu luyến và thật nhiều hình ảnh đẹp. Chuyến đi rồi sẽ kết thúc, nhưng câu chuyện của chúng mình vẫn còn tiếp tục.',ame:'Anh có thấy ba ngày Đà Lạt trôi nhanh quá không?',hician:'Nhanh thật. Mình lại đi cùng nhau nhé!'},
+ {images:[20],title:'Bữa tối mang tên Ame và Hician',caption:'Bữa tối anh đặt riêng ở Đà Lạt, với tên hai đứa mình ở cạnh nhau. Một chi tiết nhỏ mà khiến Ame thấy được trân trọng và yêu thương thật nhiều.',ame:'Anh còn nhớ bữa tối ở Đà Lạt có tên hai đứa mình không?',hician:'Anh nhớ. Anh muốn đó là một tối thật đặc biệt dành cho em.'}
 ];
-const memories=notes.map((n,i)=>({number:i===14?'15–16':String(i<14?i+1:i+2),date:n[0],title:n[1],message:n[2],photos:i===14?['images/Anh15.jpg','images/Anh16.jpg']:[`images/Anh${i<14?i+1:i+2}.jpg`]}));
 const amePoses=['ame-pose-peek.webp','ame-pose-point.webp','ame-pose-wave.webp','ame-pose-giggle.webp','ame-pose-laugh.webp','ame-pose-hi.webp'];
 const hicianPoses=['hician-pose-bench.webp','hician-pose-listen.webp','hician-pose-relax.webp','hician-pose-letter.webp','hician-pose-open.webp'];
 function elt(tag,cls,text){const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e}
 function picture(src,alt){const img=elt('img');img.alt=alt;img.src=src;return img}
 function buildAlbum(){const target=$('memoryList');if(target.childElementCount)return;
-  memories.forEach((m,i)=>{
-    const card=elt('article','memory');card.dataset.index=String(i);
-    const art=elt('div','memory-art');const frame=elt('div','polaroid');frame.style.setProperty('--tilt',`${[-4,3,-2,4,-3][i%5]}deg`);
-    const media=elt('div',m.photos.length===2?'memory-media duo':'memory-media');
-    for(const [j,src] of m.photos.entries()){
-      const tile=elt('div','tile'),fb=elt('span','fallback-photo','Ảnh đang tải...'),img=picture(src,`Kỷ niệm ${m.number}, ảnh ${j+1}`);
-      img.loading='lazy';img.decoding='async';img.hidden=true;
-      img.onload=()=>{img.hidden=false;fb.hidden=true};img.onerror=()=>{img.hidden=true;fb.textContent='Ảnh chưa tải được: '+src};
-      tile.append(fb,img);media.append(tile);
-    }
-    frame.append(media,elt('div','memory-label',`Kỷ niệm ${m.number} ♡`));art.append(frame);
-    // deterministic variety: opposite corners, different characters/poses, no jitter animation
-    const ame=elt('div',`pose ${i%2?'right':'left'} ${i%3===0?'peek':i%3===1?'point':''}`);
-    const hic=elt('div',`pose ${i%2?'left':'right'} ${i%4===0?'peek':''}`);
-    ame.append(picture(`images/${amePoses[(i*3+i%4)%amePoses.length]}`,'Ame biểu cảm đáng yêu'));
-    hic.append(picture(`images/${hicianPoses[(i*2+i%3)%hicianPoses.length]}`,'Hician nghe chuyện'));
-    art.append(ame,hic);
-    const copy=elt('div','memory-copy');copy.append(elt('span','memory-number',`MEMORY · ${m.number}`),elt('span','memory-date',m.date),elt('h3',null,m.title),elt('p',null,m.message));
-    card.append(art,copy);target.append(card);
+ memories.forEach((m,i)=>{
+  const isLandscape=m.images.includes(20);
+  const card=elt('article','memory'+(isLandscape?' landscape':''));card.dataset.index=String(i);
+  const art=elt('div','memory-art'),frame=elt('div','polaroid');frame.style.setProperty('--tilt',`${[-4,3,-2,4,-3][i%5]}deg`);
+  const media=elt('div',m.images.length===2?'memory-media duo':'memory-media');
+  m.images.forEach((n,j)=>{const src=`images/Anh${n}.jpg`,tile=elt('div','tile'),fb=elt('span','fallback-photo','Ảnh đang tải...'),img=picture(src,`${m.title} - ảnh ${j+1}`);
+    img.loading='lazy';img.decoding='async';img.hidden=true;
+    img.onload=()=>{img.hidden=false;fb.hidden=true};img.onerror=()=>{img.hidden=true;fb.textContent='Chưa tải được: '+src};tile.append(fb,img);media.append(tile);
   });
-  setupMemoryObserver();
+  frame.append(media,elt('div','memory-label',m.title+' ♡'));art.append(frame);
+  const ame=elt('div',`pose ${i%2?'right':'left'} ${i%3===0?'peek':i%3===1?'point':''}`),hic=elt('div',`pose ${i%2?'left':'right'} ${i%4===0?'peek':''}`);
+  ame.append(picture(`images/${amePoses[(i*3+i%4)%amePoses.length]}`,'Ame biểu cảm'));
+  hic.append(picture(`images/${hicianPoses[(i*2+i%3)%hicianPoses.length]}`,'Hician biểu cảm'));art.append(ame,hic);
+  const copy=elt('div','memory-copy');copy.append(elt('span','memory-number',`KỶ NIỆM · ${i+1}`),elt('h3',null,m.title),elt('p',null,m.caption));
+  const chat=elt('div','memory-chat'),ar=elt('div','chat-row'),hr=elt('div','chat-row hician');
+  const aa=picture(`images/${['ame-pose-giggle.webp','ame-new-peek.webp','ame-pose-hi.webp','ame-pose-laugh.webp'][i%4]}`,'Ame');aa.className='chat-avatar';
+  const hb=elt('div','chat-bubble');hb.append(elt('strong',null,'Hician ♡'),elt('span',null,'...'));
+  const ab=elt('div','chat-bubble');ab.append(elt('strong',null,'Ame ♡'),elt('span',null,m.ame));
+  const ha=picture(`images/${['hician-pose-relax.webp','hician-pose-listen.webp','hician-pose-open.webp','hician-new-listen.webp'][i%4]}`,'Hician');ha.className='chat-avatar';
+  ar.append(aa,ab);hr.append(hb,ha);chat.append(ar,hr);copy.append(chat);card.append(art,copy);target.append(card);
+ });setupMemoryObserver();
 }
 let currentMemory=-1;
 function updateGuide(i){if(i===currentMemory)return;currentMemory=i;const m=memories[i];
-  $('guideNote').replaceChildren(elt('strong',null,`Ame: ${m.title}`),document.createTextNode(`Hician ơi, nhìn ảnh này nè! ${m.message}`));
-  const preview=$('guidePreview');preview.classList.toggle('double',m.photos.length===2);
-  preview.replaceChildren(...m.photos.map((src,j)=>picture(src,`Ảnh ${m.number} - ${j+1}`)));
+ $('guideNote').replaceChildren(elt('strong',null,'Ame ♡'),document.createTextNode(m.ame),elt('br'),elt('strong',null,'Hician ♡ ...'));
+ const preview=$('guidePreview');preview.classList.toggle('double',m.images.length===2);preview.classList.toggle('landscape',m.images.includes(20));
+ preview.replaceChildren(...m.images.map(n=>picture(`images/Anh${n}.jpg`,m.title)));
+ const hi=$('guideHician').querySelector('img');hi.src=`images/${hicianPoses[i%hicianPoses.length]}`;
 }
 function setupMemoryObserver(){const all=[...document.querySelectorAll('.memory')];
   const observer=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.isIntersecting)entry.target.classList.add('visible')}},{threshold:.08});all.forEach(c=>observer.observe(c));
@@ -317,14 +349,26 @@ function setupMemoryObserver(){const all=[...document.querySelectorAll('.memory'
   const schedule=()=>{if(!scheduled){scheduled=true;requestAnimationFrame(selectCurrent)}};
   addEventListener('scroll',schedule,{passive:true});addEventListener('resize',schedule);schedule();
 }
-function showAlbum(){if(albumOpened)return;albumOpened=true;sceneCanceled=true;stopHearts();$('cinema').hidden=true;$('skipIntro').hidden=true;$('album').classList.add('open');buildAlbum();scrollTo({top:0,behavior:'instant'})}
+function showAlbum(){if(albumOpened)return;albumOpened=true;sceneCanceled=true;stopHearts();$('cinema').hidden=true;$('skipIntro').hidden=true;$('album').classList.add('open');buildAlbum();$('autoControls').hidden=false;scrollTo({top:0,behavior:'instant'});
+ setTimeout(()=>startAutoScroll(),700);
+}
+let autoFrameId=0,autoLast=0,autoRunning=false;
+function autoBottom(){return Math.max(0,document.documentElement.scrollHeight-innerHeight)}
+function autoTick(t){if(!autoRunning)return;if(!autoLast)autoLast=t;const dt=Math.min(.08,(t-autoLast)/1000);autoLast=t;
+ const speed=Number($('autoSpeed').value)||54;const target=Math.min(autoBottom(),scrollY+speed*dt);scrollTo(0,target);
+ if(target>=autoBottom()-2){stopAutoScroll(true);return}autoFrameId=requestAnimationFrame(autoTick);
+}
+function startAutoScroll(){if(autoRunning)return;autoRunning=true;autoLast=0;$('autoToggle').textContent='❚❚ Tạm dừng';autoFrameId=requestAnimationFrame(autoTick)}
+function stopAutoScroll(finished=false){autoRunning=false;cancelAnimationFrame(autoFrameId);autoLast=0;$('autoToggle').textContent=finished?'♡ Đã xem hết':'▶ Tiếp tục'}
+$('autoToggle').addEventListener('click',()=>{if(autoRunning){stopAutoScroll()}else{if(scrollY>=autoBottom()-2)scrollTo(0,$('album').offsetTop);startAutoScroll()}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&autoRunning)stopAutoScroll()});
 function clickWithKeyboard(node,fn){node.addEventListener('click',fn);node.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();fn()}})}
 addEventListener('DOMContentLoaded',()=>{
   begin();$('skipIntro').onclick=showAlbum;$('replay').onclick=()=>location.reload();
-  $('no').onclick=()=>{$('reply').textContent='Để Hician giữ lá thư thêm chút nữa nha ♡'};
-  $('yes').onclick=async()=>{$('yes').disabled=true;$('no').disabled=true;burst();await wait(1250);showAlbum()};
-  clickWithKeyboard($('guideAme'),()=>{const m=memories[Math.max(0,currentMemory)];$('guideNote').replaceChildren(elt('strong',null,'Ame ♡'),document.createTextNode(`Hician ơi, xem kỷ niệm này! ${m.message}`))});
-  clickWithKeyboard($('guideHician'),()=>{$('guideNote').replaceChildren(elt('strong',null,'Hician ♡'),document.createTextNode('Ame kể tiếp đi, mình đang ngồi nghe nè!'))});
+  $('no').onclick=()=>{$('no').textContent='Đồng ý mở ♡';$('no').classList.remove('secondary');$('no').classList.add('primary');$('reply').textContent='Ame: Hì hì! Anh tò mò rồi đúng không? ♡';$('teasePop').hidden=false;$('no').onclick=()=>{$('yes').click()};};
+  $('yes').onclick=async()=>{$('yes').disabled=true;$('no').disabled=true;burst();await wait(900);showAlbum()};
+  clickWithKeyboard($('guideAme'),()=>{const m=memories[Math.max(0,currentMemory)];$('guideNote').replaceChildren(elt('strong',null,'Ame ♡'),document.createTextNode(m.ame))});
+  clickWithKeyboard($('guideHician'),()=>{$('guideNote').replaceChildren(elt('strong',null,'Hician ♡'),document.createTextNode('...'))});
 });
 </script>
 </body>
