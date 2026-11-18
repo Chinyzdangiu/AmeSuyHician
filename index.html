@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ffe9f1">
 <meta name="description" content="Ame và Hician — lá thư 19/11 với 20 tấm ảnh và 19 kỷ niệm.">
-<title>Ame ♡ Hician — Điều mình muốn kể</title>
+<title>Ame ♡ Hician — Kể anh nghe nhé</title>
 <style>
 :root{--pink:#f47dad;--ink:#954b70;--paper:#fffafc;--shadow:0 18px 45px #a9618130}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#fbe8f1;color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:hidden}h1,h2,h3{font-family:Georgia,serif}img{display:block;max-width:100%}button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid #a33b75;outline-offset:3px}[hidden]{display:none!important}
@@ -31,6 +31,20 @@
 @media(max-width:860px){.album-layout{grid-template-columns:1fr}.guide-wrap{position:sticky;top:5px;z-index:20}.guide{height:215px;min-height:0;border-width:6px;border-radius:24px}.speech{left:8px;top:8px;right:auto;width:55%;font-size:11px;padding:7px 9px;max-height:94px;overflow:hidden}.speech.hician{top:101px;left:8px;width:55%}.guide-photo{left:auto;right:21%;top:30px;width:23%;aspect-ratio:4/5;border-width:4px;border-bottom-width:10px}.guide-girl{width:112px;height:125px;left:auto;right:65px}.guide-boy{width:125px;height:130px;right:-7px}.memory{grid-template-columns:1fr}.memory:nth-child(even) .photo-side,.memory:nth-child(even) .text-side{order:initial}.photo-side{min-height:330px}.polaroid{max-width:340px}.text-side{padding:23px}}
 @media(max-width:600px){#cinema{min-height:500px}.intro-heading{top:7%}.question-card{grid-template-columns:1fr;gap:6px;padding:8px;border-width:6px;border-radius:24px;max-height:97svh;overflow-y:auto}.question-art{height:clamp(220px,42svh,345px)}.question-copy{padding:12px}.question-copy h2{font-size:clamp(24px,7vw,33px)}.question-copy p{font-size:13px;line-height:1.6}.question-buttons .btn{flex:1;padding:11px 8px;font-size:13px}#runAme{width:36vw;max-width:155px;bottom:10%}#runHician{width:42vw;max-width:170px;bottom:10%}#handoffAme{width:39vw;left:4%;bottom:12%}#handoffHician{width:50vw;right:0;bottom:12%}.guide{height:196px}.guide-photo{right:20%;width:25%;top:25px}.guide-girl{width:95px;right:52px}.guide-boy{width:113px}.speech{width:54%;font-size:10px}.speech.hician{top:98px}.photo-side{min-height:285px;padding:15px}.corner{width:75px;height:88px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.memory{transition:none}.question-art #questionAme,.question-art #questionHician{animation:none}}
+
+/* V9 – hội thoại bằng bong bóng có avatar chibi, không còn đoạn hội thoại chữ dài */
+.memory-chat{display:grid;gap:12px;margin-top:24px}
+.chat-line{display:flex;align-items:flex-end;gap:9px;max-width:100%;min-width:0}
+.chat-line.chat-hician{justify-content:flex-end}
+.chat-avatar{flex:0 0 auto;width:clamp(48px,5.8vw,70px);height:clamp(55px,7vw,82px);object-fit:contain;object-position:bottom;filter:drop-shadow(0 5px 8px #9b5a7a32)}
+.chat-bubble{position:relative;min-width:0;max-width:min(100%,400px);display:grid;gap:5px;padding:13px 15px;border-radius:20px;font-size:clamp(12px,1.05vw,14px);line-height:1.65;box-shadow:0 5px 14px #ae70902b;overflow-wrap:anywhere}
+.chat-bubble strong{font-size:12px;color:#ad4a78}
+.chat-bubble-ame{background:#ffe5f0;border:1px solid #ffc2da;border-bottom-left-radius:5px}
+.chat-bubble-hician{background:white;border:1px solid #f5cddd;border-bottom-right-radius:5px;min-width:75px;text-align:center}
+.chat-hician .chat-bubble span{font-size:24px;letter-spacing:5px;line-height:1.1}
+/* Tránh khung thoại đè ảnh, ảnh vẫn nằm gọn trong khung Polaroid */
+.guide .speech.hician{background:#fffafc}
+@media(max-width:600px){.memory-chat{gap:6px}.chat-bubble{padding:10px 11px}.chat-avatar{width:50px;height:58px}.chat-bubble-ame{max-width:calc(100% - 58px)}}
 </style>
 </head>
 <body>
@@ -60,9 +74,9 @@
 </div>
 </section>
 <section id="album" aria-label="19 kỷ niệm trong 20 ảnh">
- <header class="album-head"><span class="eyebrow">Our little memories</span><h2>19 kỷ niệm, 20 tấm ảnh ♡</h2><p>Cuộn xuống từng kỷ niệm nhé. Ame sẽ hỏi “Anh còn nhớ…?”, còn Hician sẽ đáp lại bằng những lời dễ thương.</p></header>
+ <header class="album-head"><span class="eyebrow">Our little memories</span><h2>19 kỷ niệm, 20 tấm ảnh ♡</h2><p>Cuộn xuống từng kỷ niệm nhé. Ame sẽ hỏi “Anh còn nhớ…?”, còn Hician chỉ ngồi nghe, ngại ngùng và đáp bằng một dấu lặng đáng yêu.</p></header>
  <div class="album-layout" id="albumLayout">
-  <aside class="guide-wrap" aria-label="Ame và Hician trò chuyện khi xem ảnh"><div class="guide"><div class="guide-bg"></div><div class="speech ame" id="ameSpeech"><strong>Ame ♡</strong>Anh còn nhớ món quà đầu tiên không?</div><div class="speech hician" id="hicianSpeech"><strong>Hician ♡</strong>Anh nhớ chứ!</div><div class="guide-photo" id="guidePhoto"><img id="guideImage" src="images/Anh1.jpg" alt="Kỷ niệm đang kể"></div><div class="guide-girl" id="guideGirl" role="button" tabindex="0" aria-label="Ame kể chuyện"><img src="images/ame-pose-point.webp" alt="Ame chỉ ảnh"></div><div class="guide-boy" id="guideBoy" role="button" tabindex="0" aria-label="Hician đáp lời"><img src="images/hician-pose-bench.webp" alt="Hician ngồi nghe"></div></div></aside>
+  <aside class="guide-wrap" aria-label="Ame và Hician trò chuyện khi xem ảnh"><div class="guide"><div class="guide-bg"></div><div class="speech ame" id="ameSpeech"><strong>Ame ♡</strong>Anh còn nhớ món quà đầu tiên không?</div><div class="speech hician" id="hicianSpeech"><strong>Hician ♡</strong>...</div><div class="guide-photo" id="guidePhoto"><img id="guideImage" src="images/Anh1.jpg" alt="Kỷ niệm đang kể"></div><div class="guide-girl" id="guideGirl" role="button" tabindex="0" aria-label="Ame kể chuyện"><img src="images/ame-new-point.webp" alt="Ame chỉ lên bức ảnh đang kể"></div><div class="guide-boy" id="guideBoy" role="button" tabindex="0" aria-label="Hician đáp lời"><img src="images/hician-new-listen.webp" alt="Hician ngồi lắng nghe"></div></div></aside>
   <div class="memory-list" id="memoryList"></div>
  </div>
  <footer class="ending"><img src="images/chibi-main.jpg" alt="Ame và Hician"><h2>Gửi Hician, ngày 19/11 thật đặc biệt ♡</h2><p>Cảm ơn anh vì đã mang đến những món quà, những buổi hẹn và cả chuyến đi Đà Lạt đầy yêu thương. Điều Ame trân trọng nhất không chỉ là những bức ảnh, mà là người đã cùng Ame tạo nên chúng.</p><button type="button" class="btn main" id="replay">Xem lại từ đầu 💗</button></footer>
@@ -132,7 +146,13 @@ async function handoff(){const a=$('handoffAme'),h=$('handoffHician'),l=$('hando
 function skipIntro(){canceled=true;clearHearts();document.querySelectorAll('.scene').forEach(s=>s.classList.remove('active'));$('questionScene').classList.add('active');$('skip').hidden=true;}
 $('skip').addEventListener('click',skipIntro);
 window.addEventListener('load',startCinema);
-$('no').addEventListener('click',()=>$('reply').textContent='Vậy Hician giữ lá thư thêm một chút nữa nha ♡');
+$('no').addEventListener('click',async()=>{
+ if(opened || $('no').dataset.teasing)return;
+ $('no').dataset.teasing='1';$('no').textContent='Đồng ý mở nè ♡';$('no').classList.add('main');
+ $('reply').textContent='Ame cười tinh nghịch: Hì hì, biết là anh sẽ tò mò mà! ♡';
+ $('questionAme').querySelector('img').src=asset('ame-new-peek.webp');
+ await sleep(1500);if(!opened)$('yes').click();
+});
 $('yes').addEventListener('click',async()=>{if(opened)return;opened=true;$('yes').disabled=true;burstHearts();await sleep(950);$('cinema').hidden=true;$('album').classList.add('open');buildMemories();scrollTo({top:0,behavior:'instant'});});
 /* 20 source images, 19 memory cards: images 15 and 16 share one card. */
 const memories=[
@@ -156,8 +176,8 @@ const memories=[
  {images:[19],title:'Đà Lạt — Ngày thứ ba đáng nhớ',caption:'Ngày thứ ba mang theo chút lưu luyến và thật nhiều hình ảnh đẹp. Chuyến đi rồi sẽ kết thúc, nhưng câu chuyện của chúng mình vẫn còn tiếp tục.',ame:'Anh có thấy ba ngày Đà Lạt trôi nhanh quá không?',hician:'Nhanh thật. Mình lại đi cùng nhau nhé!'},
  {images:[20],title:'Bữa tối mang tên Ame và Hician',caption:'Bữa tối anh đặt riêng ở Đà Lạt, với tên hai đứa mình ở cạnh nhau. Một chi tiết nhỏ mà khiến Ame thấy được trân trọng và yêu thương thật nhiều.',ame:'Anh còn nhớ bữa tối ở Đà Lạt có tên hai đứa mình không?',hician:'Anh nhớ. Anh muốn đó là một tối thật đặc biệt dành cho em.'}
 ];
-const amePoses=['ame-pose-peek.webp','ame-pose-giggle.webp','ame-pose-point.webp','ame-pose-hi.webp','ame-pose-laugh.webp','ame-pose-wave.webp'];
-const hicianPoses=['hician-pose-listen.webp','hician-pose-relax.webp','hician-pose-letter.webp','hician-pose-bench.webp'];
+const amePoses=['ame-new-peek.webp','ame-pose-giggle.webp','ame-new-point.webp','ame-pose-hi.webp','ame-pose-laugh.webp','ame-pose-wave.webp'];
+const hicianPoses=['hician-new-listen.webp','hician-pose-relax.webp','hician-pose-letter.webp','hician-pose-bench.webp'];
 const asset=name=>'images/'+name;
 function textEl(tag,cls,txt){const el=document.createElement(tag);if(cls)el.className=cls;if(txt!==undefined)el.textContent=txt;return el}
 let activeMemory=-1,observer;
@@ -173,15 +193,22 @@ function buildMemories(){if($('memoryList').children.length)return;
   const boy=textEl('div','corner '+(i%3===0?'right':i%3===1?'left':'right top'));
   const girlImg=document.createElement('img');girlImg.src=asset(amePoses[(i*3+1)%amePoses.length]);girlImg.alt='Ame tạo dáng dễ thương';
   const boyImg=document.createElement('img');boyImg.src=asset(hicianPoses[(i*2+Math.floor(i/3))%hicianPoses.length]);boyImg.alt='Hician lắng nghe';girl.append(girlImg);boy.append(boyImg);art.append(girl,boy);
-  const copy=textEl('div','text-side');const title=textEl('h3','',m.title);const desc=textEl('p','',m.caption);const dialog=textEl('div','memory-dialog');
-  const ame=textEl('div','',`Ame: “${m.ame}”`);const hic=textEl('div','answer',`Hician: “${m.hician}”`);ame.prepend(textEl('strong','',''));dialog.append(ame,hic);
+  const copy=textEl('div','text-side');const title=textEl('h3','',m.title);const desc=textEl('p','',m.caption);
+  const dialog=textEl('div','memory-chat');
+  const ameLine=textEl('div','chat-line chat-ame');
+  const ameAvatar=document.createElement('img');ameAvatar.className='chat-avatar';ameAvatar.src=asset(['ame-pose-giggle.webp','ame-new-peek.webp','ame-pose-hi.webp','ame-pose-laugh.webp'][i%4]);ameAvatar.alt='Biểu cảm Ame';
+  const ameBubble=textEl('div','chat-bubble chat-bubble-ame');ameBubble.append(textEl('strong','','Ame ♡'),textEl('span','',m.ame));ameLine.append(ameAvatar,ameBubble);
+  const hicLine=textEl('div','chat-line chat-hician');
+  const hicBubble=textEl('div','chat-bubble chat-bubble-hician');hicBubble.append(textEl('strong','','Hician ♡'),textEl('span','','...'));
+  const hicAvatar=document.createElement('img');hicAvatar.className='chat-avatar';hicAvatar.src=asset(['hician-pose-relax.webp','hician-pose-listen.webp','hician-pose-open.webp','hician-new-listen.webp'][i%4]);hicAvatar.alt='Biểu cảm Hician';
+  hicLine.append(hicBubble,hicAvatar);dialog.append(ameLine,hicLine);
   copy.append(textEl('span','stamp','CHUYỆN NHỎ CỦA CHÚNG MÌNH'),title,desc,dialog);card.append(art,copy);$('memoryList').append(card);
  });
  observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('seen')});const visible=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio);if(visible.length)updateGuide(Number(visible[0].target.dataset.index))},{threshold:[.08,.25,.5]});
  document.querySelectorAll('.memory').forEach(e=>observer.observe(e));updateGuide(0);
 }
-function updateGuide(i){if(i===activeMemory)return;activeMemory=i;const m=memories[i];$('ameSpeech').replaceChildren(textEl('strong','','Ame ♡'),document.createTextNode(m.ame));$('hicianSpeech').replaceChildren(textEl('strong','','Hician ♡'),document.createTextNode(m.hician));const preview=$('guidePhoto');preview.classList.toggle('double',m.images.length===2);preview.replaceChildren(...m.images.map(n=>photoElement(n)));}
-function controlCharacter(id,isAme){const node=$(id);const fn=()=>{const m=memories[Math.max(activeMemory,0)];if(isAme){$('ameSpeech').replaceChildren(textEl('strong','','Ame ♡'),document.createTextNode('Hician ơi, '+m.ame.toLowerCase()))}else{$('hicianSpeech').replaceChildren(textEl('strong','','Hician ♡'),document.createTextNode('Anh nhớ mà! '+m.hician))}};node.addEventListener('click',fn);node.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();fn()}})}
+function updateGuide(i){if(i===activeMemory)return;activeMemory=i;const m=memories[i];$('ameSpeech').replaceChildren(textEl('strong','','Ame ♡'),document.createTextNode(m.ame));$('hicianSpeech').replaceChildren(textEl('strong','','Hician ♡'),document.createTextNode('...'));const hicianGuide=$('guideBoy').querySelector('img');hicianGuide.src=asset(['hician-new-listen.webp','hician-pose-relax.webp','hician-pose-open.webp','hician-pose-bench.webp'][i%4]);const preview=$('guidePhoto');preview.classList.toggle('double',m.images.length===2);preview.replaceChildren(...m.images.map(n=>photoElement(n)));}
+function controlCharacter(id,isAme){const node=$(id);const fn=()=>{const m=memories[Math.max(activeMemory,0)];if(isAme){$('ameSpeech').replaceChildren(textEl('strong','','Ame ♡'),document.createTextNode('Hician ơi, '+m.ame.toLowerCase()))}else{$('hicianSpeech').replaceChildren(textEl('strong','','Hician ♡'),document.createTextNode('...'))}};node.addEventListener('click',fn);node.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();fn()}})}
 controlCharacter('guideGirl',true);controlCharacter('guideBoy',false);
 $('replay').addEventListener('click',()=>location.reload());
 </script>
