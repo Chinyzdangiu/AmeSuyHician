@@ -1,512 +1,1497 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gửi người thương | 19/11 💌</title>
-<style>
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: "Segoe UI", Arial, sans-serif;
-  color: #933b63;
-  background: linear-gradient(135deg,#fff0f6,#ffd9e9,#fff6e9);
-  overflow-x: hidden;
-}
-button {
-  cursor: pointer;
-  border: 0;
-  font: inherit;
-}
-button:focus-visible {
-  outline: 3px solid #8d3158;
-  outline-offset: 3px;
-}
-#hearts {
-  position: fixed;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 30;
-}
-.heart {
-  position: absolute;
-  bottom: -40px;
-  animation: floatHeart 5s linear forwards;
-}
-@keyframes floatHeart {
-  0% { transform: translateY(0) rotate(0); opacity: 0; }
-  15% { opacity: 1; }
-  100% {
-    transform: translateY(-110vh) rotate(35deg);
-    opacity: 0;
-  }
-}
-.intro {
-  min-height: 100svh;
-  display: grid;
-  place-items: center;
-  text-align: center;
-  padding: 35px 18px;
-}
-.intro-inner { width: min(600px,100%); }
-.eyebrow {
-  letter-spacing: 4px;
-  font-size: 12px;
-  font-weight: bold;
-  color: #bc6c90;
-}
-h1, h2, h3 { font-family: Georgia, serif; }
-h1 {
-  font-size: clamp(34px,7vw,58px);
-  line-height: 1.2;
-  margin: 16px 0;
-}
-.description {
-  line-height: 1.8;
-  color: #a56f89;
-}
-.stage {
-  height: 270px;
-  display: grid;
-  place-items: center;
-  perspective: 800px;
-}
-.envelope {
-  position: relative;
-  width: 260px;
-  height: 170px;
-  background: #eaa0bc;
-  border-radius: 8px;
-  filter: drop-shadow(0 20px 20px #a64f7940);
-  transform: translateY(-100vh) rotate(-15deg);
-  animation: flyIn 1.6s ease-out forwards;
-}
-@keyframes flyIn {
-  70% { transform: translateY(15px) rotate(5deg); }
-  100% { transform: translateY(0) rotate(-3deg); }
-}
-.paper {
-  position: absolute;
-  left: 25px;
-  top: 20px;
-  width: 210px;
-  height: 135px;
-  background: #fffdf8;
-  border-radius: 6px;
-  z-index: 1;
-  display: grid;
-  place-items: center;
-  font: italic 22px Georgia,serif;
-  transition: transform 1s;
-}
-.front {
-  position: absolute;
-  inset: 0;
-  background: #f4b8ce;
-  clip-path: polygon(0 0,50% 54%,100% 0,100% 100%,0 100%);
-  z-index: 2;
-}
-.bottom {
-  position: absolute;
-  inset: 0;
-  background: #f8c6d9;
-  clip-path: polygon(0 100%,50% 43%,100% 100%);
-  z-index: 3;
-}
-.flap {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 107px;
-  background: #f9d8e3;
-  clip-path: polygon(0 0,100% 0,50% 100%);
-  transform-origin: top;
-  transition: transform .8s;
-  z-index: 4;
-}
-.seal {
-  position: absolute;
-  left: calc(50% - 22px);
-  top: 75px;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: #db638d;
-  display: grid;
-  place-items: center;
-  color: white;
-  z-index: 5;
-  transition: opacity .2s;
-}
-.stage.open .flap {
-  transform: rotateX(180deg);
-  z-index: 0;
-}
-.stage.open .seal { opacity: 0; }
-.stage.open .paper { transform: translateY(-105px); }
-.stage.open .envelope {
-  animation: none;
-  transform: rotate(0);
-}
-.question { font-size: 19px; font-weight: bold; }
-.actions {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.btn {
-  padding: 14px 26px;
-  border-radius: 30px;
-  font-weight: bold;
-  transition: transform .2s;
-}
-.btn:hover { transform: translateY(-3px); }
-.yes {
-  background: #eb6e9c;
-  color: white;
-  box-shadow: 0 8px 20px #cd588b50;
-}
-.no {
-  background: #fff;
-  color: #a95b80;
-}
-#reply { min-height: 24px; color: #ae7190; }
-.story {
-  display: none;
-  max-width: 1050px;
-  margin: auto;
-  padding: 60px 22px 100px;
-}
-.story-title {
-  text-align: center;
-  font-size: clamp(30px,5vw,48px);
-  margin-bottom: 65px;
-}
-.timeline {
-  display: grid;
-  gap: 60px;
-}
-.memory {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 45px;
-  align-items: center;
-  opacity: 0;
-  transform: translateY(80px) scale(.95);
-  transition: opacity 1s, transform 1s;
-}
-.memory.visible {
-  opacity: 1;
-  transform: none;
-}
-.memory:nth-child(even) .polaroid {
-  grid-column: 2;
-  grid-row: 1;
-}
-.memory:nth-child(even) .words {
-  grid-column: 1;
-  grid-row: 1;
-}
-.polaroid {
-  padding: 12px 12px 44px;
-  background: #fff;
-  border-radius: 5px;
-  box-shadow: 0 15px 40px #aa577b35;
-  transform: rotate(-3deg);
-  text-align: center;
-}
-.memory:nth-child(even) .polaroid {
-  transform: rotate(3deg);
-}
-.photo {
-  height: 280px;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(135deg,#ffe0ec,#fff1c8);
-  position: relative;
-  overflow: hidden;
-}
-.photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.fallback {
-  font-size: 75px;
-  position: absolute;
-}
-.caption {
-  font: italic 17px Georgia,serif;
-  margin-top: 13px;
-}
-.date {
-  display: inline-block;
-  background: #fff9fc;
-  padding: 8px 15px;
-  border-radius: 25px;
-  border: 1px solid #f3bdd0;
-  font-size: 13px;
-}
-.words h3 { font-size: 30px; }
-.words p {
-  line-height: 1.9;
-  color: #905c76;
-  font-size: 17px;
-}
-.ending {
-  margin: 75px auto 0;
-  max-width: 630px;
-  text-align: center;
-  padding: 40px 25px;
-  background: #fffaf4cf;
-  border-radius: 28px;
-  box-shadow: 0 15px 40px #aa577b25;
-}
-.ending p { line-height: 1.9; }
-@media(max-width:650px) {
-  .memory { grid-template-columns: 1fr; gap: 15px; }
-  .memory:nth-child(even) .polaroid,
-  .memory:nth-child(even) .words {
-    grid-column: auto;
-    grid-row: auto;
-  }
-  .photo { height: 250px; }
-  .words h3 { font-size: 25px; }
-}
-@media(prefers-reduced-motion:reduce) {
-  *, *::before, *::after {
-    animation-duration: .01ms !important;
-    transition-duration: .01ms !important;
-  }
-  .envelope { transform: none; }
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>19/11 dành cho cậu 💌</title>
+  <style>
+    :root{
+      --bg1:#fff2f8;
+      --bg2:#ffdce9;
+      --bg3:#fff7ea;
+      --pink:#f46da0;
+      --pink2:#ff8bb8;
+      --pink3:#ffc4da;
+      --deep:#944466;
+      --glass:rgba(255,255,255,.22);
+      --white:#fff;
+      --shadow:0 20px 50px rgba(172, 86, 122, .16);
+      --radius:28px;
+      --letterW:min(360px,78vw);
+      --letterH:240px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Segoe UI", Arial, sans-serif;
+      color:var(--deep);
+      background:
+        radial-gradient(circle at top left,#fffafc 0%, transparent 25%),
+        radial-gradient(circle at top right,#ffeaf3 0%, transparent 26%),
+        linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
+      overflow-x:hidden;
+    }
+
+    img{max-width:100%;display:block}
+    button{
+      cursor:pointer;
+      border:none;
+      font:inherit;
+    }
+
+    .hidden{display:none !important}
+
+    #fxLayer{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      overflow:hidden;
+      z-index:999;
+    }
+
+    .glass-heart{
+      position:absolute;
+      width:var(--size,22px);
+      height:var(--size,22px);
+      opacity:0;
+      filter:drop-shadow(0 8px 14px rgba(255,110,170,.18));
+      animation:heartFloat var(--dur,7s) linear forwards;
+    }
+    .glass-heart::before,
+    .glass-heart::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 30% 28%, rgba(255,255,255,.95), rgba(255,255,255,.25) 28%, rgba(255,255,255,.10) 62%, rgba(255,177,210,.45));
+      border:1px solid rgba(255,255,255,.8);
+      border-radius:50% 50% 0 50%;
+      transform:rotate(-45deg);
+      backdrop-filter:blur(2px);
+      box-shadow: inset 0 0 8px rgba(255,255,255,.45);
+    }
+    .glass-heart::after{
+      transform:rotate(45deg);
+    }
+
+    @keyframes heartFloat{
+      0%{
+        transform:translate3d(var(--sx),var(--sy),0) scale(.2) rotate(0deg);
+        opacity:0;
+      }
+      18%{opacity:1}
+      70%{opacity:1}
+      100%{
+        transform:translate3d(var(--ex),var(--ey),0) scale(1) rotate(360deg);
+        opacity:.15;
+      }
+    }
+
+    @keyframes pulseGlow{
+      0%,100%{transform:scale(1)}
+      50%{transform:scale(1.04)}
+    }
+
+    @keyframes floatY{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-10px)}
+    }
+
+    @keyframes tinyHop{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-6px)}
+    }
+
+    @keyframes wobble{
+      0%,100%{transform:rotate(0)}
+      20%{transform:rotate(-2deg)}
+      40%{transform:rotate(2deg)}
+      60%{transform:rotate(-1.5deg)}
+      80%{transform:rotate(1deg)}
+    }
+
+    @keyframes dropIn{
+      0%{transform:translateY(-120vh) scale(.85)}
+      70%{transform:translateY(12px) scale(1.02)}
+      100%{transform:translateY(0) scale(1)}
+    }
+
+    @keyframes runBounce{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-15px)}
+    }
+
+    @keyframes drift{
+      0%,100%{transform:translateY(0px) rotate(var(--rotate))}
+      50%{transform:translateY(-10px) rotate(calc(var(--rotate) + 1.3deg))}
+    }
+
+    .section{
+      width:100%;
+      position:relative;
+    }
+
+    /* ================= OPENING ================= */
+    #opening{
+      min-height:100vh;
+      overflow:hidden;
+      position:relative;
+      padding:0;
+    }
+
+    .opening-bg{
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.6), transparent 24%),
+        radial-gradient(circle at 80% 10%, rgba(255,255,255,.4), transparent 18%),
+        linear-gradient(180deg,#fff4fa 0%,#ffe0ec 46%,#fff8ee 100%);
+      z-index:0;
+    }
+
+    .opening-content{
+      position:relative;
+      z-index:2;
+      min-height:100vh;
+    }
+
+    .title-wrap{
+      position:absolute;
+      top:24px;
+      left:50%;
+      transform:translateX(-50%);
+      text-align:center;
+      width:min(900px,90vw);
+      z-index:3;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      padding:8px 16px;
+      background:rgba(255,255,255,.55);
+      border:1px solid rgba(255,255,255,.8);
+      border-radius:999px;
+      font-size:12px;
+      letter-spacing:3px;
+      font-weight:700;
+      box-shadow:var(--shadow);
+    }
+
+    .main-title{
+      margin:18px 0 8px;
+      font-size:clamp(30px,5vw,62px);
+      line-height:1.1;
+      font-family:Georgia, serif;
+    }
+
+    .main-desc{
+      margin:0 auto;
+      max-width:720px;
+      line-height:1.8;
+      color:#9b5f78;
+      font-size:clamp(14px,2vw,18px);
+    }
+
+    .heart-gather-stage{
+      position:absolute;
+      inset:0;
+      display:grid;
+      place-items:center;
+      z-index:2;
+      transition:opacity .8s ease;
+    }
+
+    .mega-letter{
+      width:var(--letterW);
+      height:var(--letterH);
+      position:relative;
+      opacity:0;
+      transform:scale(.55);
+      transition:all 1s ease;
+      filter:drop-shadow(0 30px 50px rgba(171,86,123,.16));
+      animation:pulseGlow 2.5s ease-in-out infinite;
+    }
+
+    .mega-letter.show{
+      opacity:1;
+      transform:scale(1);
+    }
+
+    .mega-letter .letter-back{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(135deg,#ffd4e4,#ffc0d7);
+      border-radius:18px;
+      overflow:hidden;
+    }
+
+    .mega-letter .letter-paper{
+      position:absolute;
+      left:32px;
+      right:32px;
+      top:18px;
+      height:175px;
+      background:linear-gradient(180deg,#fffdfa,#fff8fb);
+      border-radius:14px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      gap:8px;
+      color:#aa5b7d;
+      font-family:Georgia, serif;
+      transition:transform .9s ease;
+    }
+
+    .mega-letter .letter-front{
+      position:absolute;
+      inset:0;
+      background:#ffd9e7;
+      clip-path:polygon(0 0,50% 58%,100% 0,100% 100%,0 100%);
+      border-radius:18px;
+    }
+
+    .mega-letter .letter-bottom{
+      position:absolute;
+      inset:0;
+      background:#ffcadd;
+      clip-path:polygon(0 100%,50% 45%,100% 100%);
+      border-radius:18px;
+    }
+
+    .mega-letter .letter-flap{
+      position:absolute;
+      left:0;right:0;top:0;
+      height:135px;
+      background:#ffe6ee;
+      clip-path:polygon(0 0,100% 0,50% 100%);
+      transform-origin:top;
+      transition:transform .8s ease;
+      border-radius:18px 18px 0 0;
+      z-index:5;
+    }
+
+    .mega-letter .seal{
+      position:absolute;
+      left:50%;
+      top:98px;
+      transform:translateX(-50%);
+      width:56px;
+      height:56px;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      background:linear-gradient(135deg,#ff6ba3,#ea4c88);
+      color:#fff;
+      font-weight:700;
+      z-index:6;
+      box-shadow:0 10px 24px rgba(234,76,136,.35);
+      transition:opacity .3s ease;
+    }
+
+    .drop-zone{
+      position:absolute;
+      inset:0;
+      display:grid;
+      place-items:center;
+      z-index:4;
+      pointer-events:none;
+    }
+
+    .female-dropper{
+      position:absolute;
+      width:min(240px,42vw);
+      opacity:0;
+      transform:translateY(-120vh);
+      transition:opacity .25s ease;
+    }
+
+    .female-dropper.active{
+      opacity:1;
+      animation:dropIn 1.3s ease forwards;
+    }
+
+    .female-dropper img{
+      width:100%;
+      object-fit:contain;
+      filter:drop-shadow(0 18px 30px rgba(160,82,114,.16));
+    }
+
+    .female-dropper .fallback{
+      width:180px;
+      aspect-ratio:1/1.25;
+      display:grid;
+      place-items:center;
+      font-size:72px;
+      background:#fff7fb;
+      border-radius:24px;
+      box-shadow:var(--shadow);
+    }
+
+    .drop-caption{
+      position:absolute;
+      bottom:-28px;
+      left:50%;
+      transform:translateX(-50%);
+      white-space:nowrap;
+      font-weight:700;
+      color:#b15d82;
+      font-size:15px;
+    }
+
+    .cinematic-run{
+      position:absolute;
+      inset:0;
+      z-index:2;
+      overflow:hidden;
+      display:none;
+    }
+
+    .cinematic-run.active{display:block}
+
+    .camera{
+      width:100%;
+      height:100%;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .track{
+      width:220vw;
+      height:100%;
+      position:absolute;
+      left:0;
+      top:0;
+      transition:transform 4.2s linear;
+      background:
+        linear-gradient(180deg, #fff4fa 0%, #ffe3ef 48%, #fff7ec 100%);
+    }
+
+    .run-scene{
+      position:relative;
+      width:220vw;
+      height:100%;
+      overflow:hidden;
+    }
+
+    .garden{
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 20% 75%, rgba(255,255,255,.32), transparent 20%),
+        radial-gradient(circle at 62% 22%, rgba(255,255,255,.22), transparent 16%),
+        linear-gradient(180deg,#ffeaf2 0%, #ffe0ee 40%, #fff6e7 100%);
+    }
+
+    .hills{
+      position:absolute;
+      left:0; right:0; bottom:140px;
+      height:180px;
+      background:
+        radial-gradient(circle at 20% 100%, #a3d79a 0 32%, transparent 33%),
+        radial-gradient(circle at 42% 100%, #9dd094 0 30%, transparent 31%),
+        radial-gradient(circle at 63% 100%, #b3dfaa 0 28%, transparent 29%),
+        radial-gradient(circle at 80% 100%, #97cb8e 0 29%, transparent 30%);
+      opacity:.8;
+    }
+
+    .ground{
+      position:absolute;
+      left:0; right:0; bottom:0;
+      height:170px;
+      background:
+        linear-gradient(180deg,#b9e6ad,#90d18e);
+      box-shadow:inset 0 20px 30px rgba(255,255,255,.2);
+    }
+
+    .flowers{
+      position:absolute;
+      left:0; right:0; bottom:110px;
+      height:56px;
+      background:
+        radial-gradient(circle at 3% 50%, #fff 0 4px, transparent 5px),
+        radial-gradient(circle at 8% 65%, #ff97be 0 5px, transparent 6px),
+        radial-gradient(circle at 15% 45%, #fff 0 4px, transparent 5px),
+        radial-gradient(circle at 23% 55%, #ffc2d8 0 6px, transparent 7px),
+        radial-gradient(circle at 30% 40%, #fff 0 4px, transparent 5px),
+        radial-gradient(circle at 38% 62%, #ff97be 0 5px, transparent 6px),
+        radial-gradient(circle at 47% 48%, #fff 0 4px, transparent 5px),
+        radial-gradient(circle at 55% 60%, #ffcbe0 0 6px, transparent 7px),
+        radial-gradient(circle at 64% 42%, #fff 0 4px, transparent 5px),
+        radial-gradient(circle at 73% 64%, #ff9fc4 0 5px, transparent 6px),
+        radial-gradient(circle at 81% 46%, #fff 0 4px, transparent 5px),
+        radial-gradient(circle at 90% 60%, #ffd1e5 0 6px, transparent 7px);
+      opacity:.95;
+    }
+
+    .male-runner,
+    .female-runner{
+      position:absolute;
+      bottom:110px;
+      z-index:4;
+    }
+
+    .female-runner{
+      left:18vw;
+      width:min(250px,36vw);
+      transition:left 4.2s linear;
+    }
+
+    .female-runner img,
+    .male-runner img{
+      width:100%;
+      object-fit:contain;
+      filter:drop-shadow(0 18px 34px rgba(161,80,114,.16));
+    }
+
+    .female-runner .fallback,
+    .male-runner .fallback{
+      width:160px;
+      aspect-ratio:1/1.22;
+      display:grid;
+      place-items:center;
+      background:#fff;
+      border-radius:26px;
+      box-shadow:var(--shadow);
+      font-size:62px;
+    }
+
+    .female-runner.running{
+      animation:runBounce .55s linear infinite;
+    }
+
+    .carried-envelope{
+      position:absolute;
+      right:-12px;
+      bottom:35px;
+      width:120px;
+      height:82px;
+      transform:rotate(-12deg);
+    }
+
+    .carried-envelope .mini-back{
+      position:absolute; inset:0;
+      background:#ffc6dc;
+      border-radius:12px;
+    }
+    .carried-envelope .mini-front{
+      position:absolute; inset:0;
+      background:#ffdce9;
+      clip-path:polygon(0 0,50% 58%,100% 0,100% 100%,0 100%);
+      border-radius:12px;
+    }
+    .carried-envelope .mini-bottom{
+      position:absolute; inset:0;
+      background:#ffcee0;
+      clip-path:polygon(0 100%,50% 45%,100% 100%);
+      border-radius:12px;
+    }
+
+    .male-runner{
+      left:145vw;
+      width:min(300px,42vw);
+      animation:floatY 2.8s ease-in-out infinite;
+    }
+
+    .hero-question{
+      position:absolute;
+      inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:6;
+      padding:24px;
+      background:linear-gradient(180deg, rgba(255,243,249,.65), rgba(255,243,249,.88));
+      backdrop-filter:blur(3px);
+    }
+    .hero-question.active{display:flex}
+
+    .hero-card{
+      width:min(1100px,96vw);
+      background:rgba(255,255,255,.62);
+      border:1px solid rgba(255,255,255,.8);
+      box-shadow:var(--shadow);
+      border-radius:36px;
+      padding:22px;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:24px;
+      align-items:center;
+    }
+
+    .hero-visual{
+      position:relative;
+      min-height:420px;
+      border-radius:30px;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 20% 18%, rgba(255,255,255,.45), transparent 22%),
+        linear-gradient(180deg,#ffeef5,#ffe0eb,#fff7ec);
+    }
+
+    .hero-visual .male-big{
+      position:absolute;
+      right:4%;
+      bottom:0;
+      width:min(360px,52%);
+      z-index:3;
+    }
+
+    .hero-visual .female-small{
+      position:absolute;
+      left:9%;
+      bottom:18px;
+      width:min(180px,24%);
+      z-index:4;
+      animation:tinyHop 1.6s ease-in-out infinite;
+    }
+
+    .hero-visual .hero-letter{
+      position:absolute;
+      left:28%;
+      top:50%;
+      transform:translate(-50%,-50%) rotate(-8deg);
+      width:min(240px,35%);
+      z-index:2;
+      transition:transform .25s ease;
+    }
+
+    .hero-visual.shake .hero-letter{
+      animation:wobble .4s linear infinite;
+    }
+
+    .bubble-note{
+      position:absolute;
+      right:18px;
+      top:18px;
+      max-width:220px;
+      background:#fff;
+      border:1px solid #ffd0df;
+      border-radius:20px;
+      padding:12px 14px;
+      line-height:1.55;
+      box-shadow:0 12px 24px rgba(171,86,123,.12);
+      font-weight:600;
+      color:#a45277;
+      z-index:5;
+    }
+
+    .hero-copy h2{
+      font-family:Georgia, serif;
+      margin:0 0 14px;
+      font-size:clamp(30px,4vw,48px);
+      line-height:1.1;
+    }
+
+    .hero-copy p{
+      line-height:1.85;
+      color:#9b5f78;
+      margin:12px 0;
+    }
+
+    .action-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:18px;
+    }
+
+    .btn{
+      padding:14px 26px;
+      border-radius:999px;
+      font-weight:700;
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{
+      background:linear-gradient(135deg,#ff6ca5,#f04e8d);
+      color:#fff;
+      box-shadow:0 14px 28px rgba(240,78,141,.22);
+    }
+    .btn-secondary{
+      background:#fff;
+      color:#a55a7e;
+      border:1px solid #ffd0df;
+      box-shadow:0 10px 22px rgba(171,86,123,.08);
+    }
+
+    .small-reply{
+      min-height:26px;
+      margin-top:12px;
+      color:#a66082;
+      font-weight:600;
+    }
+
+    /* ================= STORY ================= */
+    #story{
+      display:none;
+      position:relative;
+      padding:50px 20px 110px;
+      max-width:1320px;
+      margin:0 auto;
+    }
+
+    .story-head{
+      text-align:center;
+      max-width:760px;
+      margin:0 auto 34px;
+    }
+
+    .story-head h2{
+      font-family:Georgia, serif;
+      font-size:clamp(30px,4.5vw,56px);
+      margin:18px 0 10px;
+      line-height:1.15;
+    }
+
+    .story-head p{
+      line-height:1.8;
+      color:#9b5f78;
+      margin:0 auto;
+    }
+
+    .story-layout{
+      display:grid;
+      grid-template-columns: 320px 1fr;
+      gap:28px;
+      align-items:start;
+    }
+
+    .sticky-stage{
+      position:sticky;
+      top:20px;
+      height:calc(100vh - 40px);
+      min-height:620px;
+      border-radius:32px;
+      background:rgba(255,255,255,.46);
+      border:1px solid rgba(255,255,255,.75);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      padding:18px;
+      backdrop-filter:blur(6px);
+    }
+
+    .sticky-stage .mini-sky{
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 20% 15%, rgba(255,255,255,.42), transparent 22%),
+        linear-gradient(180deg,#fff1f7,#ffe4ee 55%,#fff9f0 100%);
+    }
+
+    .guide-female{
+      position:absolute;
+      left:12px;
+      bottom:118px;
+      width:140px;
+      z-index:2;
+      animation:runBounce .9s ease-in-out infinite;
+    }
+
+    .guide-male{
+      position:absolute;
+      right:10px;
+      bottom:90px;
+      width:160px;
+      z-index:2;
+      animation:floatY 2.8s ease-in-out infinite;
+    }
+
+    .guide-female img,
+    .guide-male img{
+      width:100%;
+      object-fit:contain;
+      filter:drop-shadow(0 14px 26px rgba(171,86,123,.15));
+    }
+
+    .guide-fallback{
+      width:110px;
+      aspect-ratio:1/1.25;
+      display:grid;
+      place-items:center;
+      background:#fff;
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      font-size:48px;
+    }
+
+    .guide-photo-frame{
+      position:absolute;
+      left:96px;
+      bottom:200px;
+      width:120px;
+      height:150px;
+      padding:8px 8px 28px;
+      border-radius:10px;
+      background:#fff;
+      box-shadow:0 14px 28px rgba(171,86,123,.13);
+      transform:rotate(-8deg);
+      z-index:3;
+      animation:drift 2.5s ease-in-out infinite;
+      --rotate:-8deg;
+    }
+
+    .guide-photo-frame img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      border-radius:6px;
+    }
+
+    .guide-caption{
+      font-size:11px;
+      text-align:center;
+      margin-top:7px;
+      font-style:italic;
+      color:#9c6480;
+    }
+
+    .guide-bubble{
+      position:absolute;
+      left:14px;
+      top:18px;
+      right:14px;
+      background:#fff;
+      border-radius:24px;
+      border:1px solid #ffd5e3;
+      padding:16px 16px;
+      color:#a4597d;
+      line-height:1.7;
+      box-shadow:0 12px 24px rgba(171,86,123,.08);
+      z-index:4;
+    }
+
+    .guide-bubble strong{
+      display:block;
+      margin-bottom:8px;
+      font-size:17px;
+      color:#934567;
+    }
+
+    .memory-list{
+      display:grid;
+      gap:36px;
+      padding-bottom:60px;
+    }
+
+    .memory-card{
+      opacity:0;
+      transform:translateY(40px) scale(.96);
+      transition:opacity .8s ease, transform .8s ease;
+      background:rgba(255,255,255,.72);
+      border:1px solid rgba(255,255,255,.86);
+      border-radius:30px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:0;
+      min-height:360px;
+      position:relative;
+    }
+
+    .memory-card.visible{
+      opacity:1;
+      transform:translateY(0) scale(1);
+    }
+
+    .memory-card:nth-child(even) .memory-visual{
+      order:2;
+    }
+
+    .memory-card:nth-child(even) .memory-copy{
+      order:1;
+    }
+
+    .memory-card::before{
+      content:"";
+      position:absolute;
+      inset:16px;
+      border-radius:22px;
+      pointer-events:none;
+      border:1px dashed rgba(255,192,215,.65);
+    }
+
+    .memory-visual{
+      position:relative;
+      min-height:360px;
+      padding:28px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:
+        radial-gradient(circle at 25% 20%, rgba(255,255,255,.48), transparent 22%),
+        linear-gradient(135deg,#fff0f7,#ffebf4,#fff7ed);
+    }
+
+    .floating-photo{
+      width:min(100%,360px);
+      padding:12px 12px 42px;
+      background:#fff;
+      border-radius:12px;
+      box-shadow:0 18px 40px rgba(171,86,123,.14);
+      transform:rotate(var(--rotate,-3deg));
+      animation:drift 3s ease-in-out infinite;
+      --rotate:-3deg;
+    }
+
+    .memory-card:nth-child(even) .floating-photo{
+      --rotate:3deg;
+    }
+
+    .photo-box{
+      width:100%;
+      aspect-ratio:4/5;
+      background:linear-gradient(135deg,#ffe1ee,#fff2c9);
+      border-radius:10px;
+      overflow:hidden;
+      display:grid;
+      place-items:center;
+      position:relative;
+    }
+
+    .photo-box img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .photo-fallback{
+      font-size:60px;
+      position:absolute;
+    }
+
+    .float-caption{
+      margin-top:12px;
+      text-align:center;
+      color:#9c6480;
+      font-style:italic;
+      font-size:16px;
+    }
+
+    .memory-copy{
+      padding:42px 34px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:12px;
+      position:relative;
+      z-index:2;
+    }
+
+    .memory-num{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:46px;
+      height:46px;
+      border-radius:50%;
+      background:linear-gradient(135deg,#ff7aac,#f55b94);
+      color:#fff;
+      font-weight:800;
+      box-shadow:0 10px 20px rgba(245,91,148,.18);
+    }
+
+    .memory-date{
+      display:inline-block;
+      padding:8px 14px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid #ffd4e4;
+      width:fit-content;
+      font-size:13px;
+      font-weight:700;
+      color:#a65f82;
+    }
+
+    .memory-copy h3{
+      margin:0;
+      font-family:Georgia, serif;
+      font-size:clamp(26px,3vw,38px);
+      line-height:1.2;
+    }
+
+    .memory-copy p{
+      margin:0;
+      line-height:1.9;
+      color:#93637b;
+      font-size:17px;
+    }
+
+    .mini-runner{
+      position:absolute;
+      right:16px;
+      bottom:18px;
+      width:86px;
+      animation:tinyHop 1.5s ease-in-out infinite;
+      z-index:4;
+    }
+
+    .mini-runner img{
+      width:100%;
+      object-fit:contain;
+    }
+
+    .mini-runner .fallback{
+      width:74px;
+      aspect-ratio:1/1;
+      display:grid;
+      place-items:center;
+      background:#fff;
+      border-radius:50%;
+      box-shadow:var(--shadow);
+      font-size:30px;
+    }
+
+    .ending{
+      margin:20px auto 0;
+      max-width:920px;
+      padding:36px 26px;
+      text-align:center;
+      background:rgba(255,255,255,.68);
+      border:1px solid rgba(255,255,255,.8);
+      border-radius:30px;
+      box-shadow:var(--shadow);
+    }
+
+    .ending h3{
+      font-family:Georgia, serif;
+      font-size:clamp(28px,4vw,42px);
+      margin:10px 0 14px;
+    }
+
+    .ending p{
+      line-height:1.85;
+      color:#93637b;
+      margin:0 auto 20px;
+      max-width:740px;
+    }
+
+    .end-row{
+      display:flex;
+      justify-content:center;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+
+    @media (max-width: 1024px){
+      .hero-card{
+        grid-template-columns:1fr;
+      }
+      .story-layout{
+        grid-template-columns:1fr;
+      }
+      .sticky-stage{
+        position:relative;
+        top:auto;
+        height:auto;
+        min-height:520px;
+      }
+    }
+
+    @media (max-width: 760px){
+      .main-title{
+        margin-top:14px;
+      }
+
+      .cinematic-run .track{
+        width:260vw;
+      }
+      .run-scene{
+        width:260vw;
+      }
+      .female-runner{
+        width:160px;
+        bottom:100px;
+      }
+      .male-runner{
+        left:172vw;
+        width:190px;
+        bottom:100px;
+      }
+      .female-runner .fallback,
+      .male-runner .fallback{
+        width:115px;
+        font-size:40px;
+      }
+      .carried-envelope{
+        width:88px;height:62px;right:-10px;bottom:22px;
+      }
+      .hero-visual{
+        min-height:340px;
+      }
+      .guide-female{width:100px; bottom:108px;}
+      .guide-male{width:120px; bottom:82px;}
+      .guide-photo-frame{
+        left:74px;
+        bottom:185px;
+        width:96px;
+        height:120px;
+      }
+      .memory-card{
+        grid-template-columns:1fr;
+      }
+      .memory-card:nth-child(even) .memory-visual,
+      .memory-card:nth-child(even) .memory-copy{
+        order:initial;
+      }
+      .memory-visual{
+        min-height:280px;
+      }
+      .memory-copy{
+        padding:28px 24px 34px;
+      }
+      .memory-copy p{
+        font-size:16px;
+      }
+      .floating-photo{
+        width:min(100%,300px);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *{
+        animation:none !important;
+        transition:none !important;
+        scroll-behavior:auto !important;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div id="fxLayer" aria-hidden="true"></div>
 
-<div id="hearts" aria-hidden="true"></div>
+  <section id="opening" class="section">
+    <div class="opening-bg"></div>
 
-<section class="intro" id="intro">
-  <div class="intro-inner">
-    <div class="eyebrow">A LITTLE LOVE LETTER</div>
-    <h1>Có một lá thư<br>dành riêng cho cậu... 💗</h1>
-    <p class="description">
-      Mình đã cất vài điều dễ thương vào trong lá thư này.
-      Không biết cậu có muốn đọc không nhỉ?
-    </p>
+    <div class="opening-content">
+      <div class="title-wrap">
+        <div class="eyebrow">LOVE LETTER FOR 19/11</div>
+        <h1 class="main-title">Một câu chuyện nhỏ,<br>một lá thư to,<br>và rất nhiều điều thương 💗</h1>
+        <p class="main-desc">
+          Hôm nay mình muốn kể lại những khoảnh khắc đáng yêu theo cách thật đặc biệt:
+          bắt đầu bằng hàng ngàn trái tim, một lá thư, và câu chuyện dành riêng cho cậu.
+        </p>
+      </div>
 
-    <div class="stage" id="stage">
-      <div class="envelope">
-        <div class="paper">Gửi cậu ♡</div>
-        <div class="front"></div>
-        <div class="bottom"></div>
-        <div class="flap"></div>
-        <div class="seal">♥</div>
+      <div class="heart-gather-stage" id="gatherStage">
+        <div class="mega-letter" id="megaLetter">
+          <div class="letter-back"></div>
+          <div class="letter-paper">
+            <div style="font-size:28px;">💌</div>
+            <div style="font-size:24px;">Gửi cậu</div>
+            <div style="font-size:15px;opacity:.8;">Một lá thư to đầy yêu thương</div>
+          </div>
+          <div class="letter-front"></div>
+          <div class="letter-bottom"></div>
+          <div class="letter-flap"></div>
+          <div class="seal">♥</div>
+        </div>
+      </div>
+
+      <div class="drop-zone">
+        <div class="female-dropper" id="femaleDropper">
+          <img src="images/chibi-female.png" alt="Chibi nữ" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+          <div class="fallback hidden">👧🏻</div>
+          <div class="drop-caption">Ui! Có lá thư nè ✨</div>
+        </div>
+      </div>
+
+      <div class="cinematic-run" id="cinematicRun">
+        <div class="camera">
+          <div class="track" id="track">
+            <div class="run-scene">
+              <div class="garden"></div>
+              <div class="hills"></div>
+              <div class="flowers"></div>
+              <div class="ground"></div>
+
+              <div class="female-runner" id="femaleRunner">
+                <img src="images/chibi-female.png" alt="Chibi nữ" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+                <div class="fallback hidden">👧🏻</div>
+
+                <div class="carried-envelope">
+                  <div class="mini-back"></div>
+                  <div class="mini-front"></div>
+                  <div class="mini-bottom"></div>
+                </div>
+              </div>
+
+              <div class="male-runner" id="maleRunner">
+                <img src="images/chibi-male.png" alt="Chibi nam" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+                <div class="fallback hidden">👦🏻</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-question" id="heroQuestion">
+        <div class="hero-card">
+          <div class="hero-visual" id="heroVisual">
+            <div class="bubble-note">
+              Tớ nhận được lá thư rồi nè...<br>
+              Có nên mở ra xem không nhỉ? 💭
+            </div>
+
+            <div class="hero-letter" id="heroLetter">
+              <div class="mega-letter" style="width:100%;height:100%;opacity:1;transform:none;animation:none;">
+                <div class="letter-back"></div>
+                <div class="letter-paper">
+                  <div style="font-size:24px;">💌</div>
+                  <div style="font-size:22px;">Thư của cậu</div>
+                  <div style="font-size:13px;opacity:.8;">Mở ra sẽ có thật nhiều trái tim...</div>
+                </div>
+                <div class="letter-front"></div>
+                <div class="letter-bottom"></div>
+                <div class="letter-flap"></div>
+                <div class="seal">♥</div>
+              </div>
+            </div>
+
+            <div class="female-small">
+              <img src="images/chibi-female.png" alt="Chibi nữ nhỏ" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+              <div class="fallback hidden" style="width:90px;font-size:32px;">👧🏻</div>
+            </div>
+
+            <div class="male-big">
+              <img src="images/chibi-male.png" alt="Chibi nam to" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+              <div class="fallback hidden" style="width:150px;font-size:48px;">👦🏻</div>
+            </div>
+          </div>
+
+          <div class="hero-copy">
+            <div class="eyebrow">CHỌN GIÚP TỚ NHÉ</div>
+            <h2>Có nên mở lá thư này<br>hay không? 💌</h2>
+            <p>
+              Nếu cậu đồng ý, lá thư này sẽ không chỉ mở ra —
+              mà còn bung nổ thành hàng ngàn trái tim, rồi dẫn đến cả một bầu trời kỷ niệm của tụi mình.
+            </p>
+            <p>
+              Còn nếu cậu chưa muốn, tớ sẽ ngồi đây ôm lá thư chờ tiếp vậy... 🥺
+            </p>
+
+            <div class="action-row">
+              <button class="btn btn-primary" id="btnOpen">Đồng ý mở 💗</button>
+              <button class="btn btn-secondary" id="btnWait">Chưa nha 🙈</button>
+            </div>
+            <div class="small-reply" id="smallReply"></div>
+          </div>
+        </div>
       </div>
     </div>
+  </section>
 
-    <p class="question">Cậu có muốn mở lá thư này không? 🥺</p>
-    <div class="actions">
-      <button class="btn yes" id="yes">Có chứ! 💌</button>
-      <button class="btn no" id="no">Chưa đâu 🙈</button>
+  <section id="story" class="section">
+    <div class="story-head">
+      <div class="eyebrow">OUR MEMORIES</div>
+      <h2>Những bức ảnh biết bay,<br>những dòng chữ biết thương</h2>
+      <p>
+        Từ đây, từng kỷ niệm sẽ lần lượt hiện ra khi cậu lướt xuống.
+        Nữ chibi sẽ chạy nhảy giới thiệu từng bức ảnh, còn nam chibi sẽ luôn đứng ở đây để lắng nghe mọi điều dễ thương nhất 💞
+      </p>
     </div>
-    <p id="reply" role="status"></p>
-  </div>
-</section>
 
-<section class="story" id="story">
-  <div class="eyebrow" style="text-align:center">
-    OUR LITTLE MEMORIES
-  </div>
-  <h2 class="story-title">Những điều mình muốn gửi cậu ♡</h2>
-  <div class="timeline" id="timeline"></div>
+    <div class="story-layout">
+      <aside class="sticky-stage">
+        <div class="mini-sky"></div>
 
-  <div class="ending">
-    <div style="font-size:45px">💝</div>
-    <h2>Chúc cậu một ngày 19/11 thật đặc biệt!</h2>
-    <p>
-      Mong cậu luôn vui vẻ, bình an và có thật nhiều
-      lý do để mỉm cười. Cảm ơn cậu vì đã xuất hiện
-      và làm thế giới của mình trở nên dịu dàng hơn.
-    </p>
-    <h3>Thương cậu nhiều lắm! ❤️</h3>
-    <button class="btn yes" id="replay">Xem lại từ đầu 💌</button>
-  </div>
-</section>
+        <div class="guide-bubble" id="guideBubble">
+          <strong>Xin chào 💗</strong>
+          Tụi mình bắt đầu xem lại những khoảnh khắc đáng nhớ nhé.
+        </div>
 
-<script>
-// ===== CHỈNH ẢNH, NGÀY VÀ LỜI NHẮN Ở ĐÂY =====
-// Ảnh cần được tải lên thư mục images trên GitHub.
-const memories = [
-  {
-    date: "Ngày đầu tiên",
-    title: "Khi chúng mình gặp nhau 🌷",
-    message: "Có những khoảnh khắc rất bình thường, nhưng lại trở thành một điều thật đặc biệt trong lòng mình.",
-    image: "images/anh1.jpg",
-    emoji: "🌸",
-    caption: "Một khởi đầu đáng yêu"
-  },
-  {
-    date: "Một ngày đáng nhớ",
-    title: "Nụ cười của cậu 💗",
-    message: "Mình luôn mong cậu có thật nhiều ngày vui và những nụ cười thật rạng rỡ như thế.",
-    image: "images/anh2.jpg",
-    emoji: "🧸",
-    caption: "Một khoảnh khắc thật xinh"
-  },
-  {
-    date: "Một kỷ niệm nhỏ",
-    title: "Những điều giản dị ☁️",
-    message: "Đôi khi chỉ cần cùng nhau chia sẻ những câu chuyện nhỏ cũng đủ làm một ngày trở nên đặc biệt.",
-    image: "images/anh3.jpg",
-    emoji: "🌷",
-    caption: "Điều giản dị mình trân trọng"
-  },
-  {
-    date: "19/11",
-    title: "Một lời chúc dành riêng cho cậu 💌",
-    message: "Chúc cậu luôn hạnh phúc, mạnh mẽ, gặp nhiều may mắn và được yêu thương thật nhiều.",
-    image: "images/anh4.jpg",
-    emoji: "💝",
-    caption: "Gửi cậu tất cả yêu thương"
-  }
-];
-// ===== KẾT THÚC PHẦN CHỈNH NỘI DUNG =====
+        <div class="guide-photo-frame">
+          <img id="guidePreview" src="images/anh1.jpg" alt="Ảnh đang được giới thiệu" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+          <div class="guide-fallback hidden" style="width:100%;height:100%;font-size:36px;border-radius:8px;">🖼️</div>
+          <div class="guide-caption" id="guideCaption">Kỷ niệm số 1</div>
+        </div>
 
-const hearts = document.getElementById("hearts");
-const timeline = document.getElementById("timeline");
-const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
-let heartTimer = null;
-let opening = false;
+        <div class="guide-female">
+          <img src="images/chibi-female.png" alt="Chibi nữ hướng dẫn" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+          <div class="guide-fallback hidden">👧🏻</div>
+        </div>
 
-function makeHeart() {
-  if (reduceMotion) return;
-  const heart = document.createElement("span");
-  heart.className = "heart";
-  heart.textContent = ["❤️","💗","💕","♡"][Math.floor(Math.random()*4)];
-  heart.style.left = Math.random()*100 + "%";
-  heart.style.fontSize = 15+Math.random()*20+"px";
-  heart.style.animationDuration = 4+Math.random()*3+"s";
-  hearts.appendChild(heart);
-  setTimeout(() => heart.remove(), 7500);
-}
+        <div class="guide-male">
+          <img src="images/chibi-male.png" alt="Chibi nam đứng nghe" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+          <div class="guide-fallback hidden">👦🏻</div>
+        </div>
+      </aside>
 
-function burst(count) {
-  for (let i=0; i<count; i++) {
-    setTimeout(makeHeart, i*110);
-  }
-}
+      <div class="memory-list" id="memoryList"></div>
+    </div>
 
-function createMemories() {
-  memories.forEach(m => {
-    const item = document.createElement("article");
-    item.className = "memory";
+    <div class="ending">
+      <div style="font-size:50px">💝</div>
+      <h3>Chúc cậu một ngày 19/11 thật đặc biệt</h3>
+      <p>
+        Cảm ơn cậu vì đã ở đây, vì đã cùng mình đi qua những khoảnh khắc bình thường nhưng lại trở nên thật quý giá.
+        Mong cậu luôn vui vẻ, bình an, được yêu thương thật nhiều và có thật nhiều nụ cười xinh đẹp.
+        Tụi mình sẽ còn thêm thật nhiều ảnh, thật nhiều kỷ niệm, và thật nhiều trang tiếp theo của câu chuyện này nữa nhé.
+      </p>
 
-    // Dùng textContent để nội dung dễ sửa và an toàn.
-    const polaroid = document.createElement("div");
-    polaroid.className = "polaroid";
+      <div class="end-row">
+        <button class="btn btn-primary" id="replayBtn">Xem lại từ đầu ✨</button>
+        <a class="btn btn-secondary" href="#opening" style="text-decoration:none;">Quay về mở thư 💌</a>
+      </div>
+    </div>
+  </section>
 
-    const photo = document.createElement("div");
-    photo.className = "photo";
+  <script>
+    /* ================= DỮ LIỆU 20 ẢNH =================
+       Bạn chỉ cần thay title / date / note nếu muốn.
+       File ảnh cần đúng tên: images/anh1.jpg ... images/anh20.jpg
+    =================================================== */
+    const memoryTexts = [
+      ["Ngày đầu tiên", "Bắt đầu từ một ánh nhìn 🌷", "Có những khởi đầu rất nhẹ nhàng, nhưng lại ở mãi trong tim."],
+      ["Một buổi đi chơi", "Buổi hẹn đáng yêu đầu tiên 💗", "Mình vẫn luôn nhớ cảm giác hồi hộp và vui vẻ ngày hôm đó."],
+      ["Một lần cùng nhau cười", "Nụ cười cậu làm ngày dài ngắn lại ☁️", "Chỉ cần cậu vui thôi là mọi thứ quanh mình cũng dịu đi rất nhiều."],
+      ["Một khoảnh khắc bình thường", "Điều giản dị mà mình thương 🧸", "Đôi khi chẳng cần gì đặc biệt, chỉ cần ở cạnh nhau là đủ."],
+      ["Một ngày đẹp trời", "Ánh nắng, gió và tụi mình ✨", "Những ngày đơn giản lại trở thành ký ức thật xinh."],
+      ["Một bức ảnh xinh", "Mỗi tấm hình là một chuyện kể 📷", "Mình cất lại thật kỹ vì muốn nhớ từng chi tiết."],
+      ["Một lần cùng nhau đi xa", "Đường xa nhưng tim thì gần hơn 🌤️", "Có cậu đồng hành, nơi nào cũng trở nên đáng nhớ."],
+      ["Một điều dễ thương", "Khoảnh khắc muốn giữ mãi 🫶", "Mình thích cách cậu xuất hiện và làm mọi thứ đáng yêu hơn."],
+      ["Một ngày nhiều niềm vui", "Cười thật nhiều nhé 💕", "Mình luôn mong cậu có thật nhiều ngày tràn đầy tiếng cười."],
+      ["Một lần rất nhớ", "Có những lúc chỉ muốn gặp cậu thôi 🌸", "Nỗi nhớ cũng là một kiểu yêu thương âm thầm."],
+      ["Một tấm ảnh nữa", "Lại thêm một mảnh ký ức 🤍", "Càng nhiều ảnh, mình càng thấy hành trình này thật đẹp."],
+      ["Một ngày đặc biệt", "Kỷ niệm không thể quên 🎀", "Có những ngày chỉ cần nhìn lại thôi là đã thấy ấm lòng."],
+      ["Một lần đi cùng nhau", "Bước chân chung nhịp 🥰", "Mình luôn thích cảm giác được đi cùng cậu như thế."],
+      ["Một góc thật xinh", "Tụi mình ở đây nè 🌈", "Bức hình nào cũng như một mẩu chuyện nhỏ đáng yêu."],
+      ["Một chút ngại ngùng", "Ngượng ngùng mà vẫn thật thương 🙈", "Có khi chính sự vụng về lại khiến mọi thứ dễ thương hơn."],
+      ["Một hôm nhiều cảm xúc", "Nhớ, thương, và quý 💓", "Mỗi lần nhìn lại, mình đều thấy tim mình mềm đi một chút."],
+      ["Một lời chưa nói", "Điều mình muốn giữ trong thư 💌", "Có những điều không dễ nói thành lời nên mình gửi vào web này."],
+      ["Một khoảng thời gian đẹp", "Chuyện tụi mình vẫn đang tiếp tục 🌼", "Mình mong sẽ còn được lấp đầy thêm nhiều khung hình nữa."],
+      ["Gần đến 19/11", "Một lời chúc đang tới gần ✨", "Mình chuẩn bị thật nhiều điều dễ thương để gửi đến cậu hôm nay."],
+      ["19/11", "Gửi cậu tất cả yêu thương 💝", "Chúc cậu luôn hạnh phúc, dịu dàng với thế giới và thật được yêu thương."]
+    ];
 
-    const fallback = document.createElement("span");
-    fallback.className = "fallback";
-    fallback.textContent = m.emoji;
+    const memories = memoryTexts.map((item, index) => ({
+      number: index + 1,
+      date: item[0],
+      title: item[1],
+      note: item[2],
+      image: `images/anh${index + 1}.jpg`,
+      caption: `Kỷ niệm số ${index + 1}`,
+      emoji: ["🌷","💗","☁️","🧸","✨","📷","🌤️","🫶","💕","🌸","🤍","🎀","🥰","🌈","🙈","💓","💌","🌼","✨","💝"][index]
+    }));
 
-    const img = document.createElement("img");
-    img.alt = m.title;
-    img.loading = "lazy";
-    img.hidden = true;
-    img.onload = () => {
-      img.hidden = false;
-      fallback.hidden = true;
-    };
-    img.onerror = () => img.remove();
-    img.src = m.image;
+    const fxLayer = document.getElementById("fxLayer");
+    const gatherStage = document.getElementById("gatherStage");
+    const megaLetter = document.getElementById("megaLetter");
+    const femaleDropper = document.getElementById("femaleDropper");
+    const cinematicRun = document.getElementById("cinematicRun");
+    const track = document.getElementById("track");
+    const femaleRunner = document.getElementById("femaleRunner");
+    const heroQuestion = document.getElementById("heroQuestion");
+    const heroVisual = document.getElementById("heroVisual");
+    const btnOpen = document.getElementById("btnOpen");
+    const btnWait = document.getElementById("btnWait");
+    const smallReply = document.getElementById("smallReply");
+    const story = document.getElementById("story");
+    const memoryList = document.getElementById("memoryList");
+    const guidePreview = document.getElementById("guidePreview");
+    const guideBubble = document.getElementById("guideBubble");
+    const guideCaption = document.getElementById("guideCaption");
+    const replayBtn = document.getElementById("replayBtn");
 
-    photo.append(img, fallback);
+    let sequenceStarted = false;
 
-    const caption = document.createElement("div");
-    caption.className = "caption";
-    caption.textContent = m.caption;
-    polaroid.append(photo, caption);
+    function random(min, max){
+      return Math.random() * (max - min) + min;
+    }
 
-    const words = document.createElement("div");
-    words.className = "words";
+    function createGlassHeart({
+      startX = random(0, window.innerWidth),
+      startY = random(0, window.innerHeight),
+      endX = window.innerWidth / 2 + random(-150, 150),
+      endY = window.innerHeight / 2 + random(-90, 90),
+      size = random(14, 34),
+      duration = random(4.5, 7.5)
+    } = {}){
+      const heart = document.createElement("span");
+      heart.className = "glass-heart";
+      heart.style.setProperty("--sx", `${startX}px`);
+      heart.style.setProperty("--sy", `${startY}px`);
+      heart.style.setProperty("--ex", `${endX}px`);
+      heart.style.setProperty("--ey", `${endY}px`);
+      heart.style.setProperty("--size", `${size}px`);
+      heart.style.setProperty("--dur", `${duration}s`);
+      fxLayer.appendChild(heart);
+      setTimeout(() => heart.remove(), duration * 1000 + 600);
+    }
 
-    const date = document.createElement("span");
-    date.className = "date";
-    date.textContent = m.date;
+    function burstHearts(count = 50, centerX = window.innerWidth / 2, centerY = window.innerHeight / 2){
+      for(let i = 0; i < count; i++){
+        createGlassHeart({
+          startX: centerX + random(-20, 20),
+          startY: centerY + random(-20, 20),
+          endX: centerX + random(-window.innerWidth * .5, window.innerWidth * .5),
+          endY: centerY + random(-window.innerHeight * .5, window.innerHeight * .5),
+          size: random(12, 30),
+          duration: random(3.5, 6.5)
+        });
+      }
+    }
 
-    const title = document.createElement("h3");
-    title.textContent = m.title;
+    function introHeartSwarm(count = 180){
+      for(let i = 0; i < count; i++){
+        setTimeout(() => {
+          createGlassHeart({
+            startX: random(0, window.innerWidth),
+            startY: random(0, window.innerHeight),
+            endX: window.innerWidth / 2 + random(-170, 170),
+            endY: window.innerHeight / 2 + random(-120, 120),
+            size: random(12, 28),
+            duration: random(3.2, 5.5)
+          });
+        }, i * 22);
+      }
+    }
 
-    const text = document.createElement("p");
-    text.textContent = m.message;
+    function buildTimeline(){
+      memoryList.innerHTML = "";
 
-    words.append(date, title, text);
-    item.append(polaroid, words);
-    timeline.appendChild(item);
-  });
-}
+      memories.forEach((m, index) => {
+        const card = document.createElement("article");
+        card.className = "memory-card";
+        card.dataset.index = index;
 
-createMemories();
+        const rotate = index % 2 === 0 ? "-3deg" : "3deg";
 
-document.getElementById("no").onclick = () => {
-  document.getElementById("reply").textContent =
-    "Không sao, lá thư sẽ đợi khi cậu sẵn sàng nha 🌷";
-};
+        card.innerHTML = `
+          <div class="memory-visual">
+            <div class="floating-photo" style="--rotate:${rotate}">
+              <div class="photo-box">
+                <img src="${m.image}" alt="${m.title}" loading="lazy"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="photo-fallback" style="display:none">${m.emoji}</span>
+              </div>
+              <div class="float-caption">${m.caption}</div>
+            </div>
 
-document.getElementById("yes").onclick = () => {
-  if (opening) return;
-  opening = true;
+            <div class="mini-runner">
+              <img src="images/chibi-female.png" alt="Nữ chibi mini"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+              <div class="fallback hidden">👧🏻</div>
+            </div>
+          </div>
 
-  document.getElementById("yes").disabled = true;
-  document.getElementById("no").disabled = true;
-  document.getElementById("stage").classList.add("open");
-  burst(20);
+          <div class="memory-copy">
+            <span class="memory-num">${String(m.number).padStart(2, "0")}</span>
+            <span class="memory-date">${m.date}</span>
+            <h3>${m.title}</h3>
+            <p>${m.note}</p>
+          </div>
+        `;
 
-  setTimeout(() => {
-    document.getElementById("intro").style.display = "none";
-    document.getElementById("story").style.display = "block";
-    window.scrollTo(0, 0);
+        memoryList.appendChild(card);
+      });
 
-    document.querySelectorAll(".memory").forEach((item,i) => {
+      observeTimeline();
+    }
+
+    function observeTimeline(){
+      const cards = document.querySelectorAll(".memory-card");
+
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            entry.target.classList.add("visible");
+          }
+        });
+      }, { threshold: .18 });
+
+      const guideObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            const idx = Number(entry.target.dataset.index);
+            const current = memories[idx];
+            guidePreview.src = current.image;
+            guidePreview.alt = current.title;
+            guideCaption.textContent = current.caption;
+            guideBubble.innerHTML = `
+              <strong>${current.title}</strong>
+              <span><b>${current.date}</b> — ${current.note}</span>
+            `;
+          }
+        });
+      }, { threshold: .55 });
+
+      cards.forEach(card => {
+        revealObserver.observe(card);
+        guideObserver.observe(card);
+      });
+    }
+
+    function showStory(){
+      document.getElementById("opening").style.display = "none";
+      story.style.display = "block";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      buildTimeline();
+    }
+
+    function startSequence(){
+      if(sequenceStarted) return;
+      sequenceStarted = true;
+
+      // Phase 1: tim bay tụ vào lá thư
+      introHeartSwarm(220);
+
       setTimeout(() => {
-        item.classList.add("visible");
-        burst(5);
-      }, 400+i*1100);
+        megaLetter.classList.add("show");
+      }, 1300);
+
+      // Phase 2: nữ chibi rớt xuống lấy thư
+      setTimeout(() => {
+        femaleDropper.classList.add("active");
+      }, 4200);
+
+      setTimeout(() => {
+        femaleDropper.style.display = "none";
+        gatherStage.style.opacity = "0";
+      }, 5900);
+
+      // Phase 3: chạy sang nam
+      setTimeout(() => {
+        cinematicRun.classList.add("active");
+        femaleRunner.classList.add("running");
+        track.style.transform = "translateX(-85vw)";
+        femaleRunner.style.left = "132vw";
+      }, 6000);
+
+      // Phase 4: vào cảnh chính diện nam + thư
+      setTimeout(() => {
+        cinematicRun.classList.remove("active");
+        heroQuestion.classList.add("active");
+      }, 10400);
+    }
+
+    btnWait.addEventListener("click", () => {
+      smallReply.textContent = "Tớ sẽ ôm lá thư ngồi chờ thêm một chút nha 🥺💗";
     });
 
-    if (!reduceMotion) {
-      heartTimer = setInterval(makeHeart, 1000);
-    }
-  }, 1400);
-};
+    btnOpen.addEventListener("click", () => {
+      smallReply.textContent = "";
+      heroVisual.classList.add("shake");
 
-document.getElementById("replay").onclick = () => {
-  clearInterval(heartTimer);
-  heartTimer = null;
-  opening = false;
+      setTimeout(() => {
+        heroVisual.classList.remove("shake");
+        burstHearts(160, window.innerWidth / 2, window.innerHeight / 2);
+      }, 900);
 
-  document.getElementById("story").style.display = "none";
-  document.getElementById("intro").style.display = "grid";
-  document.getElementById("stage").classList.remove("open");
+      setTimeout(() => {
+        showStory();
+      }, 1650);
+    });
 
-  document.getElementById("yes").disabled = false;
-  document.getElementById("no").disabled = false;
-  document.getElementById("reply").textContent = "";
+    replayBtn.addEventListener("click", () => {
+      location.reload();
+    });
 
-  document.querySelectorAll(".memory").forEach(item =>
-    item.classList.remove("visible")
-  );
-
-  window.scrollTo(0, 0);
-};
-</script>
+    window.addEventListener("load", startSequence);
+  </script>
 </body>
 </html>
