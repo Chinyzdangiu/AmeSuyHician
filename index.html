@@ -1,1497 +1,1365 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>19/11 dành cho cậu 💌</title>
-  <style>
-    :root{
-      --bg1:#fff2f8;
-      --bg2:#ffdce9;
-      --bg3:#fff7ea;
-      --pink:#f46da0;
-      --pink2:#ff8bb8;
-      --pink3:#ffc4da;
-      --deep:#944466;
-      --glass:rgba(255,255,255,.22);
-      --white:#fff;
-      --shadow:0 20px 50px rgba(172, 86, 122, .16);
-      --radius:28px;
-      --letterW:min(360px,78vw);
-      --letterH:240px;
-    }
-
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:"Segoe UI", Arial, sans-serif;
-      color:var(--deep);
-      background:
-        radial-gradient(circle at top left,#fffafc 0%, transparent 25%),
-        radial-gradient(circle at top right,#ffeaf3 0%, transparent 26%),
-        linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
-      overflow-x:hidden;
-    }
-
-    img{max-width:100%;display:block}
-    button{
-      cursor:pointer;
-      border:none;
-      font:inherit;
-    }
-
-    .hidden{display:none !important}
-
-    #fxLayer{
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      overflow:hidden;
-      z-index:999;
-    }
-
-    .glass-heart{
-      position:absolute;
-      width:var(--size,22px);
-      height:var(--size,22px);
-      opacity:0;
-      filter:drop-shadow(0 8px 14px rgba(255,110,170,.18));
-      animation:heartFloat var(--dur,7s) linear forwards;
-    }
-    .glass-heart::before,
-    .glass-heart::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 30% 28%, rgba(255,255,255,.95), rgba(255,255,255,.25) 28%, rgba(255,255,255,.10) 62%, rgba(255,177,210,.45));
-      border:1px solid rgba(255,255,255,.8);
-      border-radius:50% 50% 0 50%;
-      transform:rotate(-45deg);
-      backdrop-filter:blur(2px);
-      box-shadow: inset 0 0 8px rgba(255,255,255,.45);
-    }
-    .glass-heart::after{
-      transform:rotate(45deg);
-    }
-
-    @keyframes heartFloat{
-      0%{
-        transform:translate3d(var(--sx),var(--sy),0) scale(.2) rotate(0deg);
-        opacity:0;
-      }
-      18%{opacity:1}
-      70%{opacity:1}
-      100%{
-        transform:translate3d(var(--ex),var(--ey),0) scale(1) rotate(360deg);
-        opacity:.15;
-      }
-    }
-
-    @keyframes pulseGlow{
-      0%,100%{transform:scale(1)}
-      50%{transform:scale(1.04)}
-    }
-
-    @keyframes floatY{
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(-10px)}
-    }
-
-    @keyframes tinyHop{
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(-6px)}
-    }
-
-    @keyframes wobble{
-      0%,100%{transform:rotate(0)}
-      20%{transform:rotate(-2deg)}
-      40%{transform:rotate(2deg)}
-      60%{transform:rotate(-1.5deg)}
-      80%{transform:rotate(1deg)}
-    }
-
-    @keyframes dropIn{
-      0%{transform:translateY(-120vh) scale(.85)}
-      70%{transform:translateY(12px) scale(1.02)}
-      100%{transform:translateY(0) scale(1)}
-    }
-
-    @keyframes runBounce{
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(-15px)}
-    }
-
-    @keyframes drift{
-      0%,100%{transform:translateY(0px) rotate(var(--rotate))}
-      50%{transform:translateY(-10px) rotate(calc(var(--rotate) + 1.3deg))}
-    }
-
-    .section{
-      width:100%;
-      position:relative;
-    }
-
-    /* ================= OPENING ================= */
-    #opening{
-      min-height:100vh;
-      overflow:hidden;
-      position:relative;
-      padding:0;
-    }
-
-    .opening-bg{
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,.6), transparent 24%),
-        radial-gradient(circle at 80% 10%, rgba(255,255,255,.4), transparent 18%),
-        linear-gradient(180deg,#fff4fa 0%,#ffe0ec 46%,#fff8ee 100%);
-      z-index:0;
-    }
-
-    .opening-content{
-      position:relative;
-      z-index:2;
-      min-height:100vh;
-    }
-
-    .title-wrap{
-      position:absolute;
-      top:24px;
-      left:50%;
-      transform:translateX(-50%);
-      text-align:center;
-      width:min(900px,90vw);
-      z-index:3;
-    }
-
-    .eyebrow{
-      display:inline-block;
-      padding:8px 16px;
-      background:rgba(255,255,255,.55);
-      border:1px solid rgba(255,255,255,.8);
-      border-radius:999px;
-      font-size:12px;
-      letter-spacing:3px;
-      font-weight:700;
-      box-shadow:var(--shadow);
-    }
-
-    .main-title{
-      margin:18px 0 8px;
-      font-size:clamp(30px,5vw,62px);
-      line-height:1.1;
-      font-family:Georgia, serif;
-    }
-
-    .main-desc{
-      margin:0 auto;
-      max-width:720px;
-      line-height:1.8;
-      color:#9b5f78;
-      font-size:clamp(14px,2vw,18px);
-    }
-
-    .heart-gather-stage{
-      position:absolute;
-      inset:0;
-      display:grid;
-      place-items:center;
-      z-index:2;
-      transition:opacity .8s ease;
-    }
-
-    .mega-letter{
-      width:var(--letterW);
-      height:var(--letterH);
-      position:relative;
-      opacity:0;
-      transform:scale(.55);
-      transition:all 1s ease;
-      filter:drop-shadow(0 30px 50px rgba(171,86,123,.16));
-      animation:pulseGlow 2.5s ease-in-out infinite;
-    }
-
-    .mega-letter.show{
-      opacity:1;
-      transform:scale(1);
-    }
-
-    .mega-letter .letter-back{
-      position:absolute;
-      inset:0;
-      background:linear-gradient(135deg,#ffd4e4,#ffc0d7);
-      border-radius:18px;
-      overflow:hidden;
-    }
-
-    .mega-letter .letter-paper{
-      position:absolute;
-      left:32px;
-      right:32px;
-      top:18px;
-      height:175px;
-      background:linear-gradient(180deg,#fffdfa,#fff8fb);
-      border-radius:14px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      gap:8px;
-      color:#aa5b7d;
-      font-family:Georgia, serif;
-      transition:transform .9s ease;
-    }
-
-    .mega-letter .letter-front{
-      position:absolute;
-      inset:0;
-      background:#ffd9e7;
-      clip-path:polygon(0 0,50% 58%,100% 0,100% 100%,0 100%);
-      border-radius:18px;
-    }
-
-    .mega-letter .letter-bottom{
-      position:absolute;
-      inset:0;
-      background:#ffcadd;
-      clip-path:polygon(0 100%,50% 45%,100% 100%);
-      border-radius:18px;
-    }
-
-    .mega-letter .letter-flap{
-      position:absolute;
-      left:0;right:0;top:0;
-      height:135px;
-      background:#ffe6ee;
-      clip-path:polygon(0 0,100% 0,50% 100%);
-      transform-origin:top;
-      transition:transform .8s ease;
-      border-radius:18px 18px 0 0;
-      z-index:5;
-    }
-
-    .mega-letter .seal{
-      position:absolute;
-      left:50%;
-      top:98px;
-      transform:translateX(-50%);
-      width:56px;
-      height:56px;
-      display:grid;
-      place-items:center;
-      border-radius:50%;
-      background:linear-gradient(135deg,#ff6ba3,#ea4c88);
-      color:#fff;
-      font-weight:700;
-      z-index:6;
-      box-shadow:0 10px 24px rgba(234,76,136,.35);
-      transition:opacity .3s ease;
-    }
-
-    .drop-zone{
-      position:absolute;
-      inset:0;
-      display:grid;
-      place-items:center;
-      z-index:4;
-      pointer-events:none;
-    }
-
-    .female-dropper{
-      position:absolute;
-      width:min(240px,42vw);
-      opacity:0;
-      transform:translateY(-120vh);
-      transition:opacity .25s ease;
-    }
-
-    .female-dropper.active{
-      opacity:1;
-      animation:dropIn 1.3s ease forwards;
-    }
-
-    .female-dropper img{
-      width:100%;
-      object-fit:contain;
-      filter:drop-shadow(0 18px 30px rgba(160,82,114,.16));
-    }
-
-    .female-dropper .fallback{
-      width:180px;
-      aspect-ratio:1/1.25;
-      display:grid;
-      place-items:center;
-      font-size:72px;
-      background:#fff7fb;
-      border-radius:24px;
-      box-shadow:var(--shadow);
-    }
-
-    .drop-caption{
-      position:absolute;
-      bottom:-28px;
-      left:50%;
-      transform:translateX(-50%);
-      white-space:nowrap;
-      font-weight:700;
-      color:#b15d82;
-      font-size:15px;
-    }
-
-    .cinematic-run{
-      position:absolute;
-      inset:0;
-      z-index:2;
-      overflow:hidden;
-      display:none;
-    }
-
-    .cinematic-run.active{display:block}
-
-    .camera{
-      width:100%;
-      height:100%;
-      overflow:hidden;
-      position:relative;
-    }
-
-    .track{
-      width:220vw;
-      height:100%;
-      position:absolute;
-      left:0;
-      top:0;
-      transition:transform 4.2s linear;
-      background:
-        linear-gradient(180deg, #fff4fa 0%, #ffe3ef 48%, #fff7ec 100%);
-    }
-
-    .run-scene{
-      position:relative;
-      width:220vw;
-      height:100%;
-      overflow:hidden;
-    }
-
-    .garden{
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 20% 75%, rgba(255,255,255,.32), transparent 20%),
-        radial-gradient(circle at 62% 22%, rgba(255,255,255,.22), transparent 16%),
-        linear-gradient(180deg,#ffeaf2 0%, #ffe0ee 40%, #fff6e7 100%);
-    }
-
-    .hills{
-      position:absolute;
-      left:0; right:0; bottom:140px;
-      height:180px;
-      background:
-        radial-gradient(circle at 20% 100%, #a3d79a 0 32%, transparent 33%),
-        radial-gradient(circle at 42% 100%, #9dd094 0 30%, transparent 31%),
-        radial-gradient(circle at 63% 100%, #b3dfaa 0 28%, transparent 29%),
-        radial-gradient(circle at 80% 100%, #97cb8e 0 29%, transparent 30%);
-      opacity:.8;
-    }
-
-    .ground{
-      position:absolute;
-      left:0; right:0; bottom:0;
-      height:170px;
-      background:
-        linear-gradient(180deg,#b9e6ad,#90d18e);
-      box-shadow:inset 0 20px 30px rgba(255,255,255,.2);
-    }
-
-    .flowers{
-      position:absolute;
-      left:0; right:0; bottom:110px;
-      height:56px;
-      background:
-        radial-gradient(circle at 3% 50%, #fff 0 4px, transparent 5px),
-        radial-gradient(circle at 8% 65%, #ff97be 0 5px, transparent 6px),
-        radial-gradient(circle at 15% 45%, #fff 0 4px, transparent 5px),
-        radial-gradient(circle at 23% 55%, #ffc2d8 0 6px, transparent 7px),
-        radial-gradient(circle at 30% 40%, #fff 0 4px, transparent 5px),
-        radial-gradient(circle at 38% 62%, #ff97be 0 5px, transparent 6px),
-        radial-gradient(circle at 47% 48%, #fff 0 4px, transparent 5px),
-        radial-gradient(circle at 55% 60%, #ffcbe0 0 6px, transparent 7px),
-        radial-gradient(circle at 64% 42%, #fff 0 4px, transparent 5px),
-        radial-gradient(circle at 73% 64%, #ff9fc4 0 5px, transparent 6px),
-        radial-gradient(circle at 81% 46%, #fff 0 4px, transparent 5px),
-        radial-gradient(circle at 90% 60%, #ffd1e5 0 6px, transparent 7px);
-      opacity:.95;
-    }
-
-    .male-runner,
-    .female-runner{
-      position:absolute;
-      bottom:110px;
-      z-index:4;
-    }
-
-    .female-runner{
-      left:18vw;
-      width:min(250px,36vw);
-      transition:left 4.2s linear;
-    }
-
-    .female-runner img,
-    .male-runner img{
-      width:100%;
-      object-fit:contain;
-      filter:drop-shadow(0 18px 34px rgba(161,80,114,.16));
-    }
-
-    .female-runner .fallback,
-    .male-runner .fallback{
-      width:160px;
-      aspect-ratio:1/1.22;
-      display:grid;
-      place-items:center;
-      background:#fff;
-      border-radius:26px;
-      box-shadow:var(--shadow);
-      font-size:62px;
-    }
-
-    .female-runner.running{
-      animation:runBounce .55s linear infinite;
-    }
-
-    .carried-envelope{
-      position:absolute;
-      right:-12px;
-      bottom:35px;
-      width:120px;
-      height:82px;
-      transform:rotate(-12deg);
-    }
-
-    .carried-envelope .mini-back{
-      position:absolute; inset:0;
-      background:#ffc6dc;
-      border-radius:12px;
-    }
-    .carried-envelope .mini-front{
-      position:absolute; inset:0;
-      background:#ffdce9;
-      clip-path:polygon(0 0,50% 58%,100% 0,100% 100%,0 100%);
-      border-radius:12px;
-    }
-    .carried-envelope .mini-bottom{
-      position:absolute; inset:0;
-      background:#ffcee0;
-      clip-path:polygon(0 100%,50% 45%,100% 100%);
-      border-radius:12px;
-    }
-
-    .male-runner{
-      left:145vw;
-      width:min(300px,42vw);
-      animation:floatY 2.8s ease-in-out infinite;
-    }
-
-    .hero-question{
-      position:absolute;
-      inset:0;
-      display:none;
-      align-items:center;
-      justify-content:center;
-      z-index:6;
-      padding:24px;
-      background:linear-gradient(180deg, rgba(255,243,249,.65), rgba(255,243,249,.88));
-      backdrop-filter:blur(3px);
-    }
-    .hero-question.active{display:flex}
-
-    .hero-card{
-      width:min(1100px,96vw);
-      background:rgba(255,255,255,.62);
-      border:1px solid rgba(255,255,255,.8);
-      box-shadow:var(--shadow);
-      border-radius:36px;
-      padding:22px;
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap:24px;
-      align-items:center;
-    }
-
-    .hero-visual{
-      position:relative;
-      min-height:420px;
-      border-radius:30px;
-      overflow:hidden;
-      background:
-        radial-gradient(circle at 20% 18%, rgba(255,255,255,.45), transparent 22%),
-        linear-gradient(180deg,#ffeef5,#ffe0eb,#fff7ec);
-    }
-
-    .hero-visual .male-big{
-      position:absolute;
-      right:4%;
-      bottom:0;
-      width:min(360px,52%);
-      z-index:3;
-    }
-
-    .hero-visual .female-small{
-      position:absolute;
-      left:9%;
-      bottom:18px;
-      width:min(180px,24%);
-      z-index:4;
-      animation:tinyHop 1.6s ease-in-out infinite;
-    }
-
-    .hero-visual .hero-letter{
-      position:absolute;
-      left:28%;
-      top:50%;
-      transform:translate(-50%,-50%) rotate(-8deg);
-      width:min(240px,35%);
-      z-index:2;
-      transition:transform .25s ease;
-    }
-
-    .hero-visual.shake .hero-letter{
-      animation:wobble .4s linear infinite;
-    }
-
-    .bubble-note{
-      position:absolute;
-      right:18px;
-      top:18px;
-      max-width:220px;
-      background:#fff;
-      border:1px solid #ffd0df;
-      border-radius:20px;
-      padding:12px 14px;
-      line-height:1.55;
-      box-shadow:0 12px 24px rgba(171,86,123,.12);
-      font-weight:600;
-      color:#a45277;
-      z-index:5;
-    }
-
-    .hero-copy h2{
-      font-family:Georgia, serif;
-      margin:0 0 14px;
-      font-size:clamp(30px,4vw,48px);
-      line-height:1.1;
-    }
-
-    .hero-copy p{
-      line-height:1.85;
-      color:#9b5f78;
-      margin:12px 0;
-    }
-
-    .action-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      margin-top:18px;
-    }
-
-    .btn{
-      padding:14px 26px;
-      border-radius:999px;
-      font-weight:700;
-      transition:transform .2s ease, box-shadow .2s ease;
-    }
-    .btn:hover{transform:translateY(-2px)}
-    .btn-primary{
-      background:linear-gradient(135deg,#ff6ca5,#f04e8d);
-      color:#fff;
-      box-shadow:0 14px 28px rgba(240,78,141,.22);
-    }
-    .btn-secondary{
-      background:#fff;
-      color:#a55a7e;
-      border:1px solid #ffd0df;
-      box-shadow:0 10px 22px rgba(171,86,123,.08);
-    }
-
-    .small-reply{
-      min-height:26px;
-      margin-top:12px;
-      color:#a66082;
-      font-weight:600;
-    }
-
-    /* ================= STORY ================= */
-    #story{
-      display:none;
-      position:relative;
-      padding:50px 20px 110px;
-      max-width:1320px;
-      margin:0 auto;
-    }
-
-    .story-head{
-      text-align:center;
-      max-width:760px;
-      margin:0 auto 34px;
-    }
-
-    .story-head h2{
-      font-family:Georgia, serif;
-      font-size:clamp(30px,4.5vw,56px);
-      margin:18px 0 10px;
-      line-height:1.15;
-    }
-
-    .story-head p{
-      line-height:1.8;
-      color:#9b5f78;
-      margin:0 auto;
-    }
-
-    .story-layout{
-      display:grid;
-      grid-template-columns: 320px 1fr;
-      gap:28px;
-      align-items:start;
-    }
-
-    .sticky-stage{
-      position:sticky;
-      top:20px;
-      height:calc(100vh - 40px);
-      min-height:620px;
-      border-radius:32px;
-      background:rgba(255,255,255,.46);
-      border:1px solid rgba(255,255,255,.75);
-      box-shadow:var(--shadow);
-      overflow:hidden;
-      padding:18px;
-      backdrop-filter:blur(6px);
-    }
-
-    .sticky-stage .mini-sky{
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 20% 15%, rgba(255,255,255,.42), transparent 22%),
-        linear-gradient(180deg,#fff1f7,#ffe4ee 55%,#fff9f0 100%);
-    }
-
-    .guide-female{
-      position:absolute;
-      left:12px;
-      bottom:118px;
-      width:140px;
-      z-index:2;
-      animation:runBounce .9s ease-in-out infinite;
-    }
-
-    .guide-male{
-      position:absolute;
-      right:10px;
-      bottom:90px;
-      width:160px;
-      z-index:2;
-      animation:floatY 2.8s ease-in-out infinite;
-    }
-
-    .guide-female img,
-    .guide-male img{
-      width:100%;
-      object-fit:contain;
-      filter:drop-shadow(0 14px 26px rgba(171,86,123,.15));
-    }
-
-    .guide-fallback{
-      width:110px;
-      aspect-ratio:1/1.25;
-      display:grid;
-      place-items:center;
-      background:#fff;
-      border-radius:24px;
-      box-shadow:var(--shadow);
-      font-size:48px;
-    }
-
-    .guide-photo-frame{
-      position:absolute;
-      left:96px;
-      bottom:200px;
-      width:120px;
-      height:150px;
-      padding:8px 8px 28px;
-      border-radius:10px;
-      background:#fff;
-      box-shadow:0 14px 28px rgba(171,86,123,.13);
-      transform:rotate(-8deg);
-      z-index:3;
-      animation:drift 2.5s ease-in-out infinite;
-      --rotate:-8deg;
-    }
-
-    .guide-photo-frame img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      border-radius:6px;
-    }
-
-    .guide-caption{
-      font-size:11px;
-      text-align:center;
-      margin-top:7px;
-      font-style:italic;
-      color:#9c6480;
-    }
-
-    .guide-bubble{
-      position:absolute;
-      left:14px;
-      top:18px;
-      right:14px;
-      background:#fff;
-      border-radius:24px;
-      border:1px solid #ffd5e3;
-      padding:16px 16px;
-      color:#a4597d;
-      line-height:1.7;
-      box-shadow:0 12px 24px rgba(171,86,123,.08);
-      z-index:4;
-    }
-
-    .guide-bubble strong{
-      display:block;
-      margin-bottom:8px;
-      font-size:17px;
-      color:#934567;
-    }
-
-    .memory-list{
-      display:grid;
-      gap:36px;
-      padding-bottom:60px;
-    }
-
-    .memory-card{
-      opacity:0;
-      transform:translateY(40px) scale(.96);
-      transition:opacity .8s ease, transform .8s ease;
-      background:rgba(255,255,255,.72);
-      border:1px solid rgba(255,255,255,.86);
-      border-radius:30px;
-      box-shadow:var(--shadow);
-      overflow:hidden;
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:0;
-      min-height:360px;
-      position:relative;
-    }
-
-    .memory-card.visible{
-      opacity:1;
-      transform:translateY(0) scale(1);
-    }
-
-    .memory-card:nth-child(even) .memory-visual{
-      order:2;
-    }
-
-    .memory-card:nth-child(even) .memory-copy{
-      order:1;
-    }
-
-    .memory-card::before{
-      content:"";
-      position:absolute;
-      inset:16px;
-      border-radius:22px;
-      pointer-events:none;
-      border:1px dashed rgba(255,192,215,.65);
-    }
-
-    .memory-visual{
-      position:relative;
-      min-height:360px;
-      padding:28px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:
-        radial-gradient(circle at 25% 20%, rgba(255,255,255,.48), transparent 22%),
-        linear-gradient(135deg,#fff0f7,#ffebf4,#fff7ed);
-    }
-
-    .floating-photo{
-      width:min(100%,360px);
-      padding:12px 12px 42px;
-      background:#fff;
-      border-radius:12px;
-      box-shadow:0 18px 40px rgba(171,86,123,.14);
-      transform:rotate(var(--rotate,-3deg));
-      animation:drift 3s ease-in-out infinite;
-      --rotate:-3deg;
-    }
-
-    .memory-card:nth-child(even) .floating-photo{
-      --rotate:3deg;
-    }
-
-    .photo-box{
-      width:100%;
-      aspect-ratio:4/5;
-      background:linear-gradient(135deg,#ffe1ee,#fff2c9);
-      border-radius:10px;
-      overflow:hidden;
-      display:grid;
-      place-items:center;
-      position:relative;
-    }
-
-    .photo-box img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-
-    .photo-fallback{
-      font-size:60px;
-      position:absolute;
-    }
-
-    .float-caption{
-      margin-top:12px;
-      text-align:center;
-      color:#9c6480;
-      font-style:italic;
-      font-size:16px;
-    }
-
-    .memory-copy{
-      padding:42px 34px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      gap:12px;
-      position:relative;
-      z-index:2;
-    }
-
-    .memory-num{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      width:46px;
-      height:46px;
-      border-radius:50%;
-      background:linear-gradient(135deg,#ff7aac,#f55b94);
-      color:#fff;
-      font-weight:800;
-      box-shadow:0 10px 20px rgba(245,91,148,.18);
-    }
-
-    .memory-date{
-      display:inline-block;
-      padding:8px 14px;
-      border-radius:999px;
-      background:#fff;
-      border:1px solid #ffd4e4;
-      width:fit-content;
-      font-size:13px;
-      font-weight:700;
-      color:#a65f82;
-    }
-
-    .memory-copy h3{
-      margin:0;
-      font-family:Georgia, serif;
-      font-size:clamp(26px,3vw,38px);
-      line-height:1.2;
-    }
-
-    .memory-copy p{
-      margin:0;
-      line-height:1.9;
-      color:#93637b;
-      font-size:17px;
-    }
-
-    .mini-runner{
-      position:absolute;
-      right:16px;
-      bottom:18px;
-      width:86px;
-      animation:tinyHop 1.5s ease-in-out infinite;
-      z-index:4;
-    }
-
-    .mini-runner img{
-      width:100%;
-      object-fit:contain;
-    }
-
-    .mini-runner .fallback{
-      width:74px;
-      aspect-ratio:1/1;
-      display:grid;
-      place-items:center;
-      background:#fff;
-      border-radius:50%;
-      box-shadow:var(--shadow);
-      font-size:30px;
-    }
-
-    .ending{
-      margin:20px auto 0;
-      max-width:920px;
-      padding:36px 26px;
-      text-align:center;
-      background:rgba(255,255,255,.68);
-      border:1px solid rgba(255,255,255,.8);
-      border-radius:30px;
-      box-shadow:var(--shadow);
-    }
-
-    .ending h3{
-      font-family:Georgia, serif;
-      font-size:clamp(28px,4vw,42px);
-      margin:10px 0 14px;
-    }
-
-    .ending p{
-      line-height:1.85;
-      color:#93637b;
-      margin:0 auto 20px;
-      max-width:740px;
-    }
-
-    .end-row{
-      display:flex;
-      justify-content:center;
-      gap:16px;
-      flex-wrap:wrap;
-      margin-top:18px;
-    }
-
-    @media (max-width: 1024px){
-      .hero-card{
-        grid-template-columns:1fr;
-      }
-      .story-layout{
-        grid-template-columns:1fr;
-      }
-      .sticky-stage{
-        position:relative;
-        top:auto;
-        height:auto;
-        min-height:520px;
-      }
-    }
-
-    @media (max-width: 760px){
-      .main-title{
-        margin-top:14px;
-      }
-
-      .cinematic-run .track{
-        width:260vw;
-      }
-      .run-scene{
-        width:260vw;
-      }
-      .female-runner{
-        width:160px;
-        bottom:100px;
-      }
-      .male-runner{
-        left:172vw;
-        width:190px;
-        bottom:100px;
-      }
-      .female-runner .fallback,
-      .male-runner .fallback{
-        width:115px;
-        font-size:40px;
-      }
-      .carried-envelope{
-        width:88px;height:62px;right:-10px;bottom:22px;
-      }
-      .hero-visual{
-        min-height:340px;
-      }
-      .guide-female{width:100px; bottom:108px;}
-      .guide-male{width:120px; bottom:82px;}
-      .guide-photo-frame{
-        left:74px;
-        bottom:185px;
-        width:96px;
-        height:120px;
-      }
-      .memory-card{
-        grid-template-columns:1fr;
-      }
-      .memory-card:nth-child(even) .memory-visual,
-      .memory-card:nth-child(even) .memory-copy{
-        order:initial;
-      }
-      .memory-visual{
-        min-height:280px;
-      }
-      .memory-copy{
-        padding:28px 24px 34px;
-      }
-      .memory-copy p{
-        font-size:16px;
-      }
-      .floating-photo{
-        width:min(100%,300px);
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      *{
-        animation:none !important;
-        transition:none !important;
-        scroll-behavior:auto !important;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#ffe5ef">
+<title>AmeSuyHician | Lá thư ngày 19/11 💌</title>
+
+<style>
+:root {
+  --pink: #ee73a1;
+  --deep: #95496e;
+  --soft: #ffe1ee;
+  --white: #fffdfa;
+  --shadow: 0 20px 55px rgba(172,78,120,.18);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--deep);
+  font-family: "Segoe UI",Arial,sans-serif;
+  background: linear-gradient(130deg,#fff6fa,#ffdfed,#fff5e9);
+  overflow-x: hidden;
+}
+button {
+  font: inherit;
+  cursor: pointer;
+}
+button:focus-visible {
+  outline: 3px solid #a52f68;
+  outline-offset: 3px;
+}
+h1,h2,h3 { font-family: Georgia,serif; }
+img { display: block; max-width: 100%; }
+.hidden { display: none !important; }
+
+/* HIỆU ỨNG TIM HÌNH TRÁI TIM */
+#heartCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 40;
+}
+
+/* KHUNG CẢNH MỞ ĐẦU */
+#scene {
+  height: 100svh;
+  min-height: 540px;
+  overflow: hidden;
+  position: relative;
+  background:
+    radial-gradient(circle at 20% 15%,white,transparent 27%),
+    linear-gradient(#fff0f9,#ffdce9 65%,#fff3e7);
+}
+.intro-title {
+  position: absolute;
+  z-index: 5;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(700px,90%);
+  text-align: center;
+  transition: opacity .7s;
+}
+.intro-title h1 {
+  font-size: clamp(29px,5vw,54px);
+  line-height: 1.2;
+}
+.intro-title p {
+  color: #aa728c;
+  line-height: 1.7;
+}
+.eyebrow {
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  color: #bf7799;
+}
+
+/* PHONG THƯ */
+.envelope {
+  position: relative;
+  width: min(340px,65vw);
+  aspect-ratio: 1.48;
+  filter: drop-shadow(0 20px 25px #b05b8740);
+  perspective: 900px;
+}
+.envelope .back {
+  position: absolute;
+  inset: 0;
+  background: #f2a9c5;
+  border-radius: 15px;
+}
+.envelope .paper {
+  position: absolute;
+  left: 9%;
+  top: 10%;
+  width: 82%;
+  height: 78%;
+  border-radius: 9px;
+  background: #fffdfa;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font: italic 22px Georgia,serif;
+  transition: transform .85s;
+}
+.envelope .front {
+  position: absolute;
+  inset: 0;
+  background: #fac4d9;
+  clip-path: polygon(0 0,50% 54%,100% 0,100% 100%,0 100%);
+  border-radius: 15px;
+}
+.envelope .bottom {
+  position: absolute;
+  inset: 0;
+  background: #ffd4e4;
+  clip-path: polygon(0 100%,50% 43%,100% 100%);
+  border-radius: 15px;
+}
+.envelope .flap {
+  position: absolute;
+  inset: 0 0 44%;
+  background: #ffe5ef;
+  clip-path: polygon(0 0,100% 0,50% 100%);
+  transform-origin: top center;
+  transition: transform .85s;
+}
+.envelope .seal {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  transform: translate(-50%,-50%);
+  background: #ef6a9d;
+  color: white;
+  font-size: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  transition: opacity .3s;
+}
+.envelope.open .flap {
+  transform: rotateX(180deg);
+}
+.envelope.open .seal { opacity: 0; }
+.envelope.open .paper {
+  transform: translateY(-55%);
+}
+#mainLetter {
+  position: absolute;
+  left: 50%;
+  top: 53%;
+  transform: translate(-50%,-50%) scale(.5);
+  opacity: 0;
+  transition: transform 1s,opacity 1s;
+  z-index: 3;
+}
+#mainLetter.show {
+  transform: translate(-50%,-50%) scale(1);
+  opacity: 1;
+}
+
+/* NHÂN VẬT CHIBI */
+.character {
+  position: absolute;
+  z-index: 6;
+  filter: drop-shadow(0 15px 20px #a05c7f40);
+}
+.character img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.character .fallback {
+  display: none;
+  font-size: 80px;
+  text-align: center;
+}
+.character img.failed { display: none; }
+.character img.failed + .fallback { display: block; }
+
+#girlDrop {
+  left: 50%;
+  top: -380px;
+  width: clamp(125px,22vw,220px);
+  transform: translateX(-50%);
+  opacity: 0;
+}
+#girlDrop.drop {
+  animation: girlFall 1.4s ease-out forwards;
+}
+@keyframes girlFall {
+  0% { top: -380px; opacity: 1; }
+  70% { top: 47%; opacity: 1; }
+  100% { top: 43%; opacity: 1; }
+}
+
+/* PHONG CẢNH CUỘN NGANG */
+#runningScene {
+  position: absolute;
+  inset: 0;
+  display: none;
+  overflow: hidden;
+}
+#runningScene.active { display: block; }
+#world {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 240%;
+  background: linear-gradient(#e9e0ff,#ffe4ef 65%,#fff6e5);
+  will-change: transform;
+}
+.clouds {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 130px 45px at 12% 23%,#fff,transparent),
+    radial-gradient(ellipse 180px 55px at 50% 18%,#fff,transparent),
+    radial-gradient(ellipse 160px 48px at 80% 28%,#fff,transparent);
+}
+.hills {
+  position: absolute;
+  inset: 0 0 13%;
+  background:
+    radial-gradient(ellipse 30% 22% at 20% 100%,#b8dea9 98%,transparent),
+    radial-gradient(ellipse 30% 24% at 53% 100%,#c9e5b7 98%,transparent),
+    radial-gradient(ellipse 30% 22% at 85% 100%,#a8d7a4 98%,transparent);
+}
+.ground {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 20%;
+  background: linear-gradient(#b5e1a8,#8dcc95);
+  border-top: 7px solid #e2f1d4;
+}
+.flowers {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 16%;
+  height: 50px;
+  background:
+    radial-gradient(circle at 8% 45%,#fff 0 6px,transparent 7px),
+    radial-gradient(circle at 20% 30%,#ffc1d9 0 6px,transparent 7px),
+    radial-gradient(circle at 35% 60%,#fff 0 5px,transparent 6px),
+    radial-gradient(circle at 53% 20%,#ffc7dd 0 6px,transparent 7px),
+    radial-gradient(circle at 75% 48%,#fff 0 5px,transparent 6px);
+  background-size: 360px 50px;
+}
+#runnerGirl {
+  left: 9%;
+  bottom: 15%;
+  width: clamp(130px,24vw,240px);
+  height: clamp(200px,36vw,330px);
+}
+#runnerBoy {
+  left: 77%;
+  bottom: 15%;
+  width: clamp(150px,28vw,290px);
+  height: clamp(230px,42vw,370px);
+}
+
+/* MÀN HỎI MỞ THƯ */
+#question {
+  display: none;
+  position: absolute;
+  inset: 0;
+  z-index: 15;
+  background: rgba(255,240,247,.9);
+  backdrop-filter: blur(7px);
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+#question.active { display: flex; }
+.question-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 25px;
+  width: min(1050px,100%);
+  padding: 22px;
+  border-radius: 30px;
+  background: #ffffffd9;
+  box-shadow: var(--shadow);
+}
+.question-visual {
+  position: relative;
+  height: 410px;
+  overflow: hidden;
+  border-radius: 24px;
+  background: linear-gradient(#fff2f9,#ffdbea);
+}
+.question-boy {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 55%;
+  height: 87%;
+}
+.question-girl {
+  position: absolute;
+  left: 4%;
+  bottom: 5%;
+  width: 28%;
+  height: 50%;
+  animation: bob 1.5s infinite;
+}
+.question-letter {
+  position: absolute;
+  left: 32%;
+  top: 51%;
+  transform: translate(-50%,-50%);
+  width: 40%;
+  z-index: 8;
+}
+.question-letter .envelope { width: 100%; }
+.question-letter .seal {
+  width: 26px;
+  height: 26px;
+  font-size: 14px;
+}
+.bubble {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  max-width: 190px;
+  padding: 13px;
+  border-radius: 20px;
+  background: white;
+  box-shadow: var(--shadow);
+  z-index: 9;
+}
+.question-copy h2 {
+  font-size: clamp(28px,4vw,45px);
+  line-height: 1.2;
+}
+.question-copy p {
+  line-height: 1.8;
+  color: #a36c87;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.btn {
+  border: 0;
+  border-radius: 999px;
+  padding: 14px 25px;
+  font-weight: 700;
+  transition: transform .2s;
+}
+.btn:hover { transform: translateY(-3px); }
+.yes {
+  background: linear-gradient(130deg,#fb8db5,#e95c93);
+  color: white;
+  box-shadow: 0 12px 25px #d8669440;
+}
+.no {
+  background: #fff;
+  color: #9e5679;
+  border: 1px solid #ffd0e1;
+}
+#reply { min-height: 24px; }
+@keyframes bob {
+  50% { transform: translateY(-12px); }
+}
+@keyframes shake {
+  0% { transform: translate(-50%,-50%) rotate(-8deg); }
+  100% { transform: translate(-50%,-50%) rotate(8deg); }
+}
+.question-letter.shaking {
+  animation: shake .13s infinite alternate;
+}
+
+/* ALBUM KỶ NIỆM */
+#story {
+  display: none;
+  max-width: 1220px;
+  margin: auto;
+  padding: 70px 18px 100px;
+}
+.story-head {
+  text-align: center;
+  margin: 0 auto 55px;
+  max-width: 750px;
+}
+.story-head h2 {
+  font-size: clamp(30px,5vw,55px);
+}
+.story-head p {
+  color: #a16b85;
+  line-height: 1.8;
+}
+.story-grid {
+  display: grid;
+  grid-template-columns: 280px minmax(0,1fr);
+  gap: 28px;
+  align-items: start;
+}
+
+/* HAI CHIBI THEO DÕI ALBUM */
+.guides {
+  position: sticky;
+  top: 20px;
+  height: min(78vh,650px);
+  min-height: 450px;
+  border-radius: 27px;
+  background: linear-gradient(#fff8fc,#ffe5f0);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.guide-note {
+  position: absolute;
+  z-index: 8;
+  top: 16px;
+  left: 12px;
+  right: 12px;
+  padding: 15px;
+  background: white;
+  border-radius: 20px;
+  line-height: 1.6;
+  box-shadow: 0 8px 20px #b8709230;
+}
+.guide-note strong {
+  display: block;
+  color: #aa527d;
+}
+.guide-girl,.guide-boy {
+  position: absolute;
+  bottom: 6%;
+  z-index: 4;
+  cursor: pointer;
+}
+.guide-girl {
+  left: 0;
+  width: 48%;
+  animation: bob 1.7s infinite;
+}
+.guide-boy {
+  right: -3%;
+  width: 53%;
+  animation: bob 2.4s infinite;
+}
+.guide-photo {
+  position: absolute;
+  left: 32%;
+  top: 37%;
+  z-index: 5;
+  width: 42%;
+  aspect-ratio: 4/5;
+  padding: 7px 7px 22px;
+  background: white;
+  box-shadow: var(--shadow);
+  transform: rotate(-8deg);
+  animation: photoFloat 3s infinite;
+}
+.guide-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+@keyframes photoFloat {
+  50% { transform: translateY(-13px) rotate(-5deg); }
+}
+
+/* 25 THẺ ẢNH */
+#memoryList {
+  display: grid;
+  gap: 45px;
+}
+.memory {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  min-height: 370px;
+  background: #ffffffbd;
+  border-radius: 27px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(70px) scale(.94);
+  transition: opacity .85s,transform .85s;
+}
+.memory.visible {
+  opacity: 1;
+  transform: none;
+}
+.memory:nth-child(even) .visual { order: 2; }
+.memory:nth-child(even) .words { order: 1; }
+.visual {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 25px;
+  min-height: 370px;
+  background: linear-gradient(135deg,#ffe6f0,#fff5e9);
+}
+.polaroid {
+  width: min(92%,310px);
+  padding: 12px 12px 38px;
+  background: white;
+  box-shadow: 0 15px 35px #ad658b42;
+  transform: rotate(-5deg);
+  animation: photoFloat 3s infinite;
+}
+.photo-area {
+  aspect-ratio: 4/5;
+  background: #ffe4ed;
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.photo-area img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.photo-fallback { font-size: 65px; }
+.caption {
+  margin-top: 13px;
+  text-align: center;
+  font: italic 16px Georgia,serif;
+}
+.mini-girl {
+  position: absolute;
+  right: 8px;
+  bottom: 5px;
+  width: 95px;
+  animation: bob 1.6s infinite;
+}
+.words {
+  padding: 30px;
+  display: grid;
+  gap: 13px;
+}
+.number {
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #e078a4;
+  font-weight: bold;
+}
+.date {
+  padding: 8px 15px;
+  border-radius: 99px;
+  width: fit-content;
+  background: #fff7fb;
+  border: 1px solid #ffd1e2;
+  font-size: 13px;
+}
+.words h3 {
+  margin: 0;
+  font-size: clamp(25px,3vw,36px);
+}
+.words p {
+  margin: 0;
+  color: #986983;
+  line-height: 1.9;
+}
+.ending {
+  margin: 75px auto 0;
+  max-width: 800px;
+  padding: 35px;
+  border-radius: 28px;
+  background: #fffdfbd9;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.ending img {
+  width: min(280px,100%);
+  border-radius: 20px;
+  margin: 0 auto 20px;
+}
+.ending p {
+  color: #9b6882;
+  line-height: 1.9;
+}
+
+/* ĐIỆN THOẠI */
+@media(max-width:850px) {
+  .story-grid { grid-template-columns: 1fr; }
+  .guides {
+    top: 0;
+    height: 165px;
+    min-height: 0;
+    border-radius: 0 0 18px 18px;
+    z-index: 12;
+  }
+  .guide-note {
+    left: 8px;
+    right: auto;
+    width: 63%;
+    top: 8px;
+    max-height: 145px;
+    overflow: auto;
+    font-size: 12px;
+    padding: 10px;
+  }
+  .guide-girl { width: 90px; left: auto; right: 48px; }
+  .guide-boy { width: 95px; right: -12px; }
+  .guide-photo {
+    width: 66px;
+    height: 88px;
+    left: auto;
+    right: 90px;
+    top: 35px;
+  }
+}
+@media(max-width:650px) {
+  .question-card {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 12px;
+    max-height: 96svh;
+    overflow-y: auto;
+  }
+  .question-visual { height: 285px; }
+  .question-copy { padding: 5px 10px; }
+  .question-copy h2 { font-size: 28px; }
+  .question-copy p { font-size: 14px; }
+  .bubble { font-size: 11px; max-width: 150px; }
+  .memory { grid-template-columns: 1fr; }
+  .memory:nth-child(even) .visual,
+  .memory:nth-child(even) .words { order: initial; }
+  .visual { min-height: 310px; }
+  .mini-girl { width: 75px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    animation-duration: .001ms !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
 </head>
+
 <body>
-  <div id="fxLayer" aria-hidden="true"></div>
 
-  <section id="opening" class="section">
-    <div class="opening-bg"></div>
+<canvas id="heartCanvas" aria-hidden="true"></canvas>
 
-    <div class="opening-content">
-      <div class="title-wrap">
-        <div class="eyebrow">LOVE LETTER FOR 19/11</div>
-        <h1 class="main-title">Một câu chuyện nhỏ,<br>một lá thư to,<br>và rất nhiều điều thương 💗</h1>
-        <p class="main-desc">
-          Hôm nay mình muốn kể lại những khoảnh khắc đáng yêu theo cách thật đặc biệt:
-          bắt đầu bằng hàng ngàn trái tim, một lá thư, và câu chuyện dành riêng cho cậu.
+<!-- CẢNH ĐẦU TIÊN -->
+<section id="scene">
+  <div class="intro-title" id="introTitle">
+    <div class="eyebrow">19 / 11 · A LITTLE LOVE STORY</div>
+    <h1>Một lá thư nhỏ,<br>một bầu trời yêu thương 💗</h1>
+    <p>Những trái tim đang tụ lại thành một món quà dành riêng cho cậu...</p>
+  </div>
+
+  <div class="envelope" id="mainLetter">
+    <div class="back"></div>
+    <div class="paper">Gửi cậu ♡</div>
+    <div class="front"></div>
+    <div class="bottom"></div>
+    <div class="flap"></div>
+    <div class="seal">♥</div>
+  </div>
+
+  <div class="character" id="girlDrop">
+    <img src="images/chibinu.png" alt="Chibi nữ bắt lá thư">
+    <span class="fallback">👧🏻</span>
+  </div>
+
+  <!-- CẢNH CHẠY QUA KHU VƯỜN -->
+  <div id="runningScene">
+    <div id="world">
+      <div class="clouds"></div>
+      <div class="hills"></div>
+      <div class="flowers"></div>
+      <div class="ground"></div>
+
+      <div class="character" id="runnerGirl">
+        <img src="images/chibinu-running.gif"
+             alt="Chibi nữ chạy mang thư">
+        <span class="fallback">👧🏻💌</span>
+      </div>
+
+      <div class="character" id="runnerBoy">
+        <img src="images/chibinam-letter.gif"
+             alt="Chibi nam nhận thư">
+        <span class="fallback">👦🏻</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CẢNH NAM HỎI CÓ MỞ THƯ KHÔNG -->
+  <div id="question">
+    <div class="question-card">
+      <div class="question-visual">
+        <div class="bubble" id="boyBubble">
+          Ơ, có thư gửi cho mình này! Có nên mở ra không nhỉ? 🥺
+        </div>
+
+        <div class="character question-boy">
+          <img src="images/chibinam-letter.gif" alt="Chibi nam">
+          <span class="fallback">👦🏻</span>
+        </div>
+
+        <div class="character question-girl">
+          <img src="images/chibinu.png" alt="Chibi nữ">
+          <span class="fallback">👧🏻</span>
+        </div>
+
+        <div class="question-letter" id="questionLetter">
+          <div class="envelope" id="openEnvelope">
+            <div class="back"></div>
+            <div class="paper">Yêu thương ♡</div>
+            <div class="front"></div>
+            <div class="bottom"></div>
+            <div class="flap"></div>
+            <div class="seal">♥</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="question-copy">
+        <div class="eyebrow">A LETTER FOR YOU</div>
+        <h2>Có nên mở lá thư này không? 💌</h2>
+        <p>
+          Nữ chibi đã chạy cả một khu vườn để mang
+          lá thư này đến. Bên trong có rất nhiều
+          kỷ niệm đáng yêu đang chờ cậu!
         </p>
-      </div>
 
-      <div class="heart-gather-stage" id="gatherStage">
-        <div class="mega-letter" id="megaLetter">
-          <div class="letter-back"></div>
-          <div class="letter-paper">
-            <div style="font-size:28px;">💌</div>
-            <div style="font-size:24px;">Gửi cậu</div>
-            <div style="font-size:15px;opacity:.8;">Một lá thư to đầy yêu thương</div>
-          </div>
-          <div class="letter-front"></div>
-          <div class="letter-bottom"></div>
-          <div class="letter-flap"></div>
-          <div class="seal">♥</div>
+        <div class="actions">
+          <button class="btn yes" id="openBtn">Có, mở ngay 💗</button>
+          <button class="btn no" id="waitBtn">Chưa đâu 🙈</button>
         </div>
-      </div>
-
-      <div class="drop-zone">
-        <div class="female-dropper" id="femaleDropper">
-          <img src="images/chibi-female.png" alt="Chibi nữ" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
-          <div class="fallback hidden">👧🏻</div>
-          <div class="drop-caption">Ui! Có lá thư nè ✨</div>
-        </div>
-      </div>
-
-      <div class="cinematic-run" id="cinematicRun">
-        <div class="camera">
-          <div class="track" id="track">
-            <div class="run-scene">
-              <div class="garden"></div>
-              <div class="hills"></div>
-              <div class="flowers"></div>
-              <div class="ground"></div>
-
-              <div class="female-runner" id="femaleRunner">
-                <img src="images/chibi-female.png" alt="Chibi nữ" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
-                <div class="fallback hidden">👧🏻</div>
-
-                <div class="carried-envelope">
-                  <div class="mini-back"></div>
-                  <div class="mini-front"></div>
-                  <div class="mini-bottom"></div>
-                </div>
-              </div>
-
-              <div class="male-runner" id="maleRunner">
-                <img src="images/chibi-male.png" alt="Chibi nam" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
-                <div class="fallback hidden">👦🏻</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero-question" id="heroQuestion">
-        <div class="hero-card">
-          <div class="hero-visual" id="heroVisual">
-            <div class="bubble-note">
-              Tớ nhận được lá thư rồi nè...<br>
-              Có nên mở ra xem không nhỉ? 💭
-            </div>
-
-            <div class="hero-letter" id="heroLetter">
-              <div class="mega-letter" style="width:100%;height:100%;opacity:1;transform:none;animation:none;">
-                <div class="letter-back"></div>
-                <div class="letter-paper">
-                  <div style="font-size:24px;">💌</div>
-                  <div style="font-size:22px;">Thư của cậu</div>
-                  <div style="font-size:13px;opacity:.8;">Mở ra sẽ có thật nhiều trái tim...</div>
-                </div>
-                <div class="letter-front"></div>
-                <div class="letter-bottom"></div>
-                <div class="letter-flap"></div>
-                <div class="seal">♥</div>
-              </div>
-            </div>
-
-            <div class="female-small">
-              <img src="images/chibi-female.png" alt="Chibi nữ nhỏ" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
-              <div class="fallback hidden" style="width:90px;font-size:32px;">👧🏻</div>
-            </div>
-
-            <div class="male-big">
-              <img src="images/chibi-male.png" alt="Chibi nam to" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
-              <div class="fallback hidden" style="width:150px;font-size:48px;">👦🏻</div>
-            </div>
-          </div>
-
-          <div class="hero-copy">
-            <div class="eyebrow">CHỌN GIÚP TỚ NHÉ</div>
-            <h2>Có nên mở lá thư này<br>hay không? 💌</h2>
-            <p>
-              Nếu cậu đồng ý, lá thư này sẽ không chỉ mở ra —
-              mà còn bung nổ thành hàng ngàn trái tim, rồi dẫn đến cả một bầu trời kỷ niệm của tụi mình.
-            </p>
-            <p>
-              Còn nếu cậu chưa muốn, tớ sẽ ngồi đây ôm lá thư chờ tiếp vậy... 🥺
-            </p>
-
-            <div class="action-row">
-              <button class="btn btn-primary" id="btnOpen">Đồng ý mở 💗</button>
-              <button class="btn btn-secondary" id="btnWait">Chưa nha 🙈</button>
-            </div>
-            <div class="small-reply" id="smallReply"></div>
-          </div>
-        </div>
+        <p id="reply" role="status"></p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="story" class="section">
-    <div class="story-head">
-      <div class="eyebrow">OUR MEMORIES</div>
-      <h2>Những bức ảnh biết bay,<br>những dòng chữ biết thương</h2>
-      <p>
-        Từ đây, từng kỷ niệm sẽ lần lượt hiện ra khi cậu lướt xuống.
-        Nữ chibi sẽ chạy nhảy giới thiệu từng bức ảnh, còn nam chibi sẽ luôn đứng ở đây để lắng nghe mọi điều dễ thương nhất 💞
-      </p>
-    </div>
+<!-- ALBUM 25 ẢNH -->
+<section id="story">
+  <div class="story-head">
+    <div class="eyebrow">OUR LITTLE MEMORIES</div>
+    <h2>25 mảnh ghép của chúng mình 💞</h2>
+    <p>
+      Mỗi bức ảnh là một câu chuyện nhỏ.
+      Hãy cuộn xuống để nghe chibi nữ kể lại
+      từng khoảnh khắc nhé!
+    </p>
+  </div>
 
-    <div class="story-layout">
-      <aside class="sticky-stage">
-        <div class="mini-sky"></div>
+  <div class="story-grid">
 
-        <div class="guide-bubble" id="guideBubble">
-          <strong>Xin chào 💗</strong>
-          Tụi mình bắt đầu xem lại những khoảnh khắc đáng nhớ nhé.
-        </div>
-
-        <div class="guide-photo-frame">
-          <img id="guidePreview" src="images/anh1.jpg" alt="Ảnh đang được giới thiệu" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-          <div class="guide-fallback hidden" style="width:100%;height:100%;font-size:36px;border-radius:8px;">🖼️</div>
-          <div class="guide-caption" id="guideCaption">Kỷ niệm số 1</div>
-        </div>
-
-        <div class="guide-female">
-          <img src="images/chibi-female.png" alt="Chibi nữ hướng dẫn" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-          <div class="guide-fallback hidden">👧🏻</div>
-        </div>
-
-        <div class="guide-male">
-          <img src="images/chibi-male.png" alt="Chibi nam đứng nghe" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-          <div class="guide-fallback hidden">👦🏻</div>
-        </div>
-      </aside>
-
-      <div class="memory-list" id="memoryList"></div>
-    </div>
-
-    <div class="ending">
-      <div style="font-size:50px">💝</div>
-      <h3>Chúc cậu một ngày 19/11 thật đặc biệt</h3>
-      <p>
-        Cảm ơn cậu vì đã ở đây, vì đã cùng mình đi qua những khoảnh khắc bình thường nhưng lại trở nên thật quý giá.
-        Mong cậu luôn vui vẻ, bình an, được yêu thương thật nhiều và có thật nhiều nụ cười xinh đẹp.
-        Tụi mình sẽ còn thêm thật nhiều ảnh, thật nhiều kỷ niệm, và thật nhiều trang tiếp theo của câu chuyện này nữa nhé.
-      </p>
-
-      <div class="end-row">
-        <button class="btn btn-primary" id="replayBtn">Xem lại từ đầu ✨</button>
-        <a class="btn btn-secondary" href="#opening" style="text-decoration:none;">Quay về mở thư 💌</a>
+    <aside class="guides">
+      <div class="guide-note" id="guideNote">
+        <strong>Chibi nữ kể chuyện ♡</strong>
+        Nào, chúng mình bắt đầu xem ảnh nhé!
       </div>
-    </div>
-  </section>
 
-  <script>
-    /* ================= DỮ LIỆU 20 ẢNH =================
-       Bạn chỉ cần thay title / date / note nếu muốn.
-       File ảnh cần đúng tên: images/anh1.jpg ... images/anh20.jpg
-    =================================================== */
-    const memoryTexts = [
-      ["Ngày đầu tiên", "Bắt đầu từ một ánh nhìn 🌷", "Có những khởi đầu rất nhẹ nhàng, nhưng lại ở mãi trong tim."],
-      ["Một buổi đi chơi", "Buổi hẹn đáng yêu đầu tiên 💗", "Mình vẫn luôn nhớ cảm giác hồi hộp và vui vẻ ngày hôm đó."],
-      ["Một lần cùng nhau cười", "Nụ cười cậu làm ngày dài ngắn lại ☁️", "Chỉ cần cậu vui thôi là mọi thứ quanh mình cũng dịu đi rất nhiều."],
-      ["Một khoảnh khắc bình thường", "Điều giản dị mà mình thương 🧸", "Đôi khi chẳng cần gì đặc biệt, chỉ cần ở cạnh nhau là đủ."],
-      ["Một ngày đẹp trời", "Ánh nắng, gió và tụi mình ✨", "Những ngày đơn giản lại trở thành ký ức thật xinh."],
-      ["Một bức ảnh xinh", "Mỗi tấm hình là một chuyện kể 📷", "Mình cất lại thật kỹ vì muốn nhớ từng chi tiết."],
-      ["Một lần cùng nhau đi xa", "Đường xa nhưng tim thì gần hơn 🌤️", "Có cậu đồng hành, nơi nào cũng trở nên đáng nhớ."],
-      ["Một điều dễ thương", "Khoảnh khắc muốn giữ mãi 🫶", "Mình thích cách cậu xuất hiện và làm mọi thứ đáng yêu hơn."],
-      ["Một ngày nhiều niềm vui", "Cười thật nhiều nhé 💕", "Mình luôn mong cậu có thật nhiều ngày tràn đầy tiếng cười."],
-      ["Một lần rất nhớ", "Có những lúc chỉ muốn gặp cậu thôi 🌸", "Nỗi nhớ cũng là một kiểu yêu thương âm thầm."],
-      ["Một tấm ảnh nữa", "Lại thêm một mảnh ký ức 🤍", "Càng nhiều ảnh, mình càng thấy hành trình này thật đẹp."],
-      ["Một ngày đặc biệt", "Kỷ niệm không thể quên 🎀", "Có những ngày chỉ cần nhìn lại thôi là đã thấy ấm lòng."],
-      ["Một lần đi cùng nhau", "Bước chân chung nhịp 🥰", "Mình luôn thích cảm giác được đi cùng cậu như thế."],
-      ["Một góc thật xinh", "Tụi mình ở đây nè 🌈", "Bức hình nào cũng như một mẩu chuyện nhỏ đáng yêu."],
-      ["Một chút ngại ngùng", "Ngượng ngùng mà vẫn thật thương 🙈", "Có khi chính sự vụng về lại khiến mọi thứ dễ thương hơn."],
-      ["Một hôm nhiều cảm xúc", "Nhớ, thương, và quý 💓", "Mỗi lần nhìn lại, mình đều thấy tim mình mềm đi một chút."],
-      ["Một lời chưa nói", "Điều mình muốn giữ trong thư 💌", "Có những điều không dễ nói thành lời nên mình gửi vào web này."],
-      ["Một khoảng thời gian đẹp", "Chuyện tụi mình vẫn đang tiếp tục 🌼", "Mình mong sẽ còn được lấp đầy thêm nhiều khung hình nữa."],
-      ["Gần đến 19/11", "Một lời chúc đang tới gần ✨", "Mình chuẩn bị thật nhiều điều dễ thương để gửi đến cậu hôm nay."],
-      ["19/11", "Gửi cậu tất cả yêu thương 💝", "Chúc cậu luôn hạnh phúc, dịu dàng với thế giới và thật được yêu thương."]
-    ];
+      <div class="guide-photo">
+        <img id="previewImg"
+             src="images/anh1.jpg"
+             alt="Ảnh đang được giới thiệu">
+      </div>
 
-    const memories = memoryTexts.map((item, index) => ({
-      number: index + 1,
-      date: item[0],
-      title: item[1],
-      note: item[2],
-      image: `images/anh${index + 1}.jpg`,
-      caption: `Kỷ niệm số ${index + 1}`,
-      emoji: ["🌷","💗","☁️","🧸","✨","📷","🌤️","🫶","💕","🌸","🤍","🎀","🥰","🌈","🙈","💓","💌","🌼","✨","💝"][index]
-    }));
+      <div class="guide-girl" id="guideGirl"
+           role="button" tabindex="0"
+           aria-label="Nghe chibi nữ nói">
+        <img src="images/chibinu-running.gif" alt="Chibi nữ">
+      </div>
 
-    const fxLayer = document.getElementById("fxLayer");
-    const gatherStage = document.getElementById("gatherStage");
-    const megaLetter = document.getElementById("megaLetter");
-    const femaleDropper = document.getElementById("femaleDropper");
-    const cinematicRun = document.getElementById("cinematicRun");
-    const track = document.getElementById("track");
-    const femaleRunner = document.getElementById("femaleRunner");
-    const heroQuestion = document.getElementById("heroQuestion");
-    const heroVisual = document.getElementById("heroVisual");
-    const btnOpen = document.getElementById("btnOpen");
-    const btnWait = document.getElementById("btnWait");
-    const smallReply = document.getElementById("smallReply");
-    const story = document.getElementById("story");
-    const memoryList = document.getElementById("memoryList");
-    const guidePreview = document.getElementById("guidePreview");
-    const guideBubble = document.getElementById("guideBubble");
-    const guideCaption = document.getElementById("guideCaption");
-    const replayBtn = document.getElementById("replayBtn");
+      <div class="guide-boy" id="guideBoy"
+           role="button" tabindex="0"
+           aria-label="Nghe chibi nam nói">
+        <img src="images/chibinam-letter.gif" alt="Chibi nam">
+      </div>
+    </aside>
 
-    let sequenceStarted = false;
+    <div id="memoryList"></div>
+  </div>
 
-    function random(min, max){
-      return Math.random() * (max - min) + min;
-    }
+  <div class="ending">
+    <img src="images/chibi-main.jpg"
+         alt="Hai nhân vật chibi bên nhau">
 
-    function createGlassHeart({
-      startX = random(0, window.innerWidth),
-      startY = random(0, window.innerHeight),
-      endX = window.innerWidth / 2 + random(-150, 150),
-      endY = window.innerHeight / 2 + random(-90, 90),
-      size = random(14, 34),
-      duration = random(4.5, 7.5)
-    } = {}){
-      const heart = document.createElement("span");
-      heart.className = "glass-heart";
-      heart.style.setProperty("--sx", `${startX}px`);
-      heart.style.setProperty("--sy", `${startY}px`);
-      heart.style.setProperty("--ex", `${endX}px`);
-      heart.style.setProperty("--ey", `${endY}px`);
-      heart.style.setProperty("--size", `${size}px`);
-      heart.style.setProperty("--dur", `${duration}s`);
-      fxLayer.appendChild(heart);
-      setTimeout(() => heart.remove(), duration * 1000 + 600);
-    }
+    <h2>Chúc cậu một ngày 19/11 thật đặc biệt! 💝</h2>
 
-    function burstHearts(count = 50, centerX = window.innerWidth / 2, centerY = window.innerHeight / 2){
-      for(let i = 0; i < count; i++){
-        createGlassHeart({
-          startX: centerX + random(-20, 20),
-          startY: centerY + random(-20, 20),
-          endX: centerX + random(-window.innerWidth * .5, window.innerWidth * .5),
-          endY: centerY + random(-window.innerHeight * .5, window.innerHeight * .5),
-          size: random(12, 30),
-          duration: random(3.5, 6.5)
-        });
+    <p>
+      Cảm ơn cậu vì đã xuất hiện và khiến những
+      ngày bình thường trở nên thật đáng nhớ.
+      Mong cậu luôn vui vẻ, bình an và gặp thật
+      nhiều điều tốt đẹp.
+    </p>
+
+    <h3>Thương cậu nhiều lắm! ❤️</h3>
+    <button class="btn yes" id="replayBtn">
+      Xem lại từ đầu 💌
+    </button>
+  </div>
+</section>
+
+<script>
+"use strict";
+
+/* ===================================
+   PHẦN 1: CHỈNH NỘI DUNG 25 KỶ NIỆM
+   =================================== */
+
+const memoryTexts = [
+  ["Ngày đầu tiên","Khởi đầu của tụi mình 🌷",
+   "Có những điều bắt đầu rất nhẹ nhàng nhưng lại ở mãi trong tim."],
+
+  ["Một buổi gặp gỡ","Lần đầu đi cùng nhau 💗",
+   "Mọi thứ hôm đó thật bình thường, nhưng với mình lại đáng nhớ vô cùng."],
+
+  ["Một lần cùng cười","Nụ cười của cậu ☁️",
+   "Mỗi lần nhìn thấy cậu cười, mình cũng thấy vui theo."],
+
+  ["Một khoảnh khắc nhỏ","Điều giản dị mà mình thương 🧸",
+   "Chỉ cần ở cạnh nhau thôi là mọi thứ đã thật dễ chịu rồi."],
+
+  ["Một ngày đẹp trời","Ánh nắng và tụi mình ✨",
+   "Có cậu ở đó nên ngày hôm ấy đẹp hơn bình thường."],
+
+  ["Một tấm ảnh xinh","Kỷ niệm được giữ lại 📷",
+   "Mỗi bức ảnh giống như một câu chuyện mà mình không muốn quên."],
+
+  ["Một lần đi xa","Đi cùng nhau thật vui 🌤️",
+   "Có cậu bên cạnh thì nơi nào cũng trở nên đáng nhớ."],
+
+  ["Một phút đáng yêu","Khoảnh khắc làm tim rung lên 🫶",
+   "Có những lúc cậu chẳng làm gì cả nhưng mình vẫn thấy rất thương."],
+
+  ["Một ngày vui","Chỉ mong cậu luôn cười 💕",
+   "Mong những ngày sau này của cậu cũng sẽ luôn đầy niềm vui."],
+
+  ["Một nỗi nhớ","Có lúc chỉ muốn gặp cậu 🌸",
+   "Nhớ cậu là một cảm giác vừa nhẹ nhàng vừa rất thật."],
+
+  ["Một góc nhỏ","Điều bình yên mình thích 🤍",
+   "Mình thích những khoảnh khắc giản dị nhưng có cậu ở đó."],
+
+  ["Một ngày đặc biệt","Ký ức không muốn quên 🎀",
+   "Có những ngày đi qua rồi nhưng cảm xúc vẫn ở lại thật lâu."],
+
+  ["Một lần đồng hành","Đi cùng nhau nhé 🥰",
+   "Chỉ cần đi cùng cậu, đoạn đường nào cũng thấy vui hơn."],
+
+  ["Một bức hình nữa","Thêm một kỷ niệm 🌈",
+   "Mỗi lần nhìn lại, mình đều thấy mọi thứ thật dễ thương."],
+
+  ["Một chút ngại ngùng","Ngượng nhưng vẫn thương 🙈",
+   "Có những khoảnh khắc vụng về nhưng chính vì thế mà đáng yêu."],
+
+  ["Một ngày nhiều cảm xúc","Mình đã rất vui 💓",
+   "Nhìn lại thôi cũng đủ khiến tim mình ấm lên rồi."],
+
+  ["Một điều chưa nói","Những lời mình giữ trong tim 💌",
+   "Có những điều khó nói trực tiếp nên mình gửi vào đây."],
+
+  ["Một khoảng thời gian đẹp","Những ngày tháng thật xinh 🌼",
+   "Cảm ơn cậu vì đã khiến khoảng thời gian ấy trở nên đặc biệt."],
+
+  ["Một lần chụp ảnh","Bức hình mình rất thích 🌟",
+   "Không biết vì bức hình đẹp hay vì trong đó có cậu nữa."],
+
+  ["Một khoảnh khắc dịu dàng","Thật nhẹ nhàng 🍀",
+   "Có cậu rồi, mọi thứ quanh mình cũng trở nên dịu dàng hơn."],
+
+  ["Một ngày đáng yêu","Mỗi ngày đều đáng nhớ 🩷",
+   "Những khoảnh khắc có cậu mình đều muốn giữ lại."],
+
+  ["Một góc kỷ niệm","Nhìn lại vẫn thấy thương 🧁",
+   "Những gì nhỏ bé đôi khi lại là thứ khiến mình nhớ lâu nhất."],
+
+  ["Gần đến 19/11","Mình đã chuẩn bị điều này 🎊",
+   "Mình muốn làm một điều gì đó thật đặc biệt dành riêng cho cậu."],
+
+  ["Ngay trước ngày đặc biệt","Chỉ muốn nói rằng... 🌹",
+   "Cảm ơn cậu vì đã xuất hiện và làm cuộc sống của mình đẹp hơn."],
+
+  ["19/11","Gửi cậu tất cả yêu thương 💝",
+   "Chúc cậu luôn vui vẻ, hạnh phúc và được yêu thương thật nhiều."]
+];
+
+const emojis = [
+  "🌷","💗","☁️","🧸","✨",
+  "📷","🌤️","🫶","💕","🌸",
+  "🤍","🎀","🥰","🌈","🙈",
+  "💓","💌","🌼","🌟","🍀",
+  "🩷","🧁","🎊","🌹","💝"
+];
+
+const memories = memoryTexts.map((item,i) => ({
+  date: item[0],
+  title: item[1],
+  note: item[2],
+  image: `images/anh${i+1}.jpg`,
+  emoji: emojis[i]
+}));
+
+const $ = id => document.getElementById(id);
+const reducedMotion =
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function wait(ms) {
+  return new Promise(resolve => setTimeout(resolve,ms));
+}
+
+/* ===================================
+   PHẦN 2: TRÁI TIM THỦY TINH PASTEL
+   VẼ ĐÚNG HÌNH TRÁI TIM BẰNG CANVAS
+   =================================== */
+
+const canvas = $("heartCanvas");
+const ctx = canvas.getContext("2d");
+let hearts = [];
+let heartMode = "gather";
+let runningAnimation = false;
+let rafId = null;
+
+function resizeCanvas() {
+  const dpr = Math.min(window.devicePixelRatio || 1,2);
+  canvas.width = Math.round(innerWidth*dpr);
+  canvas.height = Math.round(innerHeight*dpr);
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+}
+window.addEventListener("resize",resizeCanvas);
+resizeCanvas();
+
+function rand(a,b) {
+  return a+Math.random()*(b-a);
+}
+
+/* Hình tim dùng đường cong Bezier */
+function heartPath(c,x,y,s) {
+  c.beginPath();
+  c.moveTo(x,y+s*.37);
+  c.bezierCurveTo(x-s*.9,y-s*.22,x-s*.5,y-s*.85,x,y-s*.35);
+  c.bezierCurveTo(x+s*.5,y-s*.85,x+s*.9,y-s*.22,x,y+s*.37);
+  c.closePath();
+}
+
+function drawHeart(h) {
+  ctx.save();
+  ctx.globalAlpha = h.alpha;
+  ctx.translate(h.x,h.y);
+  ctx.rotate(h.rotation);
+
+  const s = h.size;
+  const g = ctx.createRadialGradient(
+    -s*.2,-s*.25,0,0,0,s
+  );
+  g.addColorStop(0,"rgba(255,255,255,.98)");
+  g.addColorStop(.35,"rgba(255,219,236,.86)");
+  g.addColorStop(.7,"rgba(255,165,204,.73)");
+  g.addColorStop(1,"rgba(246,107,166,.8)");
+
+  heartPath(ctx,0,0,s);
+  ctx.fillStyle = g;
+  ctx.shadowColor = "rgba(247,112,174,.6)";
+  ctx.shadowBlur = s*.65;
+  ctx.fill();
+
+  ctx.shadowBlur = 0;
+  ctx.strokeStyle = "rgba(255,255,255,.95)";
+  ctx.lineWidth = Math.max(1,s*.055);
+  ctx.stroke();
+
+  // Vệt phản chiếu tạo cảm giác thủy tinh
+  ctx.beginPath();
+  ctx.ellipse(-s*.22,-s*.2,s*.12,s*.05,-.6,0,Math.PI*2);
+  ctx.fillStyle = "rgba(255,255,255,.95)";
+  ctx.fill();
+
+  ctx.restore();
+}
+
+/* Tạo tọa độ các hạt thành hình phong thư */
+function envelopePoint(i,total) {
+  const w = Math.min(innerWidth*.60,360);
+  const h = w*.65;
+  const cx = innerWidth/2;
+  const cy = innerHeight*.53;
+
+  const x0 = cx-w/2;
+  const y0 = cy-h/2;
+
+  const lines = [
+    [[0,0],[1,0]],
+    [[1,0],[1,1]],
+    [[1,1],[0,1]],
+    [[0,1],[0,0]],
+    [[0,0],[.5,.55]],
+    [[.5,.55],[1,0]],
+    [[0,1],[.5,.45]],
+    [[.5,.45],[1,1]]
+  ];
+
+  const segment = lines[i%lines.length];
+  const t = Math.random();
+
+  return {
+    x:x0+(segment[0][0]+
+      (segment[1][0]-segment[0][0])*t)*w,
+    y:y0+(segment[0][1]+
+      (segment[1][1]-segment[0][1])*t)*h
+  };
+}
+
+function spawnHeart(mode="float") {
+  const index = hearts.length;
+  const target = envelopePoint(index,500);
+
+  return {
+    x:rand(0,innerWidth),
+    y:rand(0,innerHeight),
+    tx:target.x,
+    ty:target.y,
+    vx:rand(-1.5,1.5),
+    vy:rand(-2,-.5),
+    size:rand(9,27),
+    rotation:rand(-.4,.4),
+    alpha:rand(.55,1),
+    mode,
+    age:0
+  };
+}
+
+function startHearts() {
+  hearts = [];
+  const amount = reducedMotion ? 80 :
+    Math.min(420,innerWidth<600 ? 180 : 360);
+
+  for(let i=0;i<amount;i++) {
+    hearts.push(spawnHeart("gather"));
+  }
+  heartMode = "gather";
+  if(!runningAnimation) {
+    runningAnimation = true;
+    animateHearts();
+  }
+}
+
+function explodeHearts() {
+  const cx = innerWidth/2;
+  const cy = innerHeight/2;
+
+  hearts = [];
+  for(let i=0;i<200;i++) {
+    const h = spawnHeart("explode");
+    h.x = cx+rand(-35,35);
+    h.y = cy+rand(-35,35);
+    const angle = Math.random()*Math.PI*2;
+    const speed = rand(2,11);
+    h.vx = Math.cos(angle)*speed;
+    h.vy = Math.sin(angle)*speed;
+    h.age = 0;
+    hearts.push(h);
+  }
+  heartMode = "explode";
+  if(!runningAnimation) {
+    runningAnimation = true;
+    animateHearts();
+  }
+}
+
+function animateHearts() {
+  ctx.clearRect(0,0,innerWidth,innerHeight);
+
+  hearts.forEach(h => {
+    h.age++;
+
+    if(heartMode==="gather") {
+      h.x += (h.tx-h.x)*.025;
+      h.y += (h.ty-h.y)*.025;
+    } else if(heartMode==="explode") {
+      h.x += h.vx;
+      h.y += h.vy;
+      h.vy += .02;
+      h.alpha *= .993;
+    } else {
+      h.y -= .45;
+      h.x += Math.sin(h.age*.02)*.3;
+      if(h.y < -30) {
+        h.y = innerHeight+30;
+        h.x = rand(0,innerWidth);
       }
     }
 
-    function introHeartSwarm(count = 180){
-      for(let i = 0; i < count; i++){
-        setTimeout(() => {
-          createGlassHeart({
-            startX: random(0, window.innerWidth),
-            startY: random(0, window.innerHeight),
-            endX: window.innerWidth / 2 + random(-170, 170),
-            endY: window.innerHeight / 2 + random(-120, 120),
-            size: random(12, 28),
-            duration: random(3.2, 5.5)
-          });
-        }, i * 22);
-      }
+    h.rotation += .004;
+    if(h.alpha>.015) drawHeart(h);
+  });
+
+  if(heartMode==="explode" &&
+     hearts.every(h=>h.alpha<.03 || h.age>420)) {
+    hearts = Array.from({length:35},()=>spawnHeart("float"));
+    heartMode = "float";
+  }
+
+  rafId = requestAnimationFrame(animateHearts);
+}
+
+/* ===================================
+   PHẦN 3: CHẠY HOẠT CẢNH MỞ ĐẦU
+   =================================== */
+
+let sceneStarted = false;
+
+async function startSequence() {
+  if(sceneStarted) return;
+  sceneStarted = true;
+
+  startHearts();
+
+  await wait(reducedMotion?200:2300);
+  $("mainLetter").classList.add("show");
+
+  await wait(reducedMotion?100:1600);
+  $("girlDrop").classList.add("drop");
+
+  await wait(reducedMotion?100:1500);
+  $("girlDrop").style.opacity = "0";
+  $("mainLetter").style.opacity = "0";
+  $("introTitle").style.opacity = "0";
+
+  $("runningScene").classList.add("active");
+
+  const world = $("world");
+  const girl = $("runnerGirl");
+
+  // Camera di chuyển ngang theo hướng chạy của nữ
+  world.animate(
+    [
+      {transform:"translateX(0)"},
+      {transform:"translateX(-55%)"}
+    ],
+    {
+      duration:reducedMotion?100:4300,
+      easing:"linear",
+      fill:"forwards"
     }
+  );
 
-    function buildTimeline(){
-      memoryList.innerHTML = "";
-
-      memories.forEach((m, index) => {
-        const card = document.createElement("article");
-        card.className = "memory-card";
-        card.dataset.index = index;
-
-        const rotate = index % 2 === 0 ? "-3deg" : "3deg";
-
-        card.innerHTML = `
-          <div class="memory-visual">
-            <div class="floating-photo" style="--rotate:${rotate}">
-              <div class="photo-box">
-                <img src="${m.image}" alt="${m.title}" loading="lazy"
-                  onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <span class="photo-fallback" style="display:none">${m.emoji}</span>
-              </div>
-              <div class="float-caption">${m.caption}</div>
-            </div>
-
-            <div class="mini-runner">
-              <img src="images/chibi-female.png" alt="Nữ chibi mini"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-              <div class="fallback hidden">👧🏻</div>
-            </div>
-          </div>
-
-          <div class="memory-copy">
-            <span class="memory-num">${String(m.number).padStart(2, "0")}</span>
-            <span class="memory-date">${m.date}</span>
-            <h3>${m.title}</h3>
-            <p>${m.note}</p>
-          </div>
-        `;
-
-        memoryList.appendChild(card);
-      });
-
-      observeTimeline();
+  // Nữ chạy từ đầu đường đến chỗ nam
+  girl.animate(
+    [
+      {left:"9%"},
+      {left:"73%"}
+    ],
+    {
+      duration:reducedMotion?100:4300,
+      easing:"linear",
+      fill:"forwards"
     }
+  );
 
-    function observeTimeline(){
-      const cards = document.querySelectorAll(".memory-card");
+  await wait(reducedMotion?150:4500);
 
-      const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if(entry.isIntersecting){
-            entry.target.classList.add("visible");
-          }
-        });
-      }, { threshold: .18 });
+  $("runningScene").classList.remove("active");
+  $("question").classList.add("active");
+  heartMode = "float";
+}
 
-      const guideObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if(entry.isIntersecting){
-            const idx = Number(entry.target.dataset.index);
-            const current = memories[idx];
-            guidePreview.src = current.image;
-            guidePreview.alt = current.title;
-            guideCaption.textContent = current.caption;
-            guideBubble.innerHTML = `
-              <strong>${current.title}</strong>
-              <span><b>${current.date}</b> — ${current.note}</span>
-            `;
-          }
-        });
-      }, { threshold: .55 });
+window.addEventListener("load",startSequence);
 
-      cards.forEach(card => {
-        revealObserver.observe(card);
-        guideObserver.observe(card);
-      });
+/* ===================================
+   PHẦN 4: TƯƠNG TÁC MỞ THƯ
+   =================================== */
+
+$("waitBtn").addEventListener("click",()=>{
+  $("reply").textContent =
+    "Không sao, lá thư sẽ chờ cậu sẵn sàng nha 🥺💕";
+  $("boyBubble").textContent =
+    "Huhu, nhưng mình tò mò lắm đó... 💗";
+});
+
+let opening = false;
+
+$("openBtn").addEventListener("click",async()=>{
+  if(opening) return;
+  opening = true;
+
+  $("openBtn").disabled = true;
+  $("waitBtn").disabled = true;
+
+  $("questionLetter").classList.add("shaking");
+  $("boyBubble").textContent =
+    "Ú òa! Mình mở nhé! 💌";
+
+  await wait(reducedMotion?100:1100);
+
+  $("questionLetter").classList.remove("shaking");
+  $("openEnvelope").classList.add("open");
+  explodeHearts();
+
+  await wait(reducedMotion?150:1300);
+
+  $("scene").style.display = "none";
+  $("story").style.display = "block";
+  buildTimeline();
+  window.scrollTo(0,0);
+
+  heartMode = "float";
+});
+
+/* ===================================
+   PHẦN 5: TẠO 25 ẢNH KỶ NIỆM
+   =================================== */
+
+let currentMemory = 0;
+
+function element(tag,className,text) {
+  const el = document.createElement(tag);
+  if(className) el.className = className;
+  if(text!==undefined) el.textContent = text;
+  return el;
+}
+
+function buildTimeline() {
+  const list = $("memoryList");
+  if(list.children.length) return;
+
+  memories.forEach((m,i)=>{
+    const card = element("article","memory");
+    card.dataset.index = i;
+
+    const visual = element("div","visual");
+    const polaroid = element("div","polaroid");
+    const photoArea = element("div","photo-area");
+
+    const fallback = element("span","photo-fallback",m.emoji);
+    const img = element("img");
+    img.alt = `Kỷ niệm số ${i+1}`;
+    img.loading = "lazy";
+    img.hidden = true;
+
+    img.onload = ()=>{
+      img.hidden = false;
+      fallback.hidden = true;
+    };
+    img.onerror = ()=>img.remove();
+    img.src = m.image;
+
+    photoArea.append(img,fallback);
+
+    polaroid.append(
+      photoArea,
+      element("div","caption",`Kỷ niệm số ${i+1} ♡`)
+    );
+
+    const mini = element("div","mini-girl");
+    const miniImg = element("img");
+    miniImg.src = "images/chibinu-running.gif";
+    miniImg.alt = "Chibi nữ giới thiệu ảnh";
+    miniImg.onerror = ()=>{
+      miniImg.replaceWith(element("span",null,"👧🏻"));
+    };
+    mini.append(miniImg);
+    visual.append(polaroid,mini);
+
+    const words = element("div","words");
+    words.append(
+      element("span","number",`MEMORY · ${String(i+1).padStart(2,"0")}`),
+      element("span","date",m.date),
+      element("h3",null,m.title),
+      element("p",null,m.note)
+    );
+
+    card.append(visual,words);
+    list.append(card);
+  });
+
+  observeMemories();
+}
+
+function updateGuide(index) {
+  currentMemory = index;
+  const m = memories[index];
+
+  const note = $("guideNote");
+  note.replaceChildren(
+    element("strong",null,`Chibi nữ: ${m.title}`),
+    document.createTextNode(m.note)
+  );
+
+  const preview = $("previewImg");
+  preview.src = m.image;
+  preview.onerror = ()=>{
+    preview.removeAttribute("src");
+    preview.alt = "Chưa có ảnh kỷ niệm này";
+  };
+}
+
+function observeMemories() {
+  const observer = new IntersectionObserver(entries=>{
+    const visible = entries.filter(e=>e.isIntersecting);
+
+    visible.forEach(e=>e.target.classList.add("visible"));
+
+    if(visible.length) {
+      visible.sort((a,b)=>
+        b.intersectionRatio-a.intersectionRatio
+      );
+      updateGuide(Number(visible[0].target.dataset.index));
     }
+  },{
+    threshold:[0.15,0.35,0.6]
+  });
 
-    function showStory(){
-      document.getElementById("opening").style.display = "none";
-      story.style.display = "block";
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      buildTimeline();
+  document.querySelectorAll(".memory")
+    .forEach(card=>observer.observe(card));
+}
+
+/* CHẠM VÀO CHIBI ĐỂ NGHE LỜI THOẠI */
+function react(id,callback) {
+  const el = $(id);
+  el.addEventListener("click",callback);
+  el.addEventListener("keydown",e=>{
+    if(e.key==="Enter" || e.key===" ") {
+      e.preventDefault();
+      callback();
     }
+  });
+}
 
-    function startSequence(){
-      if(sequenceStarted) return;
-      sequenceStarted = true;
+react("guideGirl",()=>{
+  const m = memories[currentMemory];
+  $("guideNote").replaceChildren(
+    element("strong",null,"Chibi nữ 💗"),
+    document.createTextNode(
+      `Bức ảnh này đáng yêu lắm! ${m.note}`
+    )
+  );
+});
 
-      // Phase 1: tim bay tụ vào lá thư
-      introHeartSwarm(220);
+react("guideBoy",()=>{
+  $("guideNote").replaceChildren(
+    element("strong",null,"Chibi nam 💌"),
+    document.createTextNode(
+      "Tớ đang lắng nghe từng câu chuyện nè! " +
+      "Cảm ơn cậu vì tất cả những kỷ niệm này ❤️"
+    )
+  );
+});
 
-      setTimeout(() => {
-        megaLetter.classList.add("show");
-      }, 1300);
+/* XEM LẠI TỪ ĐẦU */
+$("replayBtn").addEventListener("click",()=>{
+  location.reload();
+});
 
-      // Phase 2: nữ chibi rớt xuống lấy thư
-      setTimeout(() => {
-        femaleDropper.classList.add("active");
-      }, 4200);
-
-      setTimeout(() => {
-        femaleDropper.style.display = "none";
-        gatherStage.style.opacity = "0";
-      }, 5900);
-
-      // Phase 3: chạy sang nam
-      setTimeout(() => {
-        cinematicRun.classList.add("active");
-        femaleRunner.classList.add("running");
-        track.style.transform = "translateX(-85vw)";
-        femaleRunner.style.left = "132vw";
-      }, 6000);
-
-      // Phase 4: vào cảnh chính diện nam + thư
-      setTimeout(() => {
-        cinematicRun.classList.remove("active");
-        heroQuestion.classList.add("active");
-      }, 10400);
-    }
-
-    btnWait.addEventListener("click", () => {
-      smallReply.textContent = "Tớ sẽ ôm lá thư ngồi chờ thêm một chút nha 🥺💗";
-    });
-
-    btnOpen.addEventListener("click", () => {
-      smallReply.textContent = "";
-      heroVisual.classList.add("shake");
-
-      setTimeout(() => {
-        heroVisual.classList.remove("shake");
-        burstHearts(160, window.innerWidth / 2, window.innerHeight / 2);
-      }, 900);
-
-      setTimeout(() => {
-        showStory();
-      }, 1650);
-    });
-
-    replayBtn.addEventListener("click", () => {
-      location.reload();
-    });
-
-    window.addEventListener("load", startSequence);
-  </script>
+/* HỖ TRỢ KHI ẢNH CHIBI CHƯA CÓ */
+document.querySelectorAll(".character img").forEach(img=>{
+  img.addEventListener("error",()=>{
+    img.classList.add("failed");
+  });
+});
+</script>
 </body>
 </html>
