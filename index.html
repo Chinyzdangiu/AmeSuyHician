@@ -3,187 +3,329 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#ffe9f1">
-<meta name="description" content="Ame và Hician — lá thư 19/11 với 20 tấm ảnh và 19 kỷ niệm.">
-<title>Ame ♡ Hician — Điều mình muốn kể</title>
+<meta name="theme-color" content="#ffecf4">
+<meta name="description" content="Ame và Hician — Lá thư ngày 19/11 cùng 19 tấm ảnh trong 18 kỷ niệm.">
+<title>Ame ♡ Hician — Lá thư 19/11</title>
+<link rel="preload" href="images/ame-hi.webp" as="image" type="image/webp">
 <style>
-:root{--pink:#f47dad;--ink:#954b70;--paper:#fffafc;--shadow:0 18px 45px #a9618130}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#fbe8f1;color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:hidden}h1,h2,h3{font-family:Georgia,serif}img{display:block;max-width:100%}button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid #a33b75;outline-offset:3px}[hidden]{display:none!important}
-.btn{padding:13px 24px;border-radius:999px;border:1px solid #f3bfd3;font-weight:750;background:white;color:var(--ink)}.btn.main{color:white;border:0;background:linear-gradient(120deg,#ff9fc6,#ef639d);box-shadow:0 10px 24px #ee82ac66}.btn:hover{filter:brightness(1.05)}
-#heartCanvas{position:fixed;inset:0;width:100%;height:100%;z-index:45;pointer-events:none}
-#cinema{position:relative;min-height:540px;height:100svh;isolation:isolate;background:linear-gradient(#dedaf8,#ffe5ef 65%,#fdf0df);overflow:hidden}
-.scene{position:absolute;inset:0;visibility:hidden;opacity:0;pointer-events:none;transition:opacity .85s ease,visibility .85s ease}.scene.active{visibility:visible;opacity:1;pointer-events:auto}
-#skip{position:absolute;right:12px;bottom:14px;z-index:30;background:#ffffffeb;color:#a34e78;border:1px solid #f2c7d8;border-radius:50px;padding:8px 13px;font-size:12px}
-#intro{background:linear-gradient(#e3dcfd,#ffe5f2 68%,#ffefe1)}.intro-heading{position:absolute;z-index:2;top:5%;left:5%;width:90%;text-align:center;transition:opacity .65s}.intro-heading h1{font-size:clamp(25px,4vw,49px);line-height:1.2;margin:12px 0}.eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:850;color:#cb6794}.intro-heading p{margin:0;font-size:clamp(12px,1.6vw,16px)}
-/* ONE single envelope: after traveling into Ame's hands it gets hidden and changes to holding pose. */
-#envelope{position:absolute;left:50%;top:52%;width:min(370px,64vw);aspect-ratio:1.5;z-index:6;opacity:0;transform:translate(-50%,-50%) scale(.15);filter:drop-shadow(0 0 25px #ff90bc);will-change:transform,opacity,left,top}.en-back,.en-front,.en-flap,.en-fold,.en-seal{position:absolute}.en-back{inset:0;border-radius:16px;background:#f4a6c3;box-shadow:0 15px 30px #a65b8660}.en-front{inset:0;background:#f8bfd4;clip-path:polygon(0 0,50% 57%,100% 0,100% 100%,0 100%);border-radius:16px}.en-fold{inset:0;background:#ffdae7;clip-path:polygon(0 100%,50% 42%,100% 100%)}.en-flap{inset:0;height:55%;background:#ffeaf2;clip-path:polygon(0 0,100% 0,50% 100%)}.en-seal{top:49%;left:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:15%;aspect-ratio:1;color:white;background:#ed69a1;border-radius:100%;font-size:22px}#envelope.shining{animation:enShine 1.5s ease-in-out infinite alternate}@keyframes enShine{to{filter:drop-shadow(0 0 52px #ff63af)}}
-#ameArrival{position:absolute;left:48%;top:-400px;width:clamp(136px,20vw,215px);height:clamp(230px,45vh,350px);transform:translateX(-50%);opacity:0;z-index:8;pointer-events:none}#ameArrival img{position:absolute;left:3%;bottom:0;width:94%;height:68%;object-fit:contain;filter:drop-shadow(0 8px 12px #a3618744)}.balloon{position:absolute;left:16%;top:0;width:68%;height:42%;transform-origin:center bottom}.balloon-cap{height:76%;border-radius:49% 49% 39% 39%;background:radial-gradient(circle at 30% 18%,white,#ffdded 35%,#ef81b0);border:3px solid #fff9;box-shadow:0 8px 28px #c4759b40}.balloon-cap::after{content:'♡';position:absolute;top:14%;left:38%;color:#fff;font-size:31px}.balloon-rope{position:absolute;left:30%;top:72%;height:22%;width:40%;border-left:2px solid #af8976;border-right:2px solid #af8976}.balloon-basket{position:absolute;bottom:0;left:32%;height:14%;width:37%;background:repeating-linear-gradient(0deg,#dba56d 0 4px,#ad7853 4px 8px);border-radius:3px 3px 7px 7px}
-/* static park for all moving chibi scenes — scenery never pans */
-.park{background:#ffe4ed url('images/park-path-clear.webp') center /cover no-repeat}.park::after{content:'';position:absolute;inset:0;background:linear-gradient(#ffffff10,#ffe2ed11 60%,#fdebd533);pointer-events:none}#runAme,#runHician,#handoffAme,#handoffHician,#questionAme,#questionHician{position:absolute;z-index:3;transform-origin:center bottom;will-change:transform,opacity}#runAme img,#runHician img,#handoffAme img,#handoffHician img,#questionAme img,#questionHician img{width:100%;height:100%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 8px 11px #6f485846)}
-#runAme{left:12%;bottom:6%;width:clamp(100px,15vw,180px);height:clamp(180px,37vh,315px)}#runHician{right:8%;bottom:6%;width:clamp(140px,21vw,240px);height:clamp(205px,43vh,350px)}
-#handoffAme{left:25%;bottom:7%;width:clamp(130px,22vw,250px);height:clamp(220px,49vh,410px)}#handoffHician{right:18%;bottom:7%;width:clamp(155px,23vw,260px);height:clamp(225px,50vh,425px)}#handoffLetter{position:absolute;top:53%;left:46%;z-index:7;width:clamp(35px,5vw,58px);aspect-ratio:1.5;background:#ffc4d9;border:2px solid white;border-radius:5px;box-shadow:0 0 24px #ff8fbd;opacity:0;transform:translate(-50%,-50%) scale(.7);pointer-events:none}#handoffLetter::before{content:'♥';position:absolute;left:40%;top:25%;font-size:15px;color:#f15e99}
-#handoffScene,#runScene{overflow:hidden}#handoffScene::before{content:'';position:absolute;inset:0;background:linear-gradient(#ffffff28,transparent 42%);pointer-events:none}
-#questionScene{background:#fbe5ef;display:grid;place-items:center;padding:clamp(10px,2vw,24px)}.question-card{width:min(1150px,100%);display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:center;padding:clamp(10px,1.6vw,20px);border:9px solid #fff;border-radius:32px;background:#fffafc;box-shadow:var(--shadow)}.question-art{position:relative;height:clamp(295px,57vh,490px);border-radius:22px;overflow:hidden;background:#f7e7ee url('images/park-path-clear.webp') center/cover no-repeat}.question-art:after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 75%,#f4d9df60);pointer-events:none}#questionAme{left:4%;bottom:2%;width:45%;height:80%;animation:softBop 3.2s ease-in-out infinite}#questionHician{right:5%;bottom:2%;width:50%;height:86%;animation:softBop 3.7s ease-in-out infinite alternate}@keyframes softBop{50%{transform:translateY(-5px)}}.question-copy{padding:12px}.question-copy h2{font-size:clamp(28px,3.5vw,47px);line-height:1.18;margin:14px 0}.question-copy p{line-height:1.8}.question-buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}#reply{min-height:24px;font-size:13px}
-/* album: guide and memory list share parent so sticky stops only at end of the album */
-#album{display:none;padding:55px 12px 75px;background:linear-gradient(#fff1f7,#f9e5ef)}#album.open{display:block}.album-head{text-align:center;max-width:760px;margin:0 auto 36px}.album-head h2{font-size:clamp(29px,4.6vw,50px);margin:10px 0}.album-head p{line-height:1.8}
-.album-layout{max-width:1220px;margin:auto;display:grid;grid-template-columns:minmax(265px,325px) minmax(0,1fr);gap:22px;align-items:start}.guide-wrap{position:sticky;top:10px;z-index:13;align-self:start}.guide{position:relative;height:min(670px,76svh);min-height:490px;padding:12px;background:#fbe5ef;border:9px solid white;border-radius:28px;overflow:hidden;box-shadow:var(--shadow)}.guide-bg{position:absolute;inset:0;background:linear-gradient(#fff6fbbb,#ffeaf288),url('images/park-path-clear.webp') center/cover}.speech{position:absolute;z-index:8;left:12px;right:12px;border-radius:19px;background:#fffffff0;padding:10px 13px;font-size:clamp(12px,1.1vw,14px);box-shadow:0 7px 15px #9a58702b;line-height:1.5}.speech.ame{top:11px}.speech.hician{top:105px;left:16%;background:#fff1f8f5}.speech strong{display:block}.guide-photo{position:absolute;left:22%;top:38%;width:56%;aspect-ratio:4/5;transform:rotate(-4deg);z-index:4;border:7px solid white;border-bottom-width:23px;background:#fff;box-shadow:0 15px 25px #99557c4b;overflow:hidden}.guide-photo img{height:100%;width:100%;object-fit:cover}.guide-photo.double{display:grid;grid-template-columns:1fr 1fr;aspect-ratio:5/4}.guide-photo.double img{height:100%;object-fit:cover}.guide-girl,.guide-boy{position:absolute;bottom:2%;width:46%;height:35%;z-index:5;cursor:pointer}.guide-girl{left:0}.guide-boy{right:-3%}.guide-girl img,.guide-boy img{height:100%;width:100%;object-fit:contain;object-position:center bottom}
-.memory-list{display:grid;gap:27px;min-width:0}.memory{display:grid;grid-template-columns:1fr 1fr;min-width:0;background:var(--paper);border:9px solid white;border-radius:28px;overflow:hidden;box-shadow:var(--shadow);opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}.memory.seen{opacity:1;transform:none}.memory:nth-child(even) .photo-side{order:2}.memory:nth-child(even) .text-side{order:1}.photo-side{min-width:0;position:relative;min-height:365px;padding:23px;display:grid;place-items:center;background:#fbe5ef}.polaroid{background:white;padding:10px 10px 30px;width:90%;max-width:320px;transform:rotate(-3deg);box-shadow:0 12px 25px #87527040}.memory:nth-child(even) .polaroid{transform:rotate(3deg)}.photo-frame{aspect-ratio:4/5;background:#ffe8f2;overflow:hidden}.photo-frame img{height:100%;width:100%;object-fit:cover}.polaroid.duo{width:97%;max-width:none;transform:rotate(-1deg)}.polaroid.duo .photo-frame{display:grid;grid-template-columns:1fr 1fr;gap:5px;aspect-ratio:5/4}.photo-frame .missing{font-size:12px;padding:14px;display:grid;place-items:center;height:100%}.polaroid-name{text-align:center;padding-top:10px;font:italic 15px Georgia,serif;color:#a85a82}.corner{position:absolute;z-index:4;width:clamp(65px,8vw,106px);height:clamp(72px,8.8vw,114px);pointer-events:none}.corner img{width:100%;height:100%;object-fit:contain;object-position:bottom}.corner.left{left:0;bottom:1px}.corner.right{right:1px;bottom:1px}.corner.top{top:2px;bottom:auto}.text-side{display:flex;flex-direction:column;justify-content:center;padding:clamp(20px,3.3vw,39px);min-width:0}.text-side .stamp{font-size:11px;font-weight:900;letter-spacing:.18em;color:#dd77a1}.text-side h3{font-size:clamp(26px,3vw,37px);line-height:1.2;margin:15px 0}.text-side p{line-height:1.85;margin:0}.memory-dialog{margin-top:20px;border-left:3px solid #f2a4c4;padding:10px 13px;background:#fff1f7;border-radius:0 13px 13px 0;font-size:13px;line-height:1.65}.memory-dialog strong{color:#ab4c7c}.memory-dialog .answer{margin-top:7px;color:#86546a}.ending{max-width:850px;margin:75px auto 0;border:9px solid white;border-radius:30px;padding:30px 25px;text-align:center;background:#fffafc;box-shadow:var(--shadow)}.ending img{width:min(310px,100%);margin:0 auto 15px;border-radius:18px}.ending p{line-height:1.85}
-@media(max-width:860px){.album-layout{grid-template-columns:1fr}.guide-wrap{position:sticky;top:5px;z-index:20}.guide{height:215px;min-height:0;border-width:6px;border-radius:24px}.speech{left:8px;top:8px;right:auto;width:55%;font-size:11px;padding:7px 9px;max-height:94px;overflow:hidden}.speech.hician{top:101px;left:8px;width:55%}.guide-photo{left:auto;right:21%;top:30px;width:23%;aspect-ratio:4/5;border-width:4px;border-bottom-width:10px}.guide-girl{width:112px;height:125px;left:auto;right:65px}.guide-boy{width:125px;height:130px;right:-7px}.memory{grid-template-columns:1fr}.memory:nth-child(even) .photo-side,.memory:nth-child(even) .text-side{order:initial}.photo-side{min-height:330px}.polaroid{max-width:340px}.text-side{padding:23px}}
-@media(max-width:600px){#cinema{min-height:500px}.intro-heading{top:7%}.question-card{grid-template-columns:1fr;gap:6px;padding:8px;border-width:6px;border-radius:24px;max-height:97svh;overflow-y:auto}.question-art{height:clamp(220px,42svh,345px)}.question-copy{padding:12px}.question-copy h2{font-size:clamp(24px,7vw,33px)}.question-copy p{font-size:13px;line-height:1.6}.question-buttons .btn{flex:1;padding:11px 8px;font-size:13px}#runAme{width:36vw;max-width:155px;bottom:10%}#runHician{width:42vw;max-width:170px;bottom:10%}#handoffAme{width:39vw;left:4%;bottom:12%}#handoffHician{width:50vw;right:0;bottom:12%}.guide{height:196px}.guide-photo{right:20%;width:25%;top:25px}.guide-girl{width:95px;right:52px}.guide-boy{width:113px}.speech{width:54%;font-size:10px}.speech.hician{top:98px}.photo-side{min-height:285px;padding:15px}.corner{width:75px;height:88px}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.memory{transition:none}.question-art #questionAme,.question-art #questionHician{animation:none}}
+:root{
+  --rose:#f077a6;--rose-deep:#995276;--rose-soft:#ffe3ef;--paper:#fffafd;
+  --shadow:0 20px 52px rgba(165,82,127,.16)
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;overflow-x:hidden;background:#f9e7f0;color:var(--rose-deep);font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+img{display:block;max-width:100%}button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid #a72c6d;outline-offset:4px}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif}[hidden]{display:none!important}
+#heartCanvas{position:fixed;inset:0;z-index:50;width:100%;height:100%;pointer-events:none}
+.btn{border:0;border-radius:999px;padding:14px 25px;font-weight:800;transition:filter .2s ease,transform .2s ease}
+.btn:hover{filter:brightness(1.04)}.primary{background:linear-gradient(135deg,#ffa0c5,#ed609b);color:#fff;box-shadow:0 12px 30px #e978aa55}
+.secondary{background:#fff;color:#9e5178;border:1px solid #f4bcd5}.eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:900;color:#bd618a}
+/* 1. SCENE ENGINE: scenes do not overlap after transitions */
+#cinema{height:100svh;min-height:520px;position:relative;overflow:hidden;isolation:isolate;background:linear-gradient(#ddd8fb 0%,#ffdfed 65%,#ffefd9 100%)}
+.scene{position:absolute;inset:0;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .85s ease,visibility .85s}
+.scene.active{opacity:1;visibility:visible;pointer-events:auto}.scene.leaving{opacity:0;pointer-events:none}
+#opening{background:radial-gradient(ellipse at 18% 20%,#fff9,transparent 42%),linear-gradient(#dcd5fa,#ffe4ef 65%,#fff1e5)}
+#openingTitle{position:absolute;top:5%;left:5%;width:90%;text-align:center;z-index:3;transition:opacity .55s}
+#openingTitle h1{font-size:clamp(26px,4.7vw,51px);line-height:1.17;margin:10px 0}#openingTitle p{font-size:clamp(12px,1.5vw,16px);margin:10px 0}
+/* one envelope in the air, never a second CSS envelope in the pickup pose */
+#letter{position:absolute;left:50%;top:52%;width:min(360px,63vw);aspect-ratio:1.48;z-index:5;opacity:0;transform:translate(-50%,-50%) scale(.12);filter:drop-shadow(0 0 24px #ff9bcb);will-change:transform,opacity}
+#letter.glow{animation:letterBreathe 2.2s ease-in-out infinite alternate}
+@keyframes letterBreathe{from{filter:drop-shadow(0 0 15px #f9a6d2)}to{filter:drop-shadow(0 0 42px #ff75b8)}}
+.env-back,.env-front,.env-fold,.env-flap,.env-seal{position:absolute}
+.env-back{inset:0;background:#f2a2c2;border-radius:18px;box-shadow:0 18px 30px #ba6b9755}
+.env-front{inset:0;background:#f8bbd5;clip-path:polygon(0 0,50% 57%,100% 0,100% 100%,0 100%);border-radius:18px}
+.env-fold{inset:0;background:#ffd6e7;clip-path:polygon(0 100%,50% 45%,100% 100%)}
+.env-flap{left:0;top:0;width:100%;height:55%;background:#ffeaf1;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top}
+.env-seal{top:48%;left:50%;transform:translate(-50%,-50%);width:15%;aspect-ratio:1;border-radius:50%;background:#ed5f9b;color:white;font-size:clamp(18px,3vw,27px);display:grid;place-items:center}
+/* Ame descends, greets, turns, then the only envelope goes away BEFORE pose changes */
+#arrival{position:absolute;left:50%;top:-440px;width:clamp(134px,20vw,210px);height:clamp(260px,43vh,355px);transform:translateX(-50%);z-index:7;opacity:0;pointer-events:none}
+#arrival img{position:absolute;left:6%;bottom:0;width:88%;height:68%;object-fit:contain;filter:drop-shadow(0 8px 15px #a2678a44)}
+.balloon{position:absolute;left:6%;top:0;width:88%;height:50%;transform-origin:50% 100%;animation:balloonSway 3s ease-in-out infinite alternate}
+.balloon .dome{position:absolute;left:7%;width:86%;top:0;height:75%;border-radius:48% 48% 39% 39%;border:3px solid #fff7;background:radial-gradient(circle at 29% 20%,white,#ffdef0 25%,#f391c0 75%);box-shadow:inset -10px -8px 22px #c866973b,0 10px 25px #e48cbb55}
+.balloon .dome::after{content:'♡';position:absolute;top:16%;left:40%;color:white;font-size:34px}
+.balloon .rope{position:absolute;top:69%;height:21%;width:2px;background:#b78b8c}.balloon .rope.a{left:30%}.balloon .rope.b{right:30%}
+.balloon .basket{position:absolute;left:34%;bottom:0;width:32%;height:17%;border-radius:4px 4px 9px 9px;background:repeating-linear-gradient(0deg,#bd865c 0 5px,#e0b181 5px 10px)}
+@keyframes balloonSway{to{transform:rotate(4deg)}}
+#landingGlow{position:absolute;inset:0;background:url('images/park-garden.webp') center 57% /cover no-repeat;opacity:0;transition:opacity 1.25s}
+/* 2. clear walking path: foreground characters do not intersect the fence */
+#runScene{background:#fbe4ed}
+.run-world{position:absolute;inset:0;width:100%;height:100%;overflow:hidden}
+.run-background{position:absolute;inset:-3% -95%;background:url('images/park-garden.webp') center 56%/auto 108% repeat-x;filter:saturate(.92);will-change:transform}
+.run-background::after{content:"";position:absolute;inset:60% 0 0;background:linear-gradient(transparent,#fae9ee44)}
+#runAme{position:absolute;left:8%;bottom:6%;width:clamp(130px,21vw,220px);height:clamp(175px,34vh,320px);z-index:4;transform:translateZ(0)}
+#runAme img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 10px 11px #604c5370)}
+#runHician{position:absolute;right:9%;bottom:6%;width:clamp(135px,21vw,225px);height:clamp(185px,36vh,325px);z-index:3}
+#runHician img{width:100%;height:100%;object-fit:contain}
+/* 3. actual nine-frame handoff animation, no text */
+#handoffScene{display:grid;place-items:center;padding:clamp(12px,3vw,32px);background:linear-gradient(#fff4f9,#f8dce9)}
+.scene-frame{position:relative;width:min(1050px,100%);background:#fff;border:10px solid #fff;border-radius:28px;overflow:hidden;box-shadow:var(--shadow)}
+#handoffImg{width:100%;display:block;aspect-ratio:640/426;object-fit:cover}
+#handoffGlow{position:absolute;inset:0;opacity:0;pointer-events:none;background:radial-gradient(circle at 50% 50%,#fff8,transparent 62%)}
+#handoffGlow.on{animation:softFlash .9s forwards}
+@keyframes softFlash{0%{opacity:0}55%{opacity:.8}100%{opacity:.35}}
+/* 4. question is DISTINCT from the handoff: seated chibi with letter */
+#questionScene{display:grid;place-items:center;padding:clamp(12px,2vw,28px);background:#ffe7f0}
+.question-shell{width:min(1180px,100%);display:grid;grid-template-columns:minmax(0,1.05fr) minmax(300px,.95fr);gap:clamp(14px,3vw,30px);padding:clamp(12px,1.8vw,22px);border:10px solid white;border-radius:32px;background:#fff9fc;align-items:center;box-shadow:var(--shadow)}
+.question-art{position:relative;aspect-ratio:640/426;min-width:0;border-radius:22px;overflow:hidden;background:#f7e2ea}
+.question-art img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.question-art::after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 23px #fff8}
+.question-text h2{font-size:clamp(29px,3.6vw,49px);line-height:1.18;margin:14px 0 18px}.question-text p{line-height:1.8;color:#a16e88}
+.question-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}.question-text #reply{min-height:25px;font-size:14px}
+/* 5. album: pink outer background + white borders + sticky guide */
+#album{display:none;padding:60px clamp(12px,2vw,24px) 85px;background:linear-gradient(#fff1f8,#f9e3ed)}#album.open{display:block}
+.album-header{max-width:780px;margin:0 auto 45px;text-align:center}.album-header h2{font-size:clamp(31px,5vw,54px);margin:15px 0}.album-header p{line-height:1.75}
+.memory-layout{max-width:1240px;margin:auto;display:grid;grid-template-columns:minmax(255px,315px) minmax(0,1fr);gap:25px;align-items:start}
+.guide-sticky{position:sticky;top:12px;align-self:start;z-index:12}
+.guide{position:relative;height:min(660px,76svh);min-height:475px;border:9px solid white;border-radius:30px;overflow:hidden;box-shadow:var(--shadow);background:#f9e1eb}
+.guide::before{content:"";position:absolute;inset:0;background:linear-gradient(#fff6fc44,#fff4f34d),url('images/park-garden.webp') center/cover;opacity:.9}
+.guide-note{position:absolute;top:13px;left:12px;right:12px;z-index:8;background:#fffdfdf5;border-radius:20px;padding:14px;font-size:clamp(12px,1.25vw,14px);line-height:1.55;box-shadow:0 7px 18px #a5598033}
+.guide-note strong{display:block;color:#a2527b}
+.guide-preview{position:absolute;left:24%;top:39%;width:52%;aspect-ratio:4/5;background:white;border:7px solid white;border-bottom-width:22px;box-shadow:0 12px 28px #9a597b3e;transform:rotate(-5deg);z-index:3}
+.guide-preview img{width:100%;height:100%;object-fit:cover}.guide-preview.double img{height:50%}
+.guide-ame,.guide-hician{position:absolute;bottom:4%;z-index:5;width:48%;height:38%;cursor:pointer;filter:drop-shadow(0 6px 7px #74445538)}
+.guide-ame{left:-2%}.guide-hician{right:-2%}
+.guide-ame img,.guide-hician img{width:100%;height:100%;object-fit:contain;object-position:bottom}
+.memory-list{display:grid;gap:30px;min-width:0}
+.memory{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;min-width:0;overflow:hidden;background:#fffafd;border:9px solid white;border-radius:32px;box-shadow:var(--shadow);opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.memory.visible{opacity:1;transform:none}
+.memory:nth-child(even) .memory-art{order:2}.memory:nth-child(even) .memory-copy{order:1}
+.memory-art{position:relative;min-height:360px;padding:22px;display:grid;place-items:center;background:#f9e3ed;isolation:isolate;overflow:hidden}
+.memory-art::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 15% 12%,#fff8,transparent 35%),radial-gradient(circle at 90% 80%,#ffd6e5,transparent 40%);z-index:-1}
+.polaroid{width:min(100%,330px);padding:11px 11px 33px;background:white;box-shadow:0 15px 28px #ac668945;transform:rotate(var(--tilt,-3deg));position:relative}
+.memory-media{height:clamp(250px,28vw,380px);background:#ffe3ee;display:grid;grid-template-columns:1fr;overflow:hidden}
+.memory-media.duo{grid-template-columns:1fr 1fr;gap:5px}
+.tile{min-width:0;min-height:0;position:relative;background:#f9dce9}
+.tile img{width:100%;height:100%;object-fit:cover}.memory-media.duo img{object-fit:cover}
+.fallback-photo{position:absolute;inset:0;display:grid;place-items:center;font-size:14px;text-align:center;padding:15px}
+.memory-label{text-align:center;font:italic 15px Georgia,serif;margin-top:10px}
+.pose{position:absolute;bottom:0;width:clamp(74px,25%,120px);height:clamp(92px,30%,145px);z-index:6;pointer-events:none;filter:drop-shadow(0 4px 5px #a5618644)}
+.pose img{width:100%;height:100%;object-fit:contain;object-position:bottom}
+.pose.left{left:1%}.pose.right{right:1%}.pose.peek{bottom:-15px}.pose.point{bottom:8px}
+.memory-copy{display:flex;flex-direction:column;justify-content:center;gap:12px;padding:clamp(18px,3vw,32px)}
+.memory-number{font-size:13px;letter-spacing:2px;font-weight:900;color:#e577a5}.memory-date{align-self:flex-start;border:1px solid #f5c1d7;border-radius:999px;padding:7px 12px;font-size:13px;background:#fff6fa}
+.memory-copy h3{font-size:clamp(24px,3vw,38px);line-height:1.2;margin:0}.memory-copy p{line-height:1.8;margin:0;color:#a56b86}
+.ending{max-width:800px;margin:80px auto 0;padding:30px;border:10px solid #fff;background:#fff8fb;border-radius:30px;text-align:center;box-shadow:var(--shadow)}
+.ending img{width:min(290px,90%);margin:0 auto 17px;border-radius:18px}.ending p{line-height:1.9}
+#skipIntro{position:fixed;z-index:80;right:12px;bottom:15px;border:1px solid #f4bcd3;border-radius:999px;padding:11px 17px;background:#fffdfdf0;color:#995276;box-shadow:0 8px 18px #9e5c8133;font-size:13px}
+@media(max-width:850px){
+  .question-shell{grid-template-columns:1fr;gap:15px;max-width:600px}.question-art{aspect-ratio:640/426}.question-text{padding:0 6px 7px}.question-text h2{font-size:clamp(26px,6.5vw,34px);margin:8px 0}.question-text p{font-size:14px;line-height:1.65;margin:9px 0}.question-actions{margin-top:13px}
+  .memory-layout{display:block}.guide-sticky{top:0;margin-bottom:17px}.guide{height:clamp(195px,29svh,260px);min-height:0;border-width:6px;border-radius:25px}
+  .guide-note{width:47%;right:auto;font-size:clamp(10px,2.7vw,13px);top:8px;left:8px;padding:9px;max-height:75%;overflow:auto}
+  .guide-preview{width:21%;height:63%;top:18%;left:49%;border-width:5px;border-bottom-width:16px;transform:rotate(-5deg)}
+  .guide-ame{width:24%;height:56%;left:37%;bottom:0}.guide-hician{width:29%;height:69%;right:0;bottom:0}
+}
+@media(max-width:620px){
+  #cinema{min-height:480px}.scene-frame{border-width:6px;border-radius:22px}
+  #runAme{bottom:11%;width:30%;height:28%}#runHician{bottom:11%;width:33%;height:31%}
+  #arrival{width:155px;height:275px}
+  .memory{grid-template-columns:1fr;gap:0;border-width:7px}.memory:nth-child(even) .memory-art,.memory:nth-child(even) .memory-copy{order:initial}
+  .memory-art{min-height:280px;padding:17px}.memory-media{height:clamp(260px,70vw,450px)}.memory-copy{padding:22px}
+  .pose{width:95px;height:105px}.album-header{margin-bottom:20px}
+  .question-actions .btn{flex:1;padding:13px 12px;font-size:14px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.memory{transition:none;opacity:1;transform:none}.balloon{animation:none}#letter.glow{animation:none}}
 </style>
 </head>
 <body>
 <canvas id="heartCanvas" aria-hidden="true"></canvas>
+<button id="skipIntro" type="button">Bỏ qua mở đầu →</button>
 <main>
-<section id="cinema" aria-label="Ame gửi lá thư đến Hician">
-<button id="skip" type="button">Bỏ qua mở đầu →</button>
-<div class="scene active" id="intro">
- <header class="intro-heading" id="introHeading"><span class="eyebrow">19 / 11 · A little love story</span><h1>Một bầu trời trái tim<br>dành riêng cho Hician ♡</h1><p>Có một lá thư đang tìm đường đến cậu...</p></header>
- <div id="envelope" aria-label="Một lá thư hồng phát sáng"><div class="en-back"></div><div class="en-front"></div><div class="en-fold"></div><div class="en-flap"></div><div class="en-seal">♥</div></div>
- <div id="ameArrival"><div class="balloon" id="balloon"><div class="balloon-cap"></div><div class="balloon-rope"></div><div class="balloon-basket"></div></div><img id="arrivalPose" src="images/ame-pose-hi.webp" alt="Ame vẫy tay chào"></div>
-</div>
-<div class="scene park" id="runScene" aria-label="Ame chạy qua công viên">
- <div id="runAme"><img src="images/chibinu-running.gif" data-backup="images/ame-pose-run.webp" alt="Ame chạy cầm thư"></div>
- <div id="runHician"><img src="images/hician-pose-bench.webp" data-backup="images/hician-sit.webp" alt="Hician ngồi đợi"></div>
-</div>
-<div class="scene park" id="handoffScene" aria-label="Ame đưa thư và Hician nhận thư">
- <div id="handoffAme"><img id="handoffAmePose" src="images/ame-pose-present.webp" alt="Ame đưa tay trao thư"></div>
- <div id="handoffHician"><img id="handoffHicianPose" src="images/hician-pose-relax.webp" alt="Hician đưa người về phía trước để nhận thư"></div>
- <div id="handoffLetter" aria-hidden="true"></div>
-</div>
-<div class="scene" id="questionScene">
- <div class="question-card">
-  <div class="question-art"><div id="questionAme"><img src="images/ame-pose-giggle.webp" alt="Ame vui vẻ chờ Hician mở thư"></div><div id="questionHician"><img src="images/hician-pose-letter.webp" data-backup="images/hician-pose-open.webp" alt="Hician ngồi cầm thư"></div></div>
-  <div class="question-copy"><span class="eyebrow">Gửi riêng Hician</span><h2>Có muốn mở lá thư này không? 💌</h2><p>Ame đã mang đến 20 tấm ảnh lưu giữ 19 kỷ niệm của hai đứa mình.</p><div class="question-buttons"><button class="btn main" id="yes" type="button">Có, mở ngay ♡</button><button class="btn" id="no" type="button">Chưa đâu 🙈</button></div><p id="reply" aria-live="polite"></p></div>
- </div>
-</div>
+<section id="cinema" aria-label="Câu chuyện lá thư của Ame và Hician">
+  <div id="opening" class="scene active">
+    <div id="landingGlow"></div>
+    <div id="openingTitle"><div class="eyebrow">19 / 11 · A love story</div><h1>Một bầu trời trái tim<br>dành riêng cho Hician ♡</h1><p>Một món quà đặc biệt đang bay tới...</p></div>
+    <div id="letter" aria-label="Lá thư phát sáng màu hồng">
+      <div class="env-back"></div><div class="env-front"></div><div class="env-fold"></div><div class="env-flap"></div><div class="env-seal">♥</div>
+    </div>
+    <div id="arrival" aria-label="Ame đáp xuống bằng khinh khí cầu">
+      <div id="balloon" class="balloon"><div class="dome"></div><div class="rope a"></div><div class="rope b"></div><div class="basket"></div></div>
+      <img id="arrivalImg" src="images/ame-hi.webp" data-backup="images/ame-pose-hi.webp" alt="Ame chào Hician">
+    </div>
+  </div>
+  <div id="runScene" class="scene" aria-label="Ame chạy qua công viên"><div class="run-world">
+    <div id="runBg" class="run-background"></div>
+    <div id="runAme"><img src="images/chibinu-running.gif" data-backup="images/ame-pose-run.webp" alt="Ame đang chạy cầm thư"></div>
+    <div id="runHician"><img src="images/hician-pose-bench.webp" data-backup="images/hician-sit.webp" alt="Hician ngồi chờ bên ghế"></div>
+  </div></div>
+  <div id="handoffScene" class="scene" aria-label="Ame đưa thư cho Hician"><div class="scene-frame">
+    <img id="handoffImg" src="images/ame-hician-trao-thu.gif" data-backup="images/park-handoff.webp" alt="Ame tiến đến và Hician đưa tay nhận thư">
+    <div id="handoffGlow"></div>
+  </div></div>
+  <div id="questionScene" class="scene" aria-label="Mở lá thư hay chưa">
+    <div class="question-shell">
+      <div class="question-art"><img src="images/ame-hician-cho-mo-thu.gif" data-backup="images/park-question.webp" alt="Hician đang ngồi cầm lá thư, Ame đứng cạnh"></div>
+      <div class="question-text"><div class="eyebrow">Gửi riêng Hician</div><h2>Có muốn mở lá thư này không? 💌</h2><p>Ame đã mang tới món quà có 19 tấm ảnh trong 18 kỷ niệm nhỏ xinh của chúng mình.</p>
+        <div class="question-actions"><button id="yes" type="button" class="btn primary">Có, mở ngay ♡</button><button id="no" type="button" class="btn secondary">Chưa đâu 🙈</button></div>
+        <p id="reply" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
 </section>
-<section id="album" aria-label="19 kỷ niệm trong 20 ảnh">
- <header class="album-head"><span class="eyebrow">Our little memories</span><h2>19 kỷ niệm, 20 tấm ảnh ♡</h2><p>Cuộn xuống từng kỷ niệm nhé. Ame sẽ hỏi “Anh còn nhớ…?”, còn Hician sẽ đáp lại bằng những lời dễ thương.</p></header>
- <div class="album-layout" id="albumLayout">
-  <aside class="guide-wrap" aria-label="Ame và Hician trò chuyện khi xem ảnh"><div class="guide"><div class="guide-bg"></div><div class="speech ame" id="ameSpeech"><strong>Ame ♡</strong>Anh còn nhớ món quà đầu tiên không?</div><div class="speech hician" id="hicianSpeech"><strong>Hician ♡</strong>Anh nhớ chứ!</div><div class="guide-photo" id="guidePhoto"><img id="guideImage" src="images/Anh1.jpg" alt="Kỷ niệm đang kể"></div><div class="guide-girl" id="guideGirl" role="button" tabindex="0" aria-label="Ame kể chuyện"><img src="images/ame-pose-point.webp" alt="Ame chỉ ảnh"></div><div class="guide-boy" id="guideBoy" role="button" tabindex="0" aria-label="Hician đáp lời"><img src="images/hician-pose-bench.webp" alt="Hician ngồi nghe"></div></div></aside>
-  <div class="memory-list" id="memoryList"></div>
- </div>
- <footer class="ending"><img src="images/chibi-main.jpg" alt="Ame và Hician"><h2>Gửi Hician, ngày 19/11 thật đặc biệt ♡</h2><p>Cảm ơn anh vì đã mang đến những món quà, những buổi hẹn và cả chuyến đi Đà Lạt đầy yêu thương. Điều Ame trân trọng nhất không chỉ là những bức ảnh, mà là người đã cùng Ame tạo nên chúng.</p><button type="button" class="btn main" id="replay">Xem lại từ đầu 💗</button></footer>
+<section id="album" aria-label="Album kỷ niệm của Ame và Hician">
+  <header class="album-header"><div class="eyebrow">Our little memories</div><h2>18 kỷ niệm, 19 tấm ảnh ♡</h2><p>Cuộn xuống từng bức ảnh để nghe Ame kể chuyện. Hician ngồi lắng nghe dưới tán cây.</p></header>
+  <div id="memoryLayout" class="memory-layout">
+    <aside class="guide-sticky" aria-label="Ame giới thiệu và Hician lắng nghe">
+      <div class="guide">
+        <div id="guideNote" class="guide-note"><strong>Ame ♡</strong>Hician ơi, xem kỷ niệm đầu tiên nè!</div>
+        <div id="guidePreview" class="guide-preview"><img id="guideImg" src="images/Anh1.jpg" alt="Ảnh kỷ niệm đang giới thiệu"></div>
+        <div class="guide-ame" role="button" tabindex="0" id="guideAme" aria-label="Nghe Ame kể chuyện"><img src="images/ame-pose-point.webp" data-backup="images/ame-point.webp" alt="Ame chỉ về phía ảnh"></div>
+        <div class="guide-hician" role="button" tabindex="0" id="guideHician" aria-label="Nghe Hician nói"><img src="images/hician-pose-bench.webp" data-backup="images/hician-sit.webp" alt="Hician ngồi nhìn ảnh"></div>
+      </div>
+    </aside>
+    <div id="memoryList" class="memory-list"></div>
+  </div>
+  <footer class="ending"><img src="images/chibi-main.jpg" alt="Ame và Hician"><h2>Chúc Hician ngày 19/11 thật đặc biệt ♡</h2><p>Cảm ơn cậu vì đã xuất hiện và khiến những điều bình thường trở nên đáng nhớ. Mong cậu luôn vui vẻ, bình an và có thật nhiều lý do để mỉm cười.</p><button id="replay" type="button" class="btn primary">Xem lại từ đầu 💌</button></footer>
 </section>
 </main>
 <script>
-'use strict';
+"use strict";
 const $=id=>document.getElementById(id);
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
-const reduceMotion=matchMedia('(prefers-reduced-motion:reduce)').matches;
-const isSmall=()=>innerWidth<=650;
-let canceled=false,opened=false,started=false;
-function fallback(img){const backup=img.dataset.backup;if(!backup)return;img.addEventListener('error',()=>{if(img.dataset.tried)return;img.dataset.tried='1';img.src=backup})}
-document.querySelectorAll('img[data-backup]').forEach(fallback);
-async function tween(node,frames,duration=700,easing='ease-in-out'){
- if(canceled)return;
- const a=node.animate(frames,{duration:reduceMotion?1:duration,easing,fill:'forwards'});
- try{await a.finished}catch(e){}
+const motionReduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const MOBILE=()=>innerWidth<=650;
+const sceneSpeed=motionReduced?.45:1;
+const wait=ms=>sleep(ms*sceneSpeed);
+let started=false,albumOpened=false,sceneCanceled=false,heartRAF=0,heartMode='off';
+let particles=[];
+function setPose(src,backup){const im=$('arrivalImg');im.onerror=()=>{im.onerror=null;im.src=backup};im.src=src}
+function fallbackImage(img){if(!img||!img.dataset.backup)return;img.addEventListener('error',()=>{if(img.dataset.fallbackTried)return;img.dataset.fallbackTried='1';img.src=img.dataset.backup})}
+document.querySelectorAll('img[data-backup]').forEach(fallbackImage);
+async function animate(el,keyframes,duration,easing='ease-in-out'){
+  if(sceneCanceled)return;
+  const animation=el.animate(keyframes,{duration:duration*sceneSpeed,easing,fill:'forwards'});
+  try{await animation.finished}catch{};
 }
-async function switchScene(from,to){if(canceled)return;from.classList.remove('active');await sleep(850);if(!canceled)to.classList.add('active')}
-/* Canvas hearts: colorful glassy rounded hearts travel from scatter -> filled rectangle -> burst. */
-const canvas=$('heartCanvas'),ctx=canvas.getContext('2d');let hearts=[],heartMode='off',raf=0;
-function resize(){const dpr=Math.min(devicePixelRatio||1,1.6);canvas.width=Math.round(innerWidth*dpr);canvas.height=Math.round(innerHeight*dpr);ctx.setTransform(dpr,0,0,dpr,0,0)}resize();addEventListener('resize',resize);
+async function goScene(from,to){if(sceneCanceled)return;from.classList.add('leaving');from.classList.remove('active');await wait(870);from.classList.remove('leaving');to.classList.add('active');await wait(100)}
+/* Pink glass hearts, random scattering -> dense filled rectangle -> burst */
+const canvas=$('heartCanvas'),ctx=canvas.getContext('2d');
+function resizeCanvas(){const dpr=Math.min(devicePixelRatio||1,1.5);canvas.width=Math.round(innerWidth*dpr);canvas.height=Math.round(innerHeight*dpr);ctx.setTransform(dpr,0,0,dpr,0,0)}
+resizeCanvas();addEventListener('resize',resizeCanvas);
 const rand=(a,b)=>a+Math.random()*(b-a);
-function heartPath(s){ctx.beginPath();ctx.moveTo(0,s*.48);ctx.bezierCurveTo(-s*.96,-s*.08,-s*.63,-s*.91,0,-s*.37);ctx.bezierCurveTo(s*.63,-s*.91,s*.96,-s*.08,0,s*.48);ctx.closePath()}
-function drawHeart(p){ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r);ctx.globalAlpha=p.a;heartPath(p.s);const g=ctx.createRadialGradient(-p.s*.2,-p.s*.24,0,0,0,p.s);g.addColorStop(0,'#ffffff');g.addColorStop(.34,p.t%2?'#fff0f8':'#ffe0ee');g.addColorStop(.8,p.t%2?'#ffa5c8':'#ffc1da');g.addColorStop(1,p.t%3?'#e97cac':'#f699be');ctx.fillStyle=g;ctx.fill();ctx.lineWidth=Math.max(1,p.s*.05);ctx.strokeStyle='#fff9';ctx.stroke();ctx.beginPath();ctx.ellipse(-p.s*.2,-p.s*.2,p.s*.13,p.s*.055,-.5,0,Math.PI*2);ctx.fillStyle='#fffc';ctx.fill();ctx.restore()}
-function makeHeart(i){const w=Math.min(innerWidth*.68,390),h=w*.6;return{x:rand(0,innerWidth),y:rand(0,innerHeight),tx:innerWidth/2-w/2+rand(0,w),ty:innerHeight*.52-h/2+rand(0,h),vx:rand(-1.8,1.8),vy:rand(-1.8,1.8),s:rand(6,isSmall()?23:36),a:rand(.65,1),t:i%5,r:rand(-.6,.6)}}
-function frame(){ctx.clearRect(0,0,innerWidth,innerHeight);for(const p of hearts){if(heartMode==='scatter'){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>innerWidth)p.vx*=-1;if(p.y<0||p.y>innerHeight)p.vy*=-1}else if(heartMode==='gather'){p.x+=(p.tx-p.x)*.055;p.y+=(p.ty-p.y)*.055}else if(heartMode==='burst'){p.x+=p.vx;p.y+=p.vy;p.vy+=.05;p.a*=.97}if(p.a>.03)drawHeart(p)}if(heartMode==='burst'&&hearts.every(p=>p.a<.035))heartMode='off';if(heartMode!=='off')raf=requestAnimationFrame(frame);else{raf=0;ctx.clearRect(0,0,innerWidth,innerHeight)}}
-function startHearts(){hearts=Array.from({length:isSmall()?130:270},(_,i)=>makeHeart(i));heartMode='scatter';if(!raf)raf=requestAnimationFrame(frame)}
-function burstHearts(){hearts=Array.from({length:isSmall()?85:160},(_,i)=>{const p=makeHeart(i),a=rand(0,Math.PI*2),v=rand(2,9);p.x=innerWidth/2;p.y=innerHeight*.52;p.vx=Math.cos(a)*v;p.vy=Math.sin(a)*v;p.a=1;return p});heartMode='burst';if(!raf)raf=requestAnimationFrame(frame)}
-function clearHearts(){heartMode='off';hearts=[];if(raf)cancelAnimationFrame(raf);raf=0;ctx.clearRect(0,0,innerWidth,innerHeight)}
-async function startCinema(){if(started)return;started=true;
- startHearts();await sleep(1650);if(canceled)return;heartMode='gather';await sleep(2550);if(canceled)return;
- burstHearts();await sleep(1050);clearHearts();
- const letter=$('envelope');letter.style.opacity='1';letter.classList.add('shining');
- await tween(letter,[{opacity:0,transform:'translate(-50%,-50%) scale(.15)'},{opacity:1,transform:'translate(-50%,-50%) scale(1.24)'}],1050);await sleep(1300);if(canceled)return;
- $('introHeading').style.opacity='0';await tween(letter,[{transform:'translate(-50%,-50%) scale(1.24)'},{transform:'translate(-50%,-50%) scale(.36)'}],1150);
- const arrival=$('ameArrival');await tween(arrival,[{top:'-400px',opacity:0},{top:isSmall()?'30%':'25%',opacity:1}],2550,'cubic-bezier(.2,.72,.21,1)');if(canceled)return;
- $('balloon').style.transition='opacity .8s,transform .8s';$('balloon').style.opacity='0';$('balloon').style.transform='translateY(-75px) scale(.65)';await sleep(750);
- // Ame greets first, then turns to take the letter.
- const pose=$('arrivalPose');pose.src='images/ame-pose-wave.webp';await sleep(1000);pose.src='images/ame-pose-pick.webp';await sleep(430);
- // Important: the SAME large envelope travels continuously to the hands; it NEVER falls onto the ground.
- // The destination is positioned near Ame's hands and is visually small before the pose switch.
- letter.classList.remove('shining');
- const rect=arrival.getBoundingClientRect();const targetX=rect.left+rect.width*.59;const targetY=rect.top+rect.height*.77;
- const pctX=targetX/innerWidth*100,pctY=targetY/innerHeight*100;
- await tween(letter,[{left:'50%',top:'52%',transform:'translate(-50%,-50%) scale(.36)',opacity:1},{left:pctX+'%',top:pctY+'%',transform:'translate(-50%,-50%) scale(.095)',opacity:1}],1150,'cubic-bezier(.3,.65,.25,1)');
- // Crossfade exactly at the hand location. No second letter appears while the original is visible.
- await tween(letter,[{opacity:1},{opacity:0}],170);letter.hidden=true;
- pose.src='images/ame-pose-present.webp';await sleep(530);if(canceled)return;
- await switchScene($('intro'),$('runScene'));if(canceled)return;
- // Static scenery; move only the Ame sprite (Hician stays seated).
- await tween($('runAme'),[{transform:'translateX(-8vw)'},{transform:'translateX(39vw)'}],4600,'cubic-bezier(.2,.5,.22,1)');await sleep(350);if(canceled)return;
- await switchScene($('runScene'),$('handoffScene'));if(canceled)return;
- await handoff();if(canceled)return;
- await switchScene($('handoffScene'),$('questionScene'));$('skip').hidden=true;
+function heartShape(s){ctx.beginPath();ctx.moveTo(0,s*.43);ctx.bezierCurveTo(-s*.93,-s*.15,-s*.56,-s*.89,0,-s*.35);ctx.bezierCurveTo(s*.56,-s*.89,s*.93,-s*.15,0,s*.43);ctx.closePath()}
+function paintHeart(p){ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rotation);ctx.globalAlpha=p.alpha;heartShape(p.size);const g=ctx.createRadialGradient(-p.size*.15,-p.size*.24,0,0,0,p.size);g.addColorStop(0,'#ffffff');g.addColorStop(.35,p.type%2?'#fff0f8':'#ffe2f2');g.addColorStop(.77,p.type%3?'#ffb1d3':'#ffd0e2');g.addColorStop(1,p.type%2?'#f786ba':'#f19bbf');ctx.fillStyle=g;ctx.fill();ctx.lineWidth=Math.max(1,p.size*.05);ctx.strokeStyle='#fff9';ctx.stroke();ctx.beginPath();ctx.ellipse(-p.size*.2,-p.size*.18,p.size*.14,p.size*.05,-.55,0,Math.PI*2);ctx.fillStyle='#fffc';ctx.fill();ctx.restore()}
+function makeParticle(i){const w=Math.min(innerWidth*.6,370),h=w*.67;return{x:rand(0,innerWidth),y:rand(0,innerHeight),tx:innerWidth/2-w/2+rand(0,w),ty:innerHeight*.53-h/2+rand(0,h),vx:rand(-1.5,1.5),vy:rand(-1.5,1.5),size:rand(7,MOBILE()?23:34),alpha:rand(.7,1),type:i%4,rotation:rand(-.5,.5)}}
+function heartFrame(){ctx.clearRect(0,0,innerWidth,innerHeight);for(const p of particles){if(heartMode==='scatter'){p.x+=p.vx;p.y+=p.vy;if(p.x<-40||p.x>innerWidth+40)p.vx*=-1;if(p.y<-40||p.y>innerHeight+40)p.vy*=-1}else if(heartMode==='gather'){p.x+=(p.tx-p.x)*.05;p.y+=(p.ty-p.y)*.05}else if(heartMode==='burst'){p.x+=p.vx;p.y+=p.vy;p.vy+=.035;p.alpha*=.973}if(p.alpha>.03)paintHeart(p)}if(heartMode==='burst'&&particles.every(p=>p.alpha<.035))heartMode='off';if(heartMode!=='off')heartRAF=requestAnimationFrame(heartFrame);else{heartRAF=0;ctx.clearRect(0,0,innerWidth,innerHeight)}}
+function hearts(mode,count){heartMode=mode;particles=Array.from({length:count},(_,i)=>makeParticle(i));if(!heartRAF)heartRAF=requestAnimationFrame(heartFrame)}
+function burst(){heartMode='burst';particles=Array.from({length:MOBILE()?95:160},(_,i)=>{const p=makeParticle(i),a=rand(0,Math.PI*2),v=rand(2,9);p.x=innerWidth*.5;p.y=innerHeight*.53;p.vx=Math.cos(a)*v;p.vy=Math.sin(a)*v;p.alpha=1;return p});if(!heartRAF)heartRAF=requestAnimationFrame(heartFrame)}
+function stopHearts(){heartMode='off';particles=[];if(heartRAF){cancelAnimationFrame(heartRAF);heartRAF=0}ctx.clearRect(0,0,innerWidth,innerHeight)}
+/* Sequenced: large envelope completely hidden first, then Ame's holding-letter asset appears */
+async function begin(){if(started)return;started=true;
+  hearts('scatter',motionReduced?55:MOBILE()?120:250);await wait(1800);if(sceneCanceled)return;
+  heartMode='gather';await wait(2600);if(sceneCanceled)return;
+  burst();await wait(900);stopHearts();
+  $('letter').style.opacity='1';$('letter').classList.add('glow');
+  await animate($('letter'),[{opacity:0,transform:'translate(-50%,-50%) scale(.17)'},{opacity:1,transform:'translate(-50%,-50%) scale(1.25)'}],950,'cubic-bezier(.2,.8,.2,1)');
+  await wait(1250);$('openingTitle').style.opacity='0';$('landingGlow').style.opacity='.65';
+  await animate($('letter'),[{transform:'translate(-50%,-50%) scale(1.25)'},{transform:'translate(-50%,-50%) scale(.30)'}],1250);
+  if(sceneCanceled)return;
+  await animate($('arrival'),[{top:'-440px',opacity:0},{top:MOBILE()?'31%':'28%',opacity:1}],2750,'cubic-bezier(.18,.65,.28,1)');
+  await wait(250);$('balloon').style.transition='opacity .9s,transform .9s';$('balloon').style.opacity='0';$('balloon').style.transform='translateY(-90px) scale(.7)';
+  setPose('images/ame-pose-hi.webp','images/ame-hi.webp');await wait(950);
+  // Ame turns toward the letter, but the pickup sprite (which already has a small letter) is NOT visible yet.
+  await animate($('arrivalImg'),[{transform:'rotateY(0deg)'},{transform:'rotateY(82deg)'},{transform:'rotateY(0deg)'}],650);
+  // ONE envelope moves toward Ame. The sprite with its own mini envelope appears ONLY after the CSS envelope is gone.
+  $('letter').classList.remove('glow');
+  await animate($('letter'),[
+    {opacity:1,left:'50%',top:'52%',transform:'translate(-50%,-50%) scale(.30)'},
+    {opacity:1,left:'57%',top:'70%',transform:'translate(-50%,-50%) scale(.11) rotate(-12deg)'},
+    {opacity:0,left:'57%',top:'70%',transform:'translate(-50%,-50%) scale(.07) rotate(-12deg)'}
+  ],1150);
+  $('letter').hidden=true; // hard-hide BEFORE the pose containing a smaller envelope appears
+  await wait(180);
+  setPose('images/ame-pose-pick.webp','images/ame-pick.webp');await wait(900);
+  setPose('images/ame-running-new.webp','images/ame-pose-present.webp');await wait(650);
+  if(sceneCanceled)return;
+  await goScene($('opening'),$('runScene'));
+  // Foreground moves along clear paved path; stop BEFORE Hician, not overlapping him.
+  await Promise.all([
+    animate($('runBg'),[{transform:'translateX(0)'},{transform:'translateX(-18%)'}],5000,'linear'),
+    animate($('runAme'),[{left:'8%'},{left:MOBILE()?'49%':'54%'}],5000,'ease-in-out')
+  ]);
+  await wait(480);if(sceneCanceled)return;
+  // Freeze static run scene and start independent 9-frame handoff animation.
+  await goScene($('runScene'),$('handoffScene'));
+  // Give the 9 GIF frames time to finish once (duration 4.25 sec).
+  await wait(4350);$('handoffGlow').classList.add('on');await wait(800);
+  await goScene($('handoffScene'),$('questionScene'));
+  $('skipIntro').hidden=true;
 }
-async function handoff(){const a=$('handoffAme'),h=$('handoffHician'),l=$('handoffLetter');
- // Separate chibi layers and separate character motions, not a pre-rendered whole-scene GIF.
- await Promise.all([tween(a,[{transform:'translateX(-32px)'},{transform:'translateX(0)'}],850),tween(h,[{transform:'translateY(0)'},{transform:'translateY(-8px)'}],850)]);
- await sleep(300);if(canceled)return;
- // A small illustrated envelope changes owner at the center of the hands.
- l.style.opacity='1';await Promise.all([tween(a,[{transform:'translateX(0)'},{transform:'translateX(18px) rotate(-3deg)'}],850),tween(h,[{transform:'translateY(-8px)'},{transform:'translateY(-8px) translateX(-9px) rotate(-3deg)'}],850),tween(l,[{left:'45%',opacity:0,transform:'translate(-50%,-50%) scale(.65)'},{left:'51%',opacity:1,transform:'translate(-50%,-50%) scale(1)'}],850)]);
- await sleep(450);if(canceled)return;await tween(l,[{left:'51%',opacity:1},{left:'57%',opacity:0}],600);l.hidden=true;
- const im=$('handoffHicianPose');im.src='images/hician-pose-letter.webp';await sleep(1000);
-}
-function skipIntro(){canceled=true;clearHearts();document.querySelectorAll('.scene').forEach(s=>s.classList.remove('active'));$('questionScene').classList.add('active');$('skip').hidden=true;}
-$('skip').addEventListener('click',skipIntro);
-window.addEventListener('load',startCinema);
-$('no').addEventListener('click',()=>$('reply').textContent='Vậy Hician giữ lá thư thêm một chút nữa nha ♡');
-$('yes').addEventListener('click',async()=>{if(opened)return;opened=true;$('yes').disabled=true;burstHearts();await sleep(950);$('cinema').hidden=true;$('album').classList.add('open');buildMemories();scrollTo({top:0,behavior:'instant'});});
-/* 20 source images, 19 memory cards: images 15 and 16 share one card. */
-const memories=[
- {images:[1],title:'Món quà đến sớm',caption:'Món quà sinh nhật đầu tiên anh tặng Ame lại đến trước cả ngày sinh nhật. Bất ngờ đến sớm như thế, nhưng niềm vui thì còn ở lại rất lâu.',ame:'Anh còn nhớ món quà sinh nhật tặng em sớm hơn cả ngày sinh nhật không?',hician:'Nhớ chứ! Anh chỉ muốn em vui sớm một chút thôi mà.'},
- {images:[2],title:'Một tối trút hết muộn phiền',caption:'Một buổi cùng nhau uống chút rượu, kể những chuyện mệt mỏi và xả hết áp lực. Hóa ra chỉ cần có người chịu ngồi nghe, lòng mình đã nhẹ hơn nhiều.',ame:'Anh còn nhớ hôm mình ngồi tâm sự, xả stress với nhau không?',hician:'Nhớ. Chuyện dài đến đâu anh cũng muốn nghe em kể.'},
- {images:[3],title:'Sinh nhật có anh',caption:'Một bữa ăn mừng sinh nhật với người đặc biệt. Món ăn có thể quên, nhưng cảm giác có anh ngồi đối diện thì Ame muốn giữ thật lâu.',ame:'Anh nhớ bữa ăn sinh nhật của em hôm đó chứ?',hician:'Tất nhiên! Với anh, em vui là điều quan trọng nhất.'},
- {images:[4],title:'Gom từng chút yêu thương',caption:'Những món quà anh tặng, mỗi món đều cất giữ một chút dịu dàng. Điều Ame quý nhất không phải giá trị món quà, mà là sự quan tâm đằng sau đó.',ame:'Anh còn nhớ mình đã tặng em những món gì không?',hician:'Có chứ, mỗi món đều là một cách anh nói rằng anh thương em.'},
- {images:[5],title:'Đi dạo chẳng cần đích đến',caption:'Những bước chân thong thả và những câu chuyện không đầu không cuối. Đi bên cạnh anh, những con đường bình thường cũng trở nên rất đỗi đáng yêu.',ame:'Anh nhớ những lần hai đứa mình đi dạo không?',hician:'Nhớ, vì nơi nào có em thì đường về cũng thấy ngắn.'},
- {images:[6],title:'Hẹn nhau một bữa ngon',caption:'Lại thêm một bữa ăn và thêm một dịp được ngồi cạnh nhau. Chẳng cần dịp gì lớn lao, chỉ cần hôm ấy chúng mình có mặt.',ame:'Mình đã ăn với nhau bao nhiêu bữa rồi anh nhỉ?',hician:'Không đếm nổi, nhưng anh muốn có thêm nhiều bữa nữa.'},
- {images:[7],title:'Cà phê và những câu chuyện',caption:'Một buổi cà phê, đôi ba câu chuyện linh tinh và thật nhiều tiếng cười. Những khoảnh khắc chậm lại thế này luôn rất đáng giữ.',ame:'Anh còn nhớ mấy buổi cà phê hai đứa ngồi kể chuyện không?',hician:'Nhớ. Anh thích những buổi chỉ có mình và em như vậy.'},
- {images:[8],title:'Rạp phim và hai chiếc ghế cạnh nhau',caption:'Ánh đèn rạp tắt, bộ phim bắt đầu và có anh ở ngay bên cạnh. Đó là một trong những điều giản dị khiến Ame thấy vui.',ame:'Anh còn nhớ buổi đi xem phim này không?',hician:'Anh nhớ cả người ngồi cạnh anh nữa.'},
- {images:[9],title:'Lại một tối hẹn cùng màn ảnh',caption:'Một buổi xem phim nữa, một kỷ niệm nữa. Những thói quen nho nhỏ lặp đi lặp lại lại là điều khiến chuyện của chúng mình đặc biệt.',ame:'Đi xem phim nữa nhé, anh có nhớ lần này không?',hician:'Nhớ chứ. Anh luôn thích được cùng em chọn phim.'},
- {images:[10],title:'Cụng ly cùng người thương',caption:'Một buổi nhậu với đủ thứ câu chuyện trên đời. Có anh ngồi bên, cả một tối bình thường cũng trở thành ký ức đáng yêu.',ame:'Anh còn nhớ lần hai đứa cụng ly với nhau không?',hician:'Nhớ. Cụng ly cho những ngày vui tiếp theo nữa nhé!'},
- {images:[11],title:'Một dấu mốc ngọt ngào',caption:'Món quà nhỏ nhưng mang ý nghĩa rất lớn: khoảnh khắc mối quan hệ của chúng mình có thêm một lời xác nhận thật rõ ràng.',ame:'Anh có nhớ món quà đánh dấu chuyện hai đứa mình không?',hician:'Sao quên được, đó là ngày anh thấy mình thật may mắn.'},
- {images:[12],title:'Khi chúng mình là của nhau',caption:'Không chỉ là quà tặng, đó còn là lời nhắn rằng chúng mình đã chọn ở bên nhau. Đến giờ nghĩ lại, Ame vẫn thấy tim rung lên.',ame:'Anh nhớ lúc mình chính thức gọi nhau là người thương không?',hician:'Nhớ chứ. Anh vẫn vui như hôm ấy.'},
- {images:[13],title:'Đi ăn để được “bồi bổ”',caption:'Một buổi hẹn đi ăn với lý do cực dễ thương: bồi bổ cho nhau. Có người để cùng ăn ngon và cùng chăm sóc, đúng là ấm lòng.',ame:'Anh còn nhớ bữa đi ăn “bồi bổ” này không?',hician:'Nhớ, phải chăm Ame thật tốt chứ!'},
- {images:[14],title:'Chiếc vòng của lời hứa',caption:'Cùng nhau làm vòng tay vĩnh cửu, giữ một dấu ấn nhỏ cho chặng đường chung. Mong từng ngày sau này vẫn có anh và em đồng hành.',ame:'Anh còn nhớ ngày mình cùng làm vòng tay vĩnh cửu không?',hician:'Nhớ. Nhìn chiếc vòng là anh nhớ đến em ngay.'},
- {images:[15,16],title:'Hai đứa mình trong đồ đôi',caption:'Hai tấm ảnh, một câu chuyện: những lần cùng mặc đồ đôi. Chỉ một chút giống nhau thôi mà cảm giác được thuộc về nhau bỗng rõ ràng đến lạ.',ame:'Anh thấy hai đứa mình mặc đồ đôi có đáng yêu không?',hician:'Đáng yêu chứ! Nhưng anh thấy Ame là đáng yêu nhất.'},
- {images:[17],title:'Đà Lạt — Ngày đầu háo hức',caption:'Ngày đầu đặt chân tới Đà Lạt cùng nhau. Trời, cảnh vật và những con đường đều mới mẻ, nhưng vui nhất là được khám phá cùng anh.',ame:'Anh còn nhớ ngày đầu tiên tụi mình đến Đà Lạt không?',hician:'Nhớ! Chuyến đi có em làm mọi thứ đẹp hơn.'},
- {images:[18],title:'Đà Lạt — Ngày thứ hai dịu dàng',caption:'Ngày thứ hai trôi qua giữa không khí Đà Lạt và những khoảnh khắc thật bình yên. Càng đi cùng nhau, Ame càng muốn có thêm nhiều chuyến nữa.',ame:'Ngày thứ hai ở Đà Lạt anh thích nhất điều gì?',hician:'Anh thích được đi cùng em cả ngày.'},
- {images:[19],title:'Đà Lạt — Ngày thứ ba đáng nhớ',caption:'Ngày thứ ba mang theo chút lưu luyến và thật nhiều hình ảnh đẹp. Chuyến đi rồi sẽ kết thúc, nhưng câu chuyện của chúng mình vẫn còn tiếp tục.',ame:'Anh có thấy ba ngày Đà Lạt trôi nhanh quá không?',hician:'Nhanh thật. Mình lại đi cùng nhau nhé!'},
- {images:[20],title:'Bữa tối mang tên Ame và Hician',caption:'Bữa tối anh đặt riêng ở Đà Lạt, với tên hai đứa mình ở cạnh nhau. Một chi tiết nhỏ mà khiến Ame thấy được trân trọng và yêu thương thật nhiều.',ame:'Anh còn nhớ bữa tối ở Đà Lạt có tên hai đứa mình không?',hician:'Anh nhớ. Anh muốn đó là một tối thật đặc biệt dành cho em.'}
+/* 19 photos, 18 memories: two pictures together at memory 15 */
+const notes=[
+  ['Ngày đầu tiên','Khởi đầu của tụi mình 🌷','Có những điều bắt đầu nhẹ nhàng nhưng lại ở mãi trong tim.'],
+  ['Một buổi gặp gỡ','Lần đầu đi cùng nhau 💗','Buổi gặp gỡ ấy bình thường thôi, nhưng với Ame lại đặc biệt.'],
+  ['Một lần cùng cười','Nụ cười của cậu ☁️','Mỗi lần thấy Hician cười, mình cũng vui theo.'],
+  ['Một khoảnh khắc nhỏ','Điều giản dị mà mình thương 🧸','Đôi khi chỉ cần bên nhau đã là đủ rồi.'],
+  ['Một ngày đẹp trời','Ánh nắng và tụi mình ✨','Cậu có mặt nên mọi thứ đều đáng nhớ hơn.'],
+  ['Một tấm ảnh xinh','Kỷ niệm được giữ lại 📷','Mỗi tấm ảnh là một câu chuyện mình không muốn quên.'],
+  ['Một lần đi xa','Đi cùng nhau thật vui 🌤️','Có người đồng hành, nơi nào cũng đáng nhớ.'],
+  ['Một phút đáng yêu','Khoảnh khắc làm tim rung lên 🫶','Những điều nhỏ bé bên nhau luôn có ý nghĩa thật lớn.'],
+  ['Một ngày vui','Mong cậu luôn mỉm cười 💕','Mong Hician sẽ luôn có nhiều ngày hạnh phúc.'],
+  ['Một nỗi nhớ','Có lúc chỉ muốn gặp cậu 🌸','Nhớ cậu là cảm giác vừa dịu dàng vừa chân thật.'],
+  ['Một góc nhỏ','Điều bình yên mình thích 🤍','Mình thích những khoảnh khắc có cậu bên cạnh.'],
+  ['Một ngày đặc biệt','Ký ức không muốn quên 🎀','Thời gian trôi nhưng cảm giác ấy vẫn nguyên vẹn.'],
+  ['Một lần đồng hành','Đi cùng nhau nhé 🥰','Chỉ cần cùng cậu, mọi hành trình đều vui hơn.'],
+  ['Một bức ảnh nữa','Thêm một kỷ niệm 🌈','Nhìn lại tấm ảnh này thôi là đã muốn cười.'],
+  ['Hai khoảnh khắc chung','Ngượng nhưng vẫn thương 🙈','Hai bức ảnh, chung một câu chuyện đáng yêu của tụi mình.'],
+  ['Một điều chưa nói','Những lời trong tim 💌','Có những điều khó nói trực tiếp nên Ame gửi vào đây.'],
+  ['Một khoảng thời gian đẹp','Những ngày tháng thật xinh 🌼','Cảm ơn Hician vì những ngày đã cùng đồng hành.'],
+  ['19/11','Gửi cậu tất cả yêu thương 💝','Mong cậu luôn bình an, vui vẻ và được yêu thương thật nhiều.']
 ];
-const amePoses=['ame-pose-peek.webp','ame-pose-giggle.webp','ame-pose-point.webp','ame-pose-hi.webp','ame-pose-laugh.webp','ame-pose-wave.webp'];
-const hicianPoses=['hician-pose-listen.webp','hician-pose-relax.webp','hician-pose-letter.webp','hician-pose-bench.webp'];
-const asset=name=>'images/'+name;
-function textEl(tag,cls,txt){const el=document.createElement(tag);if(cls)el.className=cls;if(txt!==undefined)el.textContent=txt;return el}
-let activeMemory=-1,observer;
-function photoElement(n){const img=document.createElement('img');img.loading='lazy';img.alt='Kỷ niệm: '+n;img.src=`images/Anh${n}.jpg`;img.onerror=()=>{const msg=textEl('div','missing',`Chưa tải được Anh${n}.jpg`);img.replaceWith(msg)};return img}
-function buildMemories(){if($('memoryList').children.length)return;
- memories.forEach((m,i)=>{
-  const card=textEl('article','memory');card.dataset.index=i;
-  const art=textEl('div','photo-side'),pol=textEl('div','polaroid'+(m.images.length===2?' duo':'')),fr=textEl('div','photo-frame');
-  m.images.forEach(n=>fr.append(photoElement(n)));
-  pol.append(fr,textEl('div','polaroid-name',m.title+' ♡'));art.append(pol);
-  // Deterministic variations instead of changing randomly on every scroll.
-  const girl=textEl('div','corner '+(i%3===0?'left':i%3===1?'right':'left top'));
-  const boy=textEl('div','corner '+(i%3===0?'right':i%3===1?'left':'right top'));
-  const girlImg=document.createElement('img');girlImg.src=asset(amePoses[(i*3+1)%amePoses.length]);girlImg.alt='Ame tạo dáng dễ thương';
-  const boyImg=document.createElement('img');boyImg.src=asset(hicianPoses[(i*2+Math.floor(i/3))%hicianPoses.length]);boyImg.alt='Hician lắng nghe';girl.append(girlImg);boy.append(boyImg);art.append(girl,boy);
-  const copy=textEl('div','text-side');const title=textEl('h3','',m.title);const desc=textEl('p','',m.caption);const dialog=textEl('div','memory-dialog');
-  const ame=textEl('div','',`Ame: “${m.ame}”`);const hic=textEl('div','answer',`Hician: “${m.hician}”`);ame.prepend(textEl('strong','',''));dialog.append(ame,hic);
-  copy.append(textEl('span','stamp','CHUYỆN NHỎ CỦA CHÚNG MÌNH'),title,desc,dialog);card.append(art,copy);$('memoryList').append(card);
- });
- observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('seen')});const visible=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio);if(visible.length)updateGuide(Number(visible[0].target.dataset.index))},{threshold:[.08,.25,.5]});
- document.querySelectorAll('.memory').forEach(e=>observer.observe(e));updateGuide(0);
+const memories=notes.map((n,i)=>({number:i===14?'15–16':String(i<14?i+1:i+2),date:n[0],title:n[1],message:n[2],photos:i===14?['images/Anh15.jpg','images/Anh16.jpg']:[`images/Anh${i<14?i+1:i+2}.jpg`]}));
+const amePoses=['ame-pose-peek.webp','ame-pose-point.webp','ame-pose-wave.webp','ame-pose-giggle.webp','ame-pose-laugh.webp','ame-pose-hi.webp'];
+const hicianPoses=['hician-pose-bench.webp','hician-pose-listen.webp','hician-pose-relax.webp','hician-pose-letter.webp','hician-pose-open.webp'];
+function elt(tag,cls,text){const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e}
+function picture(src,alt){const img=elt('img');img.alt=alt;img.src=src;return img}
+function buildAlbum(){const target=$('memoryList');if(target.childElementCount)return;
+  memories.forEach((m,i)=>{
+    const card=elt('article','memory');card.dataset.index=String(i);
+    const art=elt('div','memory-art');const frame=elt('div','polaroid');frame.style.setProperty('--tilt',`${[-4,3,-2,4,-3][i%5]}deg`);
+    const media=elt('div',m.photos.length===2?'memory-media duo':'memory-media');
+    for(const [j,src] of m.photos.entries()){
+      const tile=elt('div','tile'),fb=elt('span','fallback-photo','Ảnh đang tải...'),img=picture(src,`Kỷ niệm ${m.number}, ảnh ${j+1}`);
+      img.loading='lazy';img.decoding='async';img.hidden=true;
+      img.onload=()=>{img.hidden=false;fb.hidden=true};img.onerror=()=>{img.hidden=true;fb.textContent='Ảnh chưa tải được: '+src};
+      tile.append(fb,img);media.append(tile);
+    }
+    frame.append(media,elt('div','memory-label',`Kỷ niệm ${m.number} ♡`));art.append(frame);
+    // deterministic variety: opposite corners, different characters/poses, no jitter animation
+    const ame=elt('div',`pose ${i%2?'right':'left'} ${i%3===0?'peek':i%3===1?'point':''}`);
+    const hic=elt('div',`pose ${i%2?'left':'right'} ${i%4===0?'peek':''}`);
+    ame.append(picture(`images/${amePoses[(i*3+i%4)%amePoses.length]}`,'Ame biểu cảm đáng yêu'));
+    hic.append(picture(`images/${hicianPoses[(i*2+i%3)%hicianPoses.length]}`,'Hician nghe chuyện'));
+    art.append(ame,hic);
+    const copy=elt('div','memory-copy');copy.append(elt('span','memory-number',`MEMORY · ${m.number}`),elt('span','memory-date',m.date),elt('h3',null,m.title),elt('p',null,m.message));
+    card.append(art,copy);target.append(card);
+  });
+  setupMemoryObserver();
 }
-function updateGuide(i){if(i===activeMemory)return;activeMemory=i;const m=memories[i];$('ameSpeech').replaceChildren(textEl('strong','','Ame ♡'),document.createTextNode(m.ame));$('hicianSpeech').replaceChildren(textEl('strong','','Hician ♡'),document.createTextNode(m.hician));const preview=$('guidePhoto');preview.classList.toggle('double',m.images.length===2);preview.replaceChildren(...m.images.map(n=>photoElement(n)));}
-function controlCharacter(id,isAme){const node=$(id);const fn=()=>{const m=memories[Math.max(activeMemory,0)];if(isAme){$('ameSpeech').replaceChildren(textEl('strong','','Ame ♡'),document.createTextNode('Hician ơi, '+m.ame.toLowerCase()))}else{$('hicianSpeech').replaceChildren(textEl('strong','','Hician ♡'),document.createTextNode('Anh nhớ mà! '+m.hician))}};node.addEventListener('click',fn);node.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();fn()}})}
-controlCharacter('guideGirl',true);controlCharacter('guideBoy',false);
-$('replay').addEventListener('click',()=>location.reload());
+let currentMemory=-1;
+function updateGuide(i){if(i===currentMemory)return;currentMemory=i;const m=memories[i];
+  $('guideNote').replaceChildren(elt('strong',null,`Ame: ${m.title}`),document.createTextNode(`Hician ơi, nhìn ảnh này nè! ${m.message}`));
+  const preview=$('guidePreview');preview.classList.toggle('double',m.photos.length===2);
+  preview.replaceChildren(...m.photos.map((src,j)=>picture(src,`Ảnh ${m.number} - ${j+1}`)));
+}
+function setupMemoryObserver(){const all=[...document.querySelectorAll('.memory')];
+  const observer=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.isIntersecting)entry.target.classList.add('visible')}},{threshold:.08});all.forEach(c=>observer.observe(c));
+  // Select the most prominent memory under the sticky guide (desktop / mobile)
+  let scheduled=false;
+  function selectCurrent(){scheduled=false;const mobile=innerWidth<=850,anchor=mobile?Math.min(innerHeight*.45,360):innerHeight*.43;
+    let best=0,min=Infinity;
+    all.forEach((c,i)=>{const r=c.getBoundingClientRect(),d=r.top<=anchor&&r.bottom>=anchor?0:Math.min(Math.abs(r.top-anchor),Math.abs(r.bottom-anchor));if(d<min){min=d;best=i}});
+    updateGuide(best);
+  }
+  const schedule=()=>{if(!scheduled){scheduled=true;requestAnimationFrame(selectCurrent)}};
+  addEventListener('scroll',schedule,{passive:true});addEventListener('resize',schedule);schedule();
+}
+function showAlbum(){if(albumOpened)return;albumOpened=true;sceneCanceled=true;stopHearts();$('cinema').hidden=true;$('skipIntro').hidden=true;$('album').classList.add('open');buildAlbum();scrollTo({top:0,behavior:'instant'})}
+function clickWithKeyboard(node,fn){node.addEventListener('click',fn);node.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();fn()}})}
+addEventListener('DOMContentLoaded',()=>{
+  begin();$('skipIntro').onclick=showAlbum;$('replay').onclick=()=>location.reload();
+  $('no').onclick=()=>{$('reply').textContent='Để Hician giữ lá thư thêm chút nữa nha ♡'};
+  $('yes').onclick=async()=>{$('yes').disabled=true;$('no').disabled=true;burst();await wait(1250);showAlbum()};
+  clickWithKeyboard($('guideAme'),()=>{const m=memories[Math.max(0,currentMemory)];$('guideNote').replaceChildren(elt('strong',null,'Ame ♡'),document.createTextNode(`Hician ơi, xem kỷ niệm này! ${m.message}`))});
+  clickWithKeyboard($('guideHician'),()=>{$('guideNote').replaceChildren(elt('strong',null,'Hician ♡'),document.createTextNode('Ame kể tiếp đi, mình đang ngồi nghe nè!'))});
+});
 </script>
 </body>
 </html>
